@@ -1,0 +1,74 @@
+[gd_scene load_steps=3 format=3 uid="uid://c0wbguhb0t4y1"]
+
+[ext_resource type="Script" uid="uid://bvm75x6heohcj" path="res://TownScripts/CharacterSlot.gd" id="1_j8jx2"]
+[ext_resource type="Texture2D" uid="uid://dehq32fdknjwt" path="res://Art/Characters/Guy.png" id="2_4du6c"]
+
+[node name="CharacterSlot" type="Control" node_paths=PackedStringArray("character_sprite", "character_name", "character_level", "character_button")]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_j8jx2")
+character_sprite = NodePath("CharacterSlotButton/Panel/CharacterSprite")
+character_name = NodePath("CharacterSlotButton/VBoxContainer/Name")
+character_level = NodePath("CharacterSlotButton/VBoxContainer/Level")
+character_button = NodePath("CharacterSlotButton")
+
+[node name="CharacterSlotButton" type="Button" parent="."]
+layout_mode = 0
+offset_right = 174.0
+offset_bottom = 80.0
+
+[node name="Panel" type="Panel" parent="CharacterSlotButton"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 4.0
+offset_right = 79.0
+offset_bottom = -4.0
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="CharacterSprite" type="TextureRect" parent="CharacterSlotButton/Panel"]
+texture_filter = 3
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_4du6c")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CharacterSlotButton"]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -85.0
+offset_top = 3.0
+offset_right = -4.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="Name" type="Label" parent="CharacterSlotButton/VBoxContainer"]
+layout_mode = 2
+text = "Temp"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Level" type="Label" parent="CharacterSlotButton/VBoxContainer"]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Class" type="Label" parent="CharacterSlotButton/VBoxContainer"]
+layout_mode = 2
+text = "Dumb"
+horizontal_alignment = 1
+vertical_alignment = 1

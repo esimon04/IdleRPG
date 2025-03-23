@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="EnemyResource" load_steps=2 format=3 uid="uid://5vw0oqm7ermc"]
+
+[ext_resource type="Script" uid="uid://dti4dlyig2b7o" path="res://BattleScripts/EnemyResource.gd" id="1_vgyyw"]
+
+[resource]
+script = ExtResource("1_vgyyw")
+name = "Empty"
+health = 999
+damage = 0
+attackRate = 0.0

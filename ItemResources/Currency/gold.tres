@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://c8dmkbmgcg8rj"]
+
+[ext_resource type="Script" uid="uid://ccqc1ujebrpyr" path="res://Item.gd" id="1_8shbh"]
+[ext_resource type="Texture2D" uid="uid://i2sg4cy37q3e" path="res://Art/Gold.png" id="2_1r8k1"]
+
+[resource]
+script = ExtResource("1_8shbh")
+max_stack = 9999999
+name = "Gold"
+sprite = ExtResource("2_1r8k1")
+description = "Currency of the world"
+metadata/_custom_type_script = "uid://ccqc1ujebrpyr"

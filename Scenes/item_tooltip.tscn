@@ -1,0 +1,50 @@
+[gd_scene load_steps=3 format=3 uid="uid://c8ie1xa2icnh8"]
+
+[ext_resource type="Script" uid="uid://4ao8hje7og2m" path="res://Scenes/item_tooltip.gd" id="1_0qrug"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0qrug"]
+bg_color = Color(0.635294, 0.6, 0.501961, 0.564706)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+
+[node name="ItemTooltip" type="Control" node_paths=PackedStringArray("container", "nameLabel", "descriptionLabel")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_0qrug")
+container = NodePath("PanelContainer/VBoxContainer")
+nameLabel = NodePath("PanelContainer/VBoxContainer/Name")
+descriptionLabel = NodePath("PanelContainer/VBoxContainer/Description")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_right = 130.0
+offset_bottom = 87.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_0qrug")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Name" type="Label" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+text = "Name Holder"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Description" type="Label" parent="PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 10
+text = "This is the description of some item"
+autowrap_mode = 2

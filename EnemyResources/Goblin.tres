@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="EnemyResource" load_steps=3 format=3 uid="uid://b1n0o8gbb2ykj"]
+
+[ext_resource type="Script" uid="uid://dti4dlyig2b7o" path="res://BattleScripts/EnemyResource.gd" id="1_g4ei2"]
+[ext_resource type="Texture2D" uid="uid://bumobes86tn2e" path="res://Art/Characters/Goblin.png" id="2_qnwa3"]
+
+[resource]
+script = ExtResource("1_g4ei2")
+name = "Goblin"
+sprite = ExtResource("2_qnwa3")
+health = 15
+damage = 2
+attackRate = 1.0
+enemyId = "goblin"
+expGiven = 2.0
+metadata/_custom_type_script = "uid://dti4dlyig2b7o"

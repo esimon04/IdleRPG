@@ -1,0 +1,53 @@
+[gd_scene load_steps=2 format=3 uid="uid://cxwyix1iy3x6k"]
+
+[ext_resource type="Script" uid="uid://b3s6lmsmwq082" path="res://TownScripts/InventorySlot.gd" id="1_0v82l"]
+
+[node name="InventorySlot" type="Control" node_paths=PackedStringArray("item_icon", "item_button", "item_quantity_label")]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_0v82l")
+item_icon = NodePath("Panel/TextureRect")
+item_button = NodePath("Panel/Button")
+item_quantity_label = NodePath("Panel/Quantity")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 80.0
+offset_bottom = 80.0
+mouse_filter = 2
+
+[node name="Button" type="Button" parent="Panel"]
+layout_mode = 0
+offset_right = 79.0
+offset_bottom = 80.0
+
+[node name="TextureRect" type="TextureRect" parent="Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -30.0
+offset_right = 30.0
+offset_bottom = 60.0
+grow_horizontal = 2
+mouse_filter = 2
+
+[node name="Quantity" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -23.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[connection signal="button_down" from="Panel/Button" to="." method="_on_button_button_down"]
+[connection signal="mouse_entered" from="Panel/Button" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Panel/Button" to="." method="_on_mouse_exited"]

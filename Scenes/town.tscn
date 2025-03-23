@@ -1,0 +1,80 @@
+[gd_scene load_steps=8 format=3 uid="uid://b4dguywk8vvsy"]
+
+[ext_resource type="Script" uid="uid://ceoe4jcaf0qpx" path="res://TownScripts/Town.gd" id="1_kswdu"]
+[ext_resource type="Script" uid="uid://ddv1quvbqp0fj" path="res://TownScripts/ChooseEnemyButton.gd" id="2_iau6b"]
+[ext_resource type="Resource" uid="uid://b0eo5o5prbknw" path="res://EnemyResources/Slime.tres" id="3_28ev0"]
+[ext_resource type="Resource" uid="uid://b1n0o8gbb2ykj" path="res://EnemyResources/Goblin.tres" id="4_ckvn4"]
+[ext_resource type="Script" path="res://BattleScripts/IdleBattleManager.gd" id="5_poxg2"]
+[ext_resource type="Resource" uid="uid://5vw0oqm7ermc" path="res://EnemyResources/EmptyEnemy.tres" id="6_gflae"]
+[ext_resource type="Resource" uid="uid://c6okkvfx314gg" path="res://CharacterResources/EmptyChar.tres" id="7_2rtke"]
+
+[node name="Town" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_kswdu")
+
+[node name="MonsterSelectionOpen" type="Button" parent="."]
+layout_mode = 0
+offset_left = 971.0
+offset_top = 172.0
+offset_right = 1057.0
+offset_bottom = 207.0
+
+[node name="MonsterSelectionMenu" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 958.0
+offset_top = 168.0
+offset_right = 1083.0
+offset_bottom = 517.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MonsterSelectionMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -60.5
+offset_top = -133.5
+offset_right = 61.5
+offset_bottom = 172.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Slime" type="Button" parent="MonsterSelectionMenu/VBoxContainer"]
+layout_mode = 2
+script = ExtResource("2_iau6b")
+enemy = ExtResource("3_28ev0")
+
+[node name="GOblin" type="Button" parent="MonsterSelectionMenu/VBoxContainer"]
+layout_mode = 2
+script = ExtResource("2_iau6b")
+enemy = ExtResource("4_ckvn4")
+
+[node name="MonsterSelectionClose" type="Button" parent="MonsterSelectionMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -47.5
+offset_top = -170.5
+offset_right = 38.5
+offset_bottom = -135.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="IdleBattleManager" type="Node" parent="."]
+script = ExtResource("5_poxg2")
+emptyEnemy = ExtResource("6_gflae")
+emptyChar = ExtResource("7_2rtke")
+
+[connection signal="button_down" from="MonsterSelectionOpen" to="." method="_on_monster_selection_button_pressed"]
+[connection signal="button_down" from="MonsterSelectionMenu/VBoxContainer/Slime" to="MonsterSelectionMenu/VBoxContainer/Slime" method="_on_button_down"]
+[connection signal="button_down" from="MonsterSelectionMenu/VBoxContainer/GOblin" to="MonsterSelectionMenu/VBoxContainer/GOblin" method="_on_button_down"]
+[connection signal="button_down" from="MonsterSelectionMenu/MonsterSelectionClose" to="." method="_on_close_menu_button_pressed"]

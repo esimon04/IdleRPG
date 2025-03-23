@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="CharacterResource" load_steps=3 format=3 uid="uid://i2tpk0cyfil2"]
+
+[ext_resource type="Script" uid="uid://brigwaxtixte0" path="res://BattleScripts/CharacterResource.gd" id="1_51pcu"]
+[ext_resource type="Texture2D" uid="uid://dk74gburwtvts" path="res://Art/32rogues/wizard.png" id="2_7pr7c"]
+
+[resource]
+script = ExtResource("1_51pcu")
+name = "Wizard"
+sprite = ExtResource("2_7pr7c")
+health = 10
+damage = 4
+attackRate = 2.0
+healing = 1.0
+level = 1
+charAttributeDictionary = {
+0: 1,
+1: 1,
+2: 2,
+3: 3,
+4: 2
+}
+attributePointsAvailable = 0
+metadata/_custom_type_script = "uid://brigwaxtixte0"

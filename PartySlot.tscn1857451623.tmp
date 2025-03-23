@@ -1,0 +1,71 @@
+[gd_scene load_steps=3 format=3 uid="uid://p484ud2wx386"]
+
+[ext_resource type="Script" uid="uid://ye1b7eefqed1" path="res://PartySlot.gd" id="1_77vwc"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_77vwc"]
+bg_color = Color(0.463623, 0.44193, 0.236851, 1)
+
+[node name="PartySlot" type="Control" node_paths=PackedStringArray("characterSprite", "characterName", "characterLevel", "button")]
+custom_minimum_size = Vector2(279, 300)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_77vwc")
+characterSprite = NodePath("PartySlotButton/CharBackground/TextureRect")
+characterName = NodePath("PartySlotButton/VBoxContainer/Name")
+characterLevel = NodePath("PartySlotButton/VBoxContainer/Level")
+button = NodePath("PartySlotButton")
+
+[node name="PartySlotButton" type="Button" parent="."]
+layout_mode = 0
+offset_right = 279.0
+offset_bottom = 300.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_77vwc")
+
+[node name="CharBackground" type="Panel" parent="PartySlotButton"]
+layout_mode = 0
+offset_left = 35.0
+offset_top = 10.0
+offset_right = 244.0
+offset_bottom = 208.0
+mouse_filter = 1
+
+[node name="TextureRect" type="TextureRect" parent="PartySlotButton/CharBackground"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PartySlotButton"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -91.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Name" type="Label" parent="PartySlotButton/VBoxContainer"]
+layout_mode = 2
+
+[node name="Level" type="Label" parent="PartySlotButton/VBoxContainer"]
+layout_mode = 2
+
+[node name="Class" type="Label" parent="PartySlotButton/VBoxContainer"]
+layout_mode = 2
+
+[node name="RemoveFromParty" type="Button" parent="PartySlotButton"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 252.0
+offset_right = 51.0
+offset_bottom = 286.0
+text = "X"
+
+[connection signal="button_down" from="PartySlotButton/RemoveFromParty" to="." method="_on_remove_from_party_button_down"]

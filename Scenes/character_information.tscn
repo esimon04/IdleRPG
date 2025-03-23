@@ -1,0 +1,74 @@
+[gd_scene load_steps=4 format=3 uid="uid://jv2tjebcqoa2"]
+
+[ext_resource type="Script" uid="uid://5bg56wa4axhe" path="res://Scenes/character_information.gd" id="1_48chi"]
+[ext_resource type="Resource" uid="uid://i2tpk0cyfil2" path="res://CharacterResources/Wizard.tres" id="2_6ok2n"]
+[ext_resource type="PackedScene" uid="uid://dgh3unj0seieh" path="res://Scenes/equipment_slot.tscn" id="3_yu4tn"]
+
+[node name="CharacterInformation" type="Control" node_paths=PackedStringArray("characterSprite", "characterName", "characterLevel", "characterXpBar", "weaponSlot")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_48chi")
+character = ExtResource("2_6ok2n")
+characterSprite = NodePath("Panel/CharBackground/TextureRect")
+characterName = NodePath("Panel/VBoxContainer/Name")
+characterLevel = NodePath("Panel/VBoxContainer/Level")
+characterXpBar = NodePath("Panel/VBoxContainer/experience")
+weaponSlot = NodePath("Panel/WeaponSlot")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 517.0
+offset_bottom = 644.0
+
+[node name="CharBackground" type="Panel" parent="Panel"]
+layout_mode = 0
+offset_left = 138.0
+offset_top = 107.0
+offset_right = 376.0
+offset_bottom = 502.0
+mouse_filter = 1
+
+[node name="TextureRect" type="TextureRect" parent="Panel/CharBackground"]
+texture_filter = 3
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -91.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Name" type="Label" parent="Panel/VBoxContainer"]
+layout_mode = 2
+text = "Tempname"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Level" type="Label" parent="Panel/VBoxContainer"]
+layout_mode = 2
+text = "temp level"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="experience" type="ProgressBar" parent="Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="WeaponSlot" parent="Panel" instance=ExtResource("3_yu4tn")]
+layout_mode = 1
+offset_left = 403.0
+offset_top = 471.0
+offset_right = -32.0
+offset_bottom = -89.0

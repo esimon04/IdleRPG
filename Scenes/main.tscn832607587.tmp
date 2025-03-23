@@ -1,0 +1,616 @@
+[gd_scene load_steps=28 format=3 uid="uid://buaxa1e4r3acr"]
+
+[ext_resource type="Script" uid="uid://nm3isiecl653" path="res://GameManager.gd" id="1_fdnlq"]
+[ext_resource type="Script" uid="uid://b6f1a7f2hl2ph" path="res://BattleScripts/Enemy.gd" id="1_ynf5e"]
+[ext_resource type="Resource" uid="uid://b0eo5o5prbknw" path="res://EnemyResources/Slime.tres" id="2_hptm8"]
+[ext_resource type="Script" uid="uid://dc7i46jgap15l" path="res://BattleScripts/BattleScreen.gd" id="2_jkdf5"]
+[ext_resource type="Texture2D" uid="uid://se58d3jod74n" path="res://Art/Platform.png" id="3_d1ilt"]
+[ext_resource type="Script" uid="uid://cw7mpoyqw3ffv" path="res://BattleScripts/Party.gd" id="4_6iyac"]
+[ext_resource type="Script" uid="uid://csh41j288kh7x" path="res://BattleScripts/Character.gd" id="5_fdnlq"]
+[ext_resource type="Script" uid="uid://ceoe4jcaf0qpx" path="res://TownScripts/Town.gd" id="10_6iyac"]
+[ext_resource type="Script" uid="uid://ddv1quvbqp0fj" path="res://TownScripts/ChooseEnemyButton.gd" id="10_d1ilt"]
+[ext_resource type="Resource" uid="uid://b1n0o8gbb2ykj" path="res://EnemyResources/Goblin.tres" id="11_6iyac"]
+[ext_resource type="Script" uid="uid://bk7gkj5jylckl" path="res://TownScripts/InventoryManager.gd" id="13_fdnlq"]
+[ext_resource type="Script" uid="uid://nvgscd2sbpc1" path="res://TownScripts/CharacterManager.gd" id="14_jkdf5"]
+[ext_resource type="PackedScene" uid="uid://jv2tjebcqoa2" path="res://Scenes/character_information.tscn" id="15_k12tt"]
+[ext_resource type="Script" uid="uid://d2ja1d3xj212h" path="res://TownScripts/PartyManager.gd" id="15_wsu2k"]
+[ext_resource type="PackedScene" uid="uid://p484ud2wx386" path="res://Scenes/PartySlot.tscn" id="16_k12tt"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b3802"]
+bg_color = Color(0.419608, 0.188235, 0, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fevyy"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hibaj"]
+bg_color = Color(1, 0, 0.12549, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pdsj5"]
+bg_color = Color(0.290205, 0.709756, 0.0304233, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jkdf5"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wsu2k"]
+bg_color = Color(0.693336, 0.73321, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ee4r6"]
+bg_color = Color(0.427451, 0.662745, 0.505882, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ynf5e"]
+bg_color = Color(0.827002, 0.819455, 0.823781, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k12tt"]
+bg_color = Color(0.762008, 0.500963, 0.693621, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h1bgf"]
+bg_color = Color(0.273873, 0.273873, 0.273873, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fdnlq"]
+bg_color = Color(0.260862, 0.633156, 0.889924, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gt3je"]
+bg_color = Color(0.260527, 0, 0.0216147, 1)
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fdnlq")
+
+[node name="Battle" type="Control" parent="." node_paths=PackedStringArray("town")]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("2_jkdf5")
+town = NodePath("../Town")
+
+[node name="Enemy" type="Panel" parent="Battle" node_paths=PackedStringArray("healthLabel", "healthBar", "nameLabel", "playerParty", "attackTimer", "respawnProgress", "enemyTexture", "respawnTimer")]
+layout_mode = 0
+offset_left = 797.0
+offset_top = 195.0
+offset_right = 988.0
+offset_bottom = 410.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_b3802")
+script = ExtResource("1_ynf5e")
+healthLabel = NodePath("HealthPanel/Label")
+healthBar = NodePath("HealthPanel/ProgressBar")
+nameLabel = NodePath("nameLabel")
+playerParty = NodePath("../Party")
+enemyType = ExtResource("2_hptm8")
+attackTimer = NodePath("AttackTimer")
+respawnProgress = NodePath("RespawnBar")
+enemyTexture = NodePath("Character")
+respawnTimer = NodePath("RespawnTimer")
+
+[node name="HealthPanel" type="Panel" parent="Battle/Enemy"]
+layout_mode = 0
+offset_left = -29.0
+offset_top = 218.0
+offset_right = 229.0
+offset_bottom = 240.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_fevyy")
+
+[node name="ProgressBar" type="ProgressBar" parent="Battle/Enemy/HealthPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_hibaj")
+theme_override_styles/fill = SubResource("StyleBoxFlat_pdsj5")
+value = 100.0
+show_percentage = false
+
+[node name="Label" type="Label" parent="Battle/Enemy/HealthPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 15
+text = "1/1
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="nameLabel" type="Label" parent="Battle/Enemy"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 15
+text = "name
+"
+
+[node name="AttackTimer" type="Timer" parent="Battle/Enemy"]
+
+[node name="Platform" type="Sprite2D" parent="Battle/Enemy"]
+texture_filter = 3
+position = Vector2(94, 149)
+scale = Vector2(5, 3.596)
+texture = ExtResource("3_d1ilt")
+
+[node name="Character" type="Sprite2D" parent="Battle/Enemy"]
+texture_filter = 3
+position = Vector2(94, 128)
+scale = Vector2(4, 4.627)
+
+[node name="RespawnBar" type="ProgressBar" parent="Battle/Enemy"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 240.0
+offset_right = 195.0
+offset_bottom = 254.0
+theme_override_styles/background = SubResource("StyleBoxFlat_jkdf5")
+theme_override_styles/fill = SubResource("StyleBoxFlat_wsu2k")
+max_value = 1.0
+value = 0.5
+show_percentage = false
+
+[node name="RespawnTimer" type="Timer" parent="Battle/Enemy"]
+one_shot = true
+
+[node name="Party" type="Panel" parent="Battle" node_paths=PackedStringArray("Character1", "Character2", "Character3", "Character4", "healthLabel", "enemy")]
+layout_mode = 0
+offset_left = 160.0
+offset_top = 139.0
+offset_right = 563.0
+offset_bottom = 483.0
+script = ExtResource("4_6iyac")
+Character1 = NodePath("Player1")
+Character2 = NodePath("Player2")
+Character3 = NodePath("Player3")
+Character4 = NodePath("Player4")
+healthLabel = NodePath("HealthPanel/ProgressBar")
+enemy = NodePath("../Enemy")
+
+[node name="Player1" type="Panel" parent="Battle/Party" node_paths=PackedStringArray("attackTimer", "party", "nameLabel")]
+layout_mode = 0
+offset_left = 240.0
+offset_top = 26.0
+offset_right = 381.0
+offset_bottom = 144.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ee4r6")
+script = ExtResource("5_fdnlq")
+attackTimer = NodePath("CharacterAttackTimer")
+party = NodePath("..")
+nameLabel = NodePath("Name")
+
+[node name="CharacterAttackTimer" type="Timer" parent="Battle/Party/Player1"]
+
+[node name="Name" type="Label" parent="Battle/Party/Player1"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="Platform" type="Sprite2D" parent="Battle/Party/Player1"]
+texture_filter = 3
+position = Vector2(69, 73)
+scale = Vector2(5, 3.596)
+texture = ExtResource("3_d1ilt")
+
+[node name="Character" type="Sprite2D" parent="Battle/Party/Player1"]
+texture_filter = 3
+position = Vector2(69, 27)
+scale = Vector2(4, 4.627)
+
+[node name="Player2" type="Panel" parent="Battle/Party" node_paths=PackedStringArray("attackTimer", "party", "nameLabel")]
+layout_mode = 0
+offset_left = 213.0
+offset_top = 163.0
+offset_right = 354.0
+offset_bottom = 281.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ee4r6")
+script = ExtResource("5_fdnlq")
+attackTimer = NodePath("CharacterAttackTimer")
+party = NodePath("..")
+nameLabel = NodePath("Name")
+
+[node name="CharacterAttackTimer" type="Timer" parent="Battle/Party/Player2"]
+
+[node name="Name" type="Label" parent="Battle/Party/Player2"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="Platform" type="Sprite2D" parent="Battle/Party/Player2"]
+texture_filter = 3
+position = Vector2(69, 73)
+scale = Vector2(5, 3.596)
+texture = ExtResource("3_d1ilt")
+
+[node name="Character" type="Sprite2D" parent="Battle/Party/Player2"]
+texture_filter = 3
+position = Vector2(69, 27)
+scale = Vector2(4, 4.627)
+
+[node name="Player3" type="Panel" parent="Battle/Party" node_paths=PackedStringArray("attackTimer", "party", "nameLabel")]
+layout_mode = 0
+offset_left = 44.0
+offset_top = 28.0
+offset_right = 185.0
+offset_bottom = 146.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ee4r6")
+script = ExtResource("5_fdnlq")
+attackTimer = NodePath("CharacterAttackTimer")
+party = NodePath("..")
+nameLabel = NodePath("Name")
+
+[node name="CharacterAttackTimer" type="Timer" parent="Battle/Party/Player3"]
+
+[node name="Name" type="Label" parent="Battle/Party/Player3"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="Platform" type="Sprite2D" parent="Battle/Party/Player3"]
+texture_filter = 3
+position = Vector2(69, 73)
+scale = Vector2(5, 3.596)
+texture = ExtResource("3_d1ilt")
+
+[node name="Character" type="Sprite2D" parent="Battle/Party/Player3"]
+texture_filter = 3
+position = Vector2(69, 27)
+scale = Vector2(4, 4.627)
+
+[node name="Player4" type="Panel" parent="Battle/Party" node_paths=PackedStringArray("attackTimer", "party", "nameLabel")]
+layout_mode = 0
+offset_left = 23.0
+offset_top = 163.0
+offset_right = 164.0
+offset_bottom = 281.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ee4r6")
+script = ExtResource("5_fdnlq")
+attackTimer = NodePath("CharacterAttackTimer")
+party = NodePath("..")
+nameLabel = NodePath("Name")
+
+[node name="CharacterAttackTimer" type="Timer" parent="Battle/Party/Player4"]
+
+[node name="Name" type="Label" parent="Battle/Party/Player4"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="Platform" type="Sprite2D" parent="Battle/Party/Player4"]
+texture_filter = 3
+position = Vector2(69, 73)
+scale = Vector2(5, 3.596)
+texture = ExtResource("3_d1ilt")
+
+[node name="Character" type="Sprite2D" parent="Battle/Party/Player4"]
+texture_filter = 3
+position = Vector2(69, 27)
+scale = Vector2(4, 4.627)
+
+[node name="HealthPanel" type="Panel" parent="Battle/Party"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -201.5
+offset_top = -28.0
+offset_right = 201.5
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_fevyy")
+
+[node name="ProgressBar" type="ProgressBar" parent="Battle/Party/HealthPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_hibaj")
+theme_override_styles/fill = SubResource("StyleBoxFlat_pdsj5")
+value = 100.0
+show_percentage = false
+
+[node name="GotoTownbutton" type="Button" parent="Battle"]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 9.0
+offset_right = 118.0
+offset_bottom = 55.0
+
+[node name="Label" type="Label" parent="Battle/GotoTownbutton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Goto Town
+<------"
+
+[node name="Town" type="Panel" parent="." node_paths=PackedStringArray("battle")]
+layout_mode = 0
+offset_left = -2.0
+offset_top = 1.0
+offset_right = 1150.0
+offset_bottom = 650.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ynf5e")
+script = ExtResource("10_6iyac")
+battle = NodePath("../Battle")
+
+[node name="MonsterSelectionOpen" type="Button" parent="Town"]
+layout_mode = 0
+offset_left = 973.0
+offset_top = 171.0
+offset_right = 1059.0
+offset_bottom = 206.0
+text = "Monsters"
+
+[node name="MonsterSelectionMenu" type="Panel" parent="Town"]
+visible = false
+layout_mode = 0
+offset_left = 960.0
+offset_top = 167.0
+offset_right = 1085.0
+offset_bottom = 516.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Town/MonsterSelectionMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -60.5
+offset_top = -133.5
+offset_right = 61.5
+offset_bottom = 172.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Slime" type="Button" parent="Town/MonsterSelectionMenu/VBoxContainer" groups=["MonsterSelectButtons"]]
+layout_mode = 2
+script = ExtResource("10_d1ilt")
+enemy = ExtResource("2_hptm8")
+
+[node name="GOblin" type="Button" parent="Town/MonsterSelectionMenu/VBoxContainer" groups=["MonsterSelectButtons"]]
+layout_mode = 2
+script = ExtResource("10_d1ilt")
+enemy = ExtResource("11_6iyac")
+
+[node name="MonsterSelectionClose" type="Button" parent="Town/MonsterSelectionMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -47.5
+offset_top = -170.5
+offset_right = 38.5
+offset_bottom = -135.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Close"
+
+[node name="OpenPartyManager" type="Button" parent="Town"]
+layout_mode = 0
+offset_left = 208.0
+offset_top = 320.0
+offset_right = 289.0
+offset_bottom = 361.0
+text = "Party"
+
+[node name="GotoCombat" type="Button" parent="Town"]
+layout_mode = 0
+offset_left = 978.0
+offset_top = 134.0
+offset_right = 1054.0
+offset_bottom = 165.0
+text = "Combat"
+
+[node name="OpenInventory" type="Button" parent="Town"]
+layout_mode = 0
+offset_left = 193.0
+offset_top = 265.0
+offset_right = 300.0
+offset_bottom = 289.0
+text = "Inventory"
+
+[node name="OpenCharacterManager" type="Button" parent="Town"]
+layout_mode = 0
+offset_left = 195.0
+offset_top = 374.0
+offset_right = 300.0
+offset_bottom = 405.0
+text = "Characters"
+
+[node name="PartyManager" type="Control" parent="Town" node_paths=PackedStringArray("partyPanel", "party", "character_list", "partSlot1", "partSlot2", "partSlot3", "partSlot4")]
+anchors_preset = 0
+offset_left = 190.0
+offset_top = 299.0
+offset_right = 230.0
+offset_bottom = 339.0
+script = ExtResource("15_wsu2k")
+partyPanel = NodePath("PartyPanel")
+party = NodePath("../../Battle/Party")
+character_list = NodePath("PartyPanel/HeroList/VBoxContainer")
+partSlot1 = NodePath("PartyPanel/GridContainer/PartySlot1")
+partSlot2 = NodePath("PartyPanel/GridContainer/PartySlot2")
+partSlot3 = NodePath("PartyPanel/GridContainer/PartySlot3")
+partSlot4 = NodePath("PartyPanel/GridContainer/PartySlot4")
+
+[node name="PartyPanel" type="Panel" parent="Town/PartyManager"]
+visible = false
+layout_mode = 0
+offset_left = -169.0
+offset_top = -283.0
+offset_right = 929.0
+offset_bottom = 328.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_k12tt")
+
+[node name="CharInfo" type="Panel" parent="Town/PartyManager/PartyPanel"]
+layout_mode = 0
+offset_left = 759.0
+offset_right = 1100.0
+offset_bottom = 603.0
+
+[node name="HeroList" type="Panel" parent="Town/PartyManager/PartyPanel"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 44.0
+offset_right = 191.0
+offset_bottom = 607.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Town/PartyManager/PartyPanel/HeroList"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GridContainer" type="GridContainer" parent="Town/PartyManager/PartyPanel"]
+layout_mode = 0
+offset_left = 195.0
+offset_right = 752.0
+offset_bottom = 610.0
+columns = 2
+
+[node name="PartySlot3" parent="Town/PartyManager/PartyPanel/GridContainer" instance=ExtResource("16_k12tt")]
+layout_mode = 2
+
+[node name="PartySlot1" parent="Town/PartyManager/PartyPanel/GridContainer" instance=ExtResource("16_k12tt")]
+layout_mode = 2
+
+[node name="PartySlot4" parent="Town/PartyManager/PartyPanel/GridContainer" instance=ExtResource("16_k12tt")]
+layout_mode = 2
+
+[node name="PartySlot2" parent="Town/PartyManager/PartyPanel/GridContainer" instance=ExtResource("16_k12tt")]
+layout_mode = 2
+
+[node name="CloseMenu" type="Button" parent="Town/PartyManager/PartyPanel"]
+layout_mode = 0
+offset_right = 195.0
+offset_bottom = 45.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_h1bgf")
+text = "Close
+"
+
+[node name="InventoryManager" type="Control" parent="Town" node_paths=PackedStringArray("invPanel", "inventory_grid_container")]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("13_fdnlq")
+invPanel = NodePath("Panel")
+inventory_grid_container = NodePath("Panel/GridContainer")
+
+[node name="Panel" type="Panel" parent="Town/InventoryManager"]
+visible = false
+layout_mode = 0
+offset_left = 51.0
+offset_top = 20.0
+offset_right = 1095.0
+offset_bottom = 606.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_fdnlq")
+
+[node name="Button" type="Button" parent="Town/InventoryManager/Panel"]
+layout_mode = 0
+offset_right = 95.0
+offset_bottom = 30.0
+text = "Close
+"
+
+[node name="GridContainer" type="GridContainer" parent="Town/InventoryManager/Panel"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -408.0
+grow_horizontal = 2
+grow_vertical = 0
+columns = 8
+
+[node name="CharacterManager" type="Control" parent="Town" node_paths=PackedStringArray("panel", "character_list", "charInfoPanel")]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("14_jkdf5")
+panel = NodePath("Panel")
+character_list = NodePath("Panel/HeroList/VBoxContainer")
+charInfoPanel = NodePath("Panel/CharacterInformation")
+
+[node name="Panel" type="Panel" parent="Town/CharacterManager"]
+layout_mode = 0
+offset_left = -3.0
+offset_right = 1149.0
+offset_bottom = 645.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_gt3je")
+
+[node name="CloseButton" type="Button" parent="Town/CharacterManager/Panel"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 14.0
+offset_right = 128.0
+offset_bottom = 55.0
+text = "CLose"
+
+[node name="HeroList" type="Panel" parent="Town/CharacterManager/Panel"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 66.0
+offset_right = 207.0
+offset_bottom = 639.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Town/CharacterManager/Panel/HeroList"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CharacterInformation" parent="Town/CharacterManager/Panel" instance=ExtResource("15_k12tt")]
+layout_mode = 1
+offset_left = 218.0
+offset_top = -3.0
+offset_right = 218.0
+offset_bottom = -3.0
+
+[connection signal="enemy_died" from="Battle/Enemy" to="." method="_on_enemy_enemy_died"]
+[connection signal="enemy_died" from="Battle/Enemy" to="Town" method="_on_enemy_enemy_died"]
+[connection signal="enemy_died" from="Battle/Enemy" to="Town/InventoryManager" method="_on_enemy_enemy_died"]
+[connection signal="timeout" from="Battle/Enemy/AttackTimer" to="Battle/Enemy" method="_on_attackTimer_timeout"]
+[connection signal="timeout" from="Battle/Enemy/RespawnTimer" to="Battle/Enemy" method="enemy_respawn"]
+[connection signal="timeout" from="Battle/Party/Player1/CharacterAttackTimer" to="Battle/Party/Player1" method="_on_character_attack_timer_timeout"]
+[connection signal="timeout" from="Battle/Party/Player2/CharacterAttackTimer" to="Battle/Party/Player2" method="_on_character_attack_timer_timeout"]
+[connection signal="timeout" from="Battle/Party/Player3/CharacterAttackTimer" to="Battle/Party/Player3" method="_on_character_attack_timer_timeout"]
+[connection signal="timeout" from="Battle/Party/Player4/CharacterAttackTimer" to="Battle/Party/Player4" method="_on_character_attack_timer_timeout"]
+[connection signal="button_down" from="Battle/GotoTownbutton" to="Battle" method="_on_goto_townbutton_button_down"]
+[connection signal="button_down" from="Town/MonsterSelectionOpen" to="Town" method="_on_monster_selection_button_pressed"]
+[connection signal="button_down" from="Town/MonsterSelectionMenu/VBoxContainer/Slime" to="Town/MonsterSelectionMenu/VBoxContainer/Slime" method="_on_button_down"]
+[connection signal="button_down" from="Town/MonsterSelectionMenu/VBoxContainer/GOblin" to="Town/MonsterSelectionMenu/VBoxContainer/GOblin" method="_on_button_down"]
+[connection signal="button_down" from="Town/MonsterSelectionMenu/MonsterSelectionClose" to="Town" method="_on_close_menu_button_pressed"]
+[connection signal="button_down" from="Town/OpenPartyManager" to="Town/PartyManager" method="_on_open_party_manager_button_down"]
+[connection signal="button_down" from="Town/GotoCombat" to="Town" method="_on_goto_combat_button_down"]
+[connection signal="button_down" from="Town/OpenInventory" to="Town/InventoryManager" method="_on_open_inventory_button_down"]
+[connection signal="button_down" from="Town/OpenCharacterManager" to="Town/CharacterManager" method="_on_open_character_manager_button_down"]
+[connection signal="button_down" from="Town/PartyManager/PartyPanel/CloseMenu" to="Town/PartyManager" method="_on_close_menu_button_down"]
+[connection signal="button_down" from="Town/InventoryManager/Panel/Button" to="Town/InventoryManager" method="_on_button_button_down"]
+[connection signal="button_down" from="Town/CharacterManager/Panel/CloseButton" to="Town/CharacterManager" method="_on_close_button_button_down"]

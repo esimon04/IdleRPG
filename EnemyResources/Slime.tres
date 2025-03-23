@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="EnemyResource" load_steps=3 format=3 uid="uid://b0eo5o5prbknw"]
+
+[ext_resource type="Script" uid="uid://dti4dlyig2b7o" path="res://BattleScripts/EnemyResource.gd" id="1_2wq8i"]
+[ext_resource type="Texture2D" uid="uid://bu70n03518av1" path="res://Art/Characters/GreenSlime.png" id="2_pyj72"]
+
+[resource]
+script = ExtResource("1_2wq8i")
+name = "Slime"
+sprite = ExtResource("2_pyj72")
+health = 7
+damage = 1
+attackRate = 1.0
+enemyId = "slime"
+expGiven = 4.0

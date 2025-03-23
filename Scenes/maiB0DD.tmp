@@ -1,0 +1,157 @@
+[gd_scene load_steps=9 format=3 uid="uid://c8awbpk8y2dae"]
+
+[ext_resource type="Script" path="res://TestScript.gd" id="1_hq63w"]
+[ext_resource type="Script" path="res://Enemy.gd" id="2_4fueq"]
+[ext_resource type="Script" path="res://Party.gd" id="3_ossel"]
+[ext_resource type="Script" path="res://Character.gd" id="4_qei2y"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fep8a"]
+bg_color = Color(0.261093, 0.704154, 0.344336, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dej4i"]
+bg_color = Color(0.419608, 0.188235, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lcfmk"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_idjhj"]
+bg_color = Color(0.425852, 0.66401, 0.504874, 1)
+
+[node name="Main" type="Node2D"]
+
+[node name="Panel" type="Panel" parent="." node_paths=PackedStringArray("timer", "label")]
+offset_left = 1075.0
+offset_top = 561.0
+offset_right = 1155.0
+offset_bottom = 645.0
+script = ExtResource("1_hq63w")
+timer = NodePath("Timer")
+label = NodePath("Label")
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -14.0
+offset_top = -9.0
+offset_right = 14.0
+offset_bottom = 9.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 12
+text = "Blah"
+
+[node name="Timer" type="Timer" parent="Panel"]
+
+[node name="saveButton" type="Button" parent="Panel"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -32.0
+offset_top = -27.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_fep8a")
+
+[node name="loadButton" type="Button" parent="Panel"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -74.0
+offset_top = -27.0
+offset_right = -43.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="Enemy" type="Panel" parent="."]
+offset_left = 723.0
+offset_top = 261.0
+offset_right = 867.0
+offset_bottom = 400.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_dej4i")
+script = ExtResource("2_4fueq")
+
+[node name="HealthPanel" type="Panel" parent="Enemy"]
+offset_left = 49.0
+offset_top = 100.0
+offset_right = 89.0
+offset_bottom = 140.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_lcfmk")
+
+[node name="Label" type="Label" parent="Enemy/HealthPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -10.0
+offset_right = 20.0
+offset_bottom = 13.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 15
+text = "1/1
+"
+
+[node name="Party" type="Panel" parent="." node_paths=PackedStringArray("Character1", "healthLabel")]
+offset_left = 71.0
+offset_top = 140.0
+offset_right = 474.0
+offset_bottom = 484.0
+script = ExtResource("3_ossel")
+Character1 = NodePath("Player")
+healthLabel = NodePath("HealthPanel/Label")
+
+[node name="Player" type="Panel" parent="Party"]
+offset_left = 243.0
+offset_top = 31.0
+offset_right = 384.0
+offset_bottom = 149.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_idjhj")
+script = ExtResource("4_qei2y")
+
+[node name="HealthPanel" type="Panel" parent="Party"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -49.5
+offset_top = -40.0
+offset_right = 49.5
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_lcfmk")
+
+[node name="Label" type="Label" parent="Party/HealthPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -46.5
+offset_top = -19.0
+offset_right = 44.5
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 15
+text = "0
+"
+
+[connection signal="timeout" from="Panel/Timer" to="Panel" method="_on_timer_timeout"]
+[connection signal="button_down" from="Panel/saveButton" to="Panel" method="_on_button_button_down"]
+[connection signal="button_down" from="Panel/loadButton" to="Panel" method="_on_load_button_button_down"]

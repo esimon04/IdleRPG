@@ -1,0 +1,255 @@
+[gd_scene load_steps=2 format=3 uid="uid://baxcdqdg1sk3r"]
+
+[ext_resource type="Script" uid="uid://bj1k3dgiw08ri" path="res://Scenes/character_stats.gd" id="1_trw04"]
+
+[node name="CharacterStats" type="Control" node_paths=PackedStringArray("characterName", "characterLevel", "charStr", "charDex", "charCon", "charInt", "charWis", "attrPoints", "strBut", "dexBut", "conBut", "intBut", "wisBut")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_trw04")
+characterName = NodePath("Panel/VBoxContainer/OtherInfo/VBoxContainer/Name/Label")
+characterLevel = NodePath("Panel/VBoxContainer/OtherInfo/VBoxContainer/Level/Label")
+charStr = NodePath("Panel/VBoxContainer/HBoxContainer/Attributes/Strength/Level")
+charDex = NodePath("Panel/VBoxContainer/HBoxContainer/Attributes/Dex/Level")
+charCon = NodePath("Panel/VBoxContainer/HBoxContainer/Attributes/Const/Level")
+charInt = NodePath("Panel/VBoxContainer/HBoxContainer/Attributes/Int/Level")
+charWis = NodePath("Panel/VBoxContainer/HBoxContainer/Attributes/Wis/Level")
+attrPoints = NodePath("Panel/VBoxContainer/HBoxContainer/Panel/numPointAvail")
+strBut = NodePath("Panel/VBoxContainer/HBoxContainer/Attributes/Strength/IncreaseStr")
+dexBut = NodePath("Panel/VBoxContainer/HBoxContainer/Attributes/Dex/IncreaseDex")
+conBut = NodePath("Panel/VBoxContainer/HBoxContainer/Attributes/Const/IncreaseCon")
+intBut = NodePath("Panel/VBoxContainer/HBoxContainer/Attributes/Int/IncreaseInt")
+wisBut = NodePath("Panel/VBoxContainer/HBoxContainer/Attributes/Wis/IncreaseWis")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 396.0
+offset_bottom = 591.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 0
+offset_right = 384.0
+offset_bottom = 622.0
+
+[node name="OtherInfo" type="Panel" parent="Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 160)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/VBoxContainer/OtherInfo"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Name" type="Panel" parent="Panel/VBoxContainer/OtherInfo/VBoxContainer"]
+custom_minimum_size = Vector2(360, 60)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer/OtherInfo/VBoxContainer/Name"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Level" type="Panel" parent="Panel/VBoxContainer/OtherInfo/VBoxContainer"]
+custom_minimum_size = Vector2(360, 60)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer/OtherInfo/VBoxContainer/Level"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BattleStats" type="Panel" parent="Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 160)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="Attributes" type="VBoxContainer" parent="Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Strength" type="HBoxContainer" parent="Panel/VBoxContainer/HBoxContainer/Attributes"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="Name" type="Label" parent="Panel/VBoxContainer/HBoxContainer/Attributes/Strength"]
+custom_minimum_size = Vector2(140, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Strength"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Level" type="Label" parent="Panel/VBoxContainer/HBoxContainer/Attributes/Strength"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="IncreaseStr" type="Button" parent="Panel/VBoxContainer/HBoxContainer/Attributes/Strength"]
+custom_minimum_size = Vector2(40, 20)
+layout_mode = 2
+text = "+"
+
+[node name="Dex" type="HBoxContainer" parent="Panel/VBoxContainer/HBoxContainer/Attributes"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="Name" type="Label" parent="Panel/VBoxContainer/HBoxContainer/Attributes/Dex"]
+custom_minimum_size = Vector2(140, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Dexterity "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Level" type="Label" parent="Panel/VBoxContainer/HBoxContainer/Attributes/Dex"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="IncreaseDex" type="Button" parent="Panel/VBoxContainer/HBoxContainer/Attributes/Dex"]
+custom_minimum_size = Vector2(40, 20)
+layout_mode = 2
+text = "+"
+
+[node name="Const" type="HBoxContainer" parent="Panel/VBoxContainer/HBoxContainer/Attributes"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="Name" type="Label" parent="Panel/VBoxContainer/HBoxContainer/Attributes/Const"]
+custom_minimum_size = Vector2(140, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Constitution"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Level" type="Label" parent="Panel/VBoxContainer/HBoxContainer/Attributes/Const"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="IncreaseCon" type="Button" parent="Panel/VBoxContainer/HBoxContainer/Attributes/Const"]
+custom_minimum_size = Vector2(40, 20)
+layout_mode = 2
+text = "+"
+
+[node name="Int" type="HBoxContainer" parent="Panel/VBoxContainer/HBoxContainer/Attributes"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="Name" type="Label" parent="Panel/VBoxContainer/HBoxContainer/Attributes/Int"]
+custom_minimum_size = Vector2(140, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Intelligence"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Level" type="Label" parent="Panel/VBoxContainer/HBoxContainer/Attributes/Int"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="IncreaseInt" type="Button" parent="Panel/VBoxContainer/HBoxContainer/Attributes/Int"]
+custom_minimum_size = Vector2(40, 20)
+layout_mode = 2
+text = "+"
+
+[node name="Wis" type="HBoxContainer" parent="Panel/VBoxContainer/HBoxContainer/Attributes"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="Name" type="Label" parent="Panel/VBoxContainer/HBoxContainer/Attributes/Wis"]
+custom_minimum_size = Vector2(140, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Wisdom"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Level" type="Label" parent="Panel/VBoxContainer/HBoxContainer/Attributes/Wis"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="IncreaseWis" type="Button" parent="Panel/VBoxContainer/HBoxContainer/Attributes/Wis"]
+custom_minimum_size = Vector2(40, 20)
+layout_mode = 2
+text = "+"
+
+[node name="Panel" type="Panel" parent="Panel/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+
+[node name="AtrPoints" type="Label" parent="Panel/VBoxContainer/HBoxContainer/Panel"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 32.0
+offset_right = 99.0
+offset_bottom = 107.0
+text = "Available 
+Attribute 
+Points"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="numPointAvail" type="Label" parent="Panel/VBoxContainer/HBoxContainer/Panel"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 108.0
+offset_right = 99.0
+offset_bottom = 182.0
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ConfirmUndo" type="Panel" parent="Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer/ConfirmUndo"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Confirm" type="Button" parent="Panel/VBoxContainer/ConfirmUndo/HBoxContainer"]
+custom_minimum_size = Vector2(340, 0)
+layout_mode = 2
+text = "Confirm"
+
+[node name="Undo" type="Button" parent="Panel/VBoxContainer/ConfirmUndo/HBoxContainer"]
+layout_mode = 2
+text = "Undo"
+
+[connection signal="button_down" from="Panel/VBoxContainer/HBoxContainer/Attributes/Strength/IncreaseStr" to="." method="_on_increase_str_button_down"]
+[connection signal="button_down" from="Panel/VBoxContainer/HBoxContainer/Attributes/Dex/IncreaseDex" to="." method="_on_increase_dex_button_down"]
+[connection signal="button_down" from="Panel/VBoxContainer/HBoxContainer/Attributes/Const/IncreaseCon" to="." method="_on_increase_con_button_down"]
+[connection signal="button_down" from="Panel/VBoxContainer/HBoxContainer/Attributes/Int/IncreaseInt" to="." method="_on_increase_int_button_down"]
+[connection signal="button_down" from="Panel/VBoxContainer/HBoxContainer/Attributes/Wis/IncreaseWis" to="." method="_on_increase_wis_button_down"]
+[connection signal="button_down" from="Panel/VBoxContainer/ConfirmUndo/HBoxContainer/Confirm" to="." method="_on_confirm_button_down"]
+[connection signal="button_down" from="Panel/VBoxContainer/ConfirmUndo/HBoxContainer/Undo" to="." method="_on_undo_button_down"]

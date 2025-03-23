@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="CharacterResource" load_steps=3 format=3 uid="uid://diajierwwc4ox"]
+
+[ext_resource type="Script" uid="uid://brigwaxtixte0" path="res://BattleScripts/CharacterResource.gd" id="1_ogtl3"]
+[ext_resource type="Texture2D" uid="uid://c1b02147n0s7n" path="res://Art/Characters/Warrior.png" id="2_84r5u"]
+
+[resource]
+script = ExtResource("1_ogtl3")
+name = "Warrior"
+sprite = ExtResource("2_84r5u")
+health = 15
+damage = 4
+attackRate = 3.0
+healing = 1.0
+level = 1
+charAttributeDictionary = {
+0: 3,
+1: 1,
+2: 3,
+3: 1,
+4: 1
+}
+attributePointsAvailable = 0
+metadata/_custom_type_script = "uid://brigwaxtixte0"

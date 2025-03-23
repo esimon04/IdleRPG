@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="CharacterResource" load_steps=2 format=3 uid="uid://c6okkvfx314gg"]
+
+[ext_resource type="Script" uid="uid://brigwaxtixte0" path="res://BattleScripts/CharacterResource.gd" id="1_ianc0"]
+
+[resource]
+script = ExtResource("1_ianc0")
+name = "EmptyCharResource"
+health = 0
+damage = 0
+attackRate = 0.0
+healing = 0.0
+level = 0

@@ -1,0 +1,16 @@
+Shop
+Other stats affects
+other equipment slots
+equipment modifiers
+New monsters
+New characters
+Skill trees
+Cleanup visuals
+Show combat stats in characteer stats page
+
+*make item tooltip appear ON screen only, dynamic
+
+reformat inventory to work with unique item IDs
+-Inventory based on item IDs
+-common things like materials or gold has its owned ID defined in the loot table
+-Equipment will have its own ID that it generates on creation.
