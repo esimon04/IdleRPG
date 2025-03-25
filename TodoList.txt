@@ -11,6 +11,14 @@ Show combat stats in characteer stats page
 *make item tooltip appear ON screen only, dynamic
 
 reformat inventory to work with unique item IDs
--Inventory based on item IDs
--common things like materials or gold has its owned ID defined in the loot table
--Equipment will have its own ID that it generates on creation.
+-made inventory based on itemIds
+-changed it to mainly use the item resource instead.
+-Items dont save
+
+-Need to either save the modifiers on their own?? In like a seperate array that I load in???
+	-added complexity
+	+just have to save base item
+	
+-Or make it so that each item saves itself as a .tres
+	-lots of save files in this case. no bueno
+	+simpler???

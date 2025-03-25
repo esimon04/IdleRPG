@@ -14,11 +14,10 @@ func update_inventory_display():
 		child.queue_free()
 	#inventory_grid_container.clear()  # Remove previous items
 	 # Populate grid with current inventory
-	for itemName in player_inventory.slots.keys():
-		print("itemName = %s" %itemName)
-		var item = GameManager.getItemFromDatabase(itemName)
+	for itemId in player_inventory.slots.keys():
+		var invItem = player_inventory.slots[itemId]
 		var slot_ui = preload("res://Scenes/inventory_slot.tscn").instantiate()
-		slot_ui.set_item(item, player_inventory.slots[itemName])
+		slot_ui.set_item(invItem.item, invItem.count)
 		slot_ui.item_button.pressed.connect(_on_item_selected.bind(slot_ui))
 		inventory_grid_container.add_child(slot_ui)
 

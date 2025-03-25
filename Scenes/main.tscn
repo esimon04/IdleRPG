@@ -641,10 +641,9 @@ offset_left = 746.0
 offset_top = -2.0
 offset_right = 1148.0
 offset_bottom = 641.0
-current_tab = 1
+current_tab = 0
 
 [node name="Inventory" type="TabBar" parent="Town/CharacterManager/CharacterManagerPanel/TabContainer"]
-visible = false
 layout_mode = 2
 metadata/_tab_index = 0
 
@@ -659,16 +658,15 @@ inventory_grid_container = NodePath("GridContainer")
 
 [node name="GridContainer" type="GridContainer" parent="Town/CharacterManager/CharacterManagerPanel/TabContainer/Inventory/Inventory"]
 layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -408.0
 grow_horizontal = 2
-grow_vertical = 0
-columns = 8
+grow_vertical = 2
+columns = 4
 
 [node name="Stats" type="TabBar" parent="Town/CharacterManager/CharacterManagerPanel/TabContainer"]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 1
 

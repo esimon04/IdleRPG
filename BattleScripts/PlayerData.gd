@@ -6,18 +6,25 @@ class_name PlayerData
 var playerInventory : PlayerInventory
 @export var playerCharacters : Array[CharacterResource]
 
-const saveName = "ethan28"
+@export var UniqueItemId : int
+
+const saveName = "ethan47"
 const save_path = "user://" + saveName + ".res"
 const inventorySavePath = "user://" + saveName + "Inv.res"
 
 func updateData(countIn : int):
 	count = countIn
 	pass
+	
+func get_unique_id() -> int:
+	UniqueItemId = UniqueItemId + 1
+	return UniqueItemId
 
 
 static func loadData() -> Resource:
 	var data = ResourceLoader.load(save_path, "" , 1)
 	data.playerInventory = ResourceLoader.load(inventorySavePath, "", 1)
+	#data.playerInventory.load_unique_items()
 	print("loaded data")
 	return data
 
@@ -34,8 +41,8 @@ static func saveExists() -> bool:
 static func CreateSave() -> PlayerData:
 	var instance = PlayerData.new()
 	instance.playerInventory = PlayerInventory.new()
-	instance.playerInventory.add_item("Gold", 1)
-	instance.playerInventory.add_item("Sword1",1)
+	instance.UniqueItemId = 1000 #Starting at 1000
+
 	instance.idleBattleData = IdleBattleData.new()
 	instance.idleBattleData.characters.append(null)
 	instance.idleBattleData.characters.append(null)

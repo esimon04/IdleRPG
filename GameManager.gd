@@ -35,6 +35,11 @@ func load_player_data():
 	else:
 		print("Creating Player Data - GameManager")
 		player_data = PlayerData.CreateSave()
+		var dropped_items = []
+		dropped_items.append({"item" : "Gold", "quantity": 4})
+		dropped_items.append({"item" : "Sword1", "quantity": 1})
+		dropped_items.append({"item" : "Sword1", "quantity": 1})
+		PlayerLootedItems(dropped_items)
 
 func save_player_data():
 	if player_data:
@@ -94,12 +99,26 @@ func get_enemy_loot(enemy_id: String) -> Array:
 	return loot_tables.get(enemy_id, [])
 
 func getItemFromDatabase(item_id: String) -> Item:
-	return load(itemDatabase[item_id])
+	var item = load(itemDatabase[item_id])
+	if item.unique:
+		return item.duplicate()
+	else:
+		return item
 	
 func PlayerLootedItems(itemsLooted : Array):
 	for idx in itemsLooted:
-		
-		player_data.playerInventory.add_item(idx["item"], idx["quantity"])
+		var item = GameManager.getItemFromDatabase(idx["item"])
+		if item.unique:
+			for i in idx["quantity"]:
+				if item is Equipment:
+					var newModifiers = (Equipment.rollStats(item.possibleModifiers,item.numModifiers))
+					item.modifiers.append_array(newModifiers)
+					var unique_id = player_data.get_unique_id()
+					item.id = item.name + "_" + str(unique_id)
+					player_data.playerInventory.add_item(item, 1)
+		else:
+			item.id = item.name
+			player_data.playerInventory.add_item(item, idx["quantity"])
 		
 func updateParty(_party):
 	player_data.idleBattleData.characters = _party

@@ -42,7 +42,7 @@ func AttemptEquipItem(slot : EquipmentSlot, item : Item):
 		if slot.equipmentType == item.equipmentType:
 			if slot.equipment:
 				var removedItem = slot.equipment
-				GameManager.player_data.playerInventory.add_item(removedItem.name,1)
+				GameManager.player_data.playerInventory.add_item(removedItem,1)
 				
 			slot.set_item(item)
 			GameManager.player_data.playerInventory.remove_item(item,1)
@@ -57,12 +57,13 @@ func AttemptEquipItem(slot : EquipmentSlot, item : Item):
 func AttemptUnequipItem(slot: EquipmentSlot):
 	if slot.equipment:
 		var removedItem = slot.equipment
-		GameManager.player_data.playerInventory.add_item(removedItem.name,1)
+		GameManager.player_data.playerInventory.add_item(removedItem,1)
 		slot.set_item(null)
 	UpdateCharacterEquipment()
 	
 func UpdateCharacterEquipment():
 	character.equippedWeapon = weaponSlot.equipment
+	character.updateCharacterEquipment()
 	character.character_changed.emit()
 		
 

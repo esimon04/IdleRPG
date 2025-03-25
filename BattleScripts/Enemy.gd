@@ -89,7 +89,6 @@ func TakeDamage(amount: int):
 	pass
 	
 func Die():
-	print("Enemy Died!")
 	RollLoot()
 	enemy_died.emit(self)  # Emit signal so other nodes can react
 	respawnTimer.start(respawnTime)
@@ -109,7 +108,6 @@ func _on_attackTimer_timeout() -> void:
 	pass # Replace with function body.
 	
 func enemy_respawn() -> void:
-	print("Enemy Respawned!")
 	enemyIsHere = true
 	enemyTexture.texture = enemyType.sprite
 	attackTimer.start()

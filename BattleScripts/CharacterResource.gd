@@ -27,6 +27,14 @@ enum Attribute {STR, DEX, CON, INT, WIS}
 	Attribute.WIS : 0
 }
 
+@export var charAttributeEquipmentDictionary : Dictionary = {
+	Attribute.STR : 0,
+	Attribute.DEX : 0,
+	Attribute.CON : 0,
+	Attribute.INT : 0,
+	Attribute.WIS : 0
+}
+
 #Equipment
 @export var equippedWeapon : Weapon
 
@@ -64,7 +72,7 @@ func level_up():
 		
 func equipWeapon(weaponIn : Weapon):
 	if equippedWeapon:
-		GameManager.player_data.playerInventory.add_item(equippedWeapon.name, 1)
+		GameManager.player_data.playerInventory.add_item(equippedWeapon, 1)
 	equippedWeapon = weaponIn
 	
 func calculateDamage() -> int:
@@ -72,7 +80,7 @@ func calculateDamage() -> int:
 		var rng = RandomNumberGenerator.new()
 		var baseDamage = rng.randi_range(equippedWeapon.minDamage, equippedWeapon.maxDamage)
 		var modifier = 0
-		modifier = charAttributeDictionary[equippedWeapon.abilityType]
+		modifier = getAttribute(equippedWeapon.abilityType)
 		return baseDamage + modifier
 			
 	else:
@@ -86,6 +94,14 @@ func calculateAttackRate() -> float:
 		return 1;
 		
 func updateCharacterEquipment():
+	#Clear
+	charAttributeEquipmentDictionary[Attribute.STR] = 0
+	charAttributeEquipmentDictionary[Attribute.DEX] = 0
+	charAttributeEquipmentDictionary[Attribute.CON] = 0
+	charAttributeEquipmentDictionary[Attribute.INT] = 0
+	charAttributeEquipmentDictionary[Attribute.WIS] = 0
+	
+	#For each slot - update
 	if equippedWeapon:
 		updateAffectsFromGear(equippedWeapon)
 		
@@ -94,9 +110,22 @@ func updateAffectsFromGear(gear : Equipment):
 	for modifier in modifiers:
 		match modifier.type:
 			ModifierResource.ModifierType.STR:
-				charAttributeDictionary
+				charAttributeEquipmentDictionary[Attribute.STR] += floor(modifier.value)
+			ModifierResource.ModifierType.DEX:
+				charAttributeEquipmentDictionary[Attribute.DEX] += floor(modifier.value)
+			ModifierResource.ModifierType.CON:
+				charAttributeEquipmentDictionary[Attribute.CON] += floor(modifier.value)
+			ModifierResource.ModifierType.INT:
+				charAttributeEquipmentDictionary[Attribute.INT] += floor(modifier.value)
+			ModifierResource.ModifierType.WIS:
+				charAttributeEquipmentDictionary[Attribute.WIS] += floor(modifier.value)
+				
+func getAttribute(attr : Attribute) -> int:
+	return charAttributeEquipmentDictionary[attr] + charAttributeDictionary[attr]
 		
 static func calculateXpForNextLevel(level : int):
 	#TODO figure out pattern for this
 	return (1 * level) + 5
+	
+
 	

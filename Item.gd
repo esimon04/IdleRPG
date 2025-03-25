@@ -7,6 +7,8 @@ class_name Item
 @export var description : String
 @export var unique : bool
 
+@export var id : String
+
 
 static func LoadItemDatabase() -> Dictionary:
 	var item_database = {

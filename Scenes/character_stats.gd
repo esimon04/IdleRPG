@@ -35,8 +35,8 @@ func update_character(new_character: CharacterResource):
 	character = new_character
 	characterName.text = character.name
 	characterLevel.text = "Level: %d" % character.level
-
 	
+	character.character_changed.connect(_on_character_change)
 	
 	attrPointsLeft = character.attributePointsAvailable
 	for attr in allocatedPoints:
@@ -45,11 +45,11 @@ func update_character(new_character: CharacterResource):
 	_update_attr_displays()
 		
 func _update_attr_displays():
-	charStr.text = str(character.charAttributeDictionary[CharacterResource.Attribute.STR] + allocatedPoints[CharacterResource.Attribute.STR])
-	charDex.text = str(character.charAttributeDictionary[CharacterResource.Attribute.DEX] + allocatedPoints[CharacterResource.Attribute.DEX])
-	charCon.text = str(character.charAttributeDictionary[CharacterResource.Attribute.CON] + allocatedPoints[CharacterResource.Attribute.CON])
-	charInt.text = str(character.charAttributeDictionary[CharacterResource.Attribute.INT] + allocatedPoints[CharacterResource.Attribute.INT])
-	charWis.text = str(character.charAttributeDictionary[CharacterResource.Attribute.WIS] + allocatedPoints[CharacterResource.Attribute.WIS])
+	charStr.text = str(character.getAttribute(CharacterResource.Attribute.STR) + allocatedPoints[CharacterResource.Attribute.STR])
+	charDex.text = str(character.getAttribute(CharacterResource.Attribute.DEX) + allocatedPoints[CharacterResource.Attribute.DEX])
+	charCon.text = str(character.getAttribute(CharacterResource.Attribute.CON) + allocatedPoints[CharacterResource.Attribute.CON])
+	charInt.text = str(character.getAttribute(CharacterResource.Attribute.INT) + allocatedPoints[CharacterResource.Attribute.INT])
+	charWis.text = str(character.getAttribute(CharacterResource.Attribute.WIS) + allocatedPoints[CharacterResource.Attribute.WIS])
 	
 	attrPoints.text = str(attrPointsLeft)
 	
@@ -130,3 +130,6 @@ func _on_undo_button_down() -> void:
 	attrPointsLeft = refundedPoints
 	_update_attr_displays()
 	pass # Replace with function body.
+	
+func _on_character_change():
+	_update_attr_displays()
