@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="EnemyResource" load_steps=3 format=3 uid="uid://da0q48xgx8ww3"]
+
+[ext_resource type="Script" uid="uid://dti4dlyig2b7o" path="res://BattleScripts/EnemyResource.gd" id="1_ku36v"]
+[ext_resource type="Texture2D" uid="uid://bbmay0v053t4r" path="res://Art/Characters/GoblinWar.png" id="2_exlwq"]
+
+[resource]
+script = ExtResource("1_ku36v")
+name = "Goblin Warrior"
+sprite = ExtResource("2_exlwq")
+health = 50
+damage = 10
+attackRate = 3.0
+enemyId = "goblinwar"
+expGiven = 20.0
+level = 5
+metadata/_custom_type_script = "uid://dti4dlyig2b7o"

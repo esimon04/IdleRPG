@@ -5,5 +5,12 @@
   ],
   "goblin": [
 	{ "item": "Gold", "drop_chance": 60, "min": 2, "max": 4 },
+	{"item": "GoblinChest", "drop_chance": 60, "min": 1, "max": 1 }
+  ],
+"goblinwar": [
+	{ "item": "Gold", "drop_chance": 60, "min": 5, "max": 8 },
+	{ "item": "LeatherChest", "drop_chance": 60, "min": 1, "max": 1 },
+	{ "item": "LeatherHelm", "drop_chance": 60, "min": 1, "max": 1 },
+	{ "item": "GoldRing", "drop_chance": 60, "min": 1, "max": 1 },
   ]
 }

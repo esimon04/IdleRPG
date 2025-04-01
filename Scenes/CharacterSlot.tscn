@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dehq32fdknjwt" path="res://Art/Characters/Guy.png" id="2_4du6c"]
 
 [node name="CharacterSlot" type="Control" node_paths=PackedStringArray("character_sprite", "character_name", "character_level", "character_button")]
-custom_minimum_size = Vector2(0, 80)
+custom_minimum_size = Vector2(160, 80)
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -19,7 +19,7 @@ character_button = NodePath("CharacterSlotButton")
 
 [node name="CharacterSlotButton" type="Button" parent="."]
 layout_mode = 0
-offset_right = 174.0
+offset_right = 160.0
 offset_bottom = 80.0
 
 [node name="Panel" type="Panel" parent="CharacterSlotButton"]

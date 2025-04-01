@@ -7,7 +7,7 @@ class_name PartySlot
 @export var characterLevel : Label
 @export var button : Button
 
-var partyManager : PartyManager
+var partyManager : PartyView
 
 func update_character(new_character: CharacterResource):
 	if not new_character:
@@ -28,12 +28,3 @@ func removeCharacter():
 	
 func hasCharacter() -> bool:
 	return character != null
-
-
-func _on_remove_from_party_button_down() -> void:
-	
-	if partyManager && hasCharacter():
-		partyManager.characterRemoved(character)
-		removeCharacter()
-		
-	pass # Replace with function body.

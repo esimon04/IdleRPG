@@ -1,0 +1,51 @@
+[gd_scene load_steps=3 format=3 uid="uid://cau4yfc8p4uk6"]
+
+[ext_resource type="Script" uid="uid://clkonbxe5k4xd" path="res://ItemDisplay.gd" id="1_bp11a"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bp11a"]
+bg_color = Color(0.652993, 0.584889, 0.54886, 1)
+
+[node name="ItemDisplay" type="Control" node_paths=PackedStringArray("texture")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -86.0
+offset_top = -7.0
+offset_right = -86.0
+offset_bottom = -7.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bp11a")
+texture = NodePath("Panel/VBoxContainer/TextureRect")
+
+[node name="Panel" type="Panel" parent="."]
+custom_minimum_size = Vector2(300, 244)
+layout_mode = 0
+offset_right = 300.0
+offset_bottom = 244.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_bp11a")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Panel/VBoxContainer"]
+custom_minimum_size = Vector2(80, 160)
+layout_mode = 2
+expand_mode = 2
+
+[node name="UseItem" type="Button" parent="Panel/VBoxContainer"]
+layout_mode = 2
+text = "Use"
+
+[node name="DeleteItem" type="Button" parent="Panel/VBoxContainer"]
+layout_mode = 2
+text = "Delete"
+
+[connection signal="button_down" from="Panel/VBoxContainer/UseItem" to="." method="_on_use_item_button_down"]
+[connection signal="button_down" from="Panel/VBoxContainer/DeleteItem" to="." method="_on_delete_item_button_down"]

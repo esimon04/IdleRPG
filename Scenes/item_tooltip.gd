@@ -15,9 +15,12 @@ func update_display():
 	descriptionLabel.text = item.description
 	
 	if item is Equipment:
+		
+		nameLabel.add_theme_color_override("font_color", Equipment.rarityTypeToColor[item.rarity])
+		
 		if item.equipmentType == item.EquipmentType.WEAPON:
 			var weaponDamageLabel = Label.new()
-			weaponDamageLabel.text = "%d - %d Damage" %[item.minDamage, item.maxDamage]
+			weaponDamageLabel.text = "%d - %d %s Damage" %[item.minDamage, item.maxDamage, DamageTypes.type_to_string(item.damageType)]
 			var weaponSpeedLabel = Label.new()
 			weaponSpeedLabel.text = "Speed %.2f" %item.attackSpeed
 			container.add_child(weaponDamageLabel)

@@ -12,4 +12,5 @@ damage = 2
 attackRate = 1.0
 enemyId = "goblin"
 expGiven = 2.0
+level = 3
 metadata/_custom_type_script = "uid://dti4dlyig2b7o"

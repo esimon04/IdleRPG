@@ -1,0 +1,64 @@
+[gd_resource type="Resource" script_class="Equipment" load_steps=11 format=3 uid="uid://bbk4id2wddhf0"]
+
+[ext_resource type="Script" uid="uid://dm5twkk3db3nc" path="res://ModifierResource.gd" id="1_8kphd"]
+[ext_resource type="Script" uid="uid://e0oup24bcnhk" path="res://Equipment.gd" id="1_n7bbs"]
+[ext_resource type="Script" uid="uid://bdgln3f58l542" path="res://EquipmentPotentialModifiers.gd" id="2_0px6q"]
+[ext_resource type="Texture2D" uid="uid://ddpwln7oyoml8" path="res://Art/Items/LeatherHelm1.png" id="4_jrnqm"]
+
+[sub_resource type="Resource" id="Resource_8kphd"]
+script = ExtResource("1_8kphd")
+type = 5
+value = 2.0
+modifierLevel = 1
+metadata/_custom_type_script = "uid://dm5twkk3db3nc"
+
+[sub_resource type="Resource" id="Resource_r6hyn"]
+script = ExtResource("2_0px6q")
+modifier = 0
+min = 1.0
+max = 3.0
+metadata/_custom_type_script = "uid://bdgln3f58l542"
+
+[sub_resource type="Resource" id="Resource_h8fld"]
+script = ExtResource("2_0px6q")
+modifier = 1
+min = 1.0
+max = 3.0
+metadata/_custom_type_script = "uid://bdgln3f58l542"
+
+[sub_resource type="Resource" id="Resource_i4c40"]
+script = ExtResource("2_0px6q")
+modifier = 2
+min = 1.0
+max = 3.0
+metadata/_custom_type_script = "uid://bdgln3f58l542"
+
+[sub_resource type="Resource" id="Resource_11nhe"]
+script = ExtResource("2_0px6q")
+modifier = 3
+min = 1.0
+max = 3.0
+metadata/_custom_type_script = "uid://bdgln3f58l542"
+
+[sub_resource type="Resource" id="Resource_6xcee"]
+script = ExtResource("2_0px6q")
+modifier = 4
+min = 1.0
+max = 3.0
+metadata/_custom_type_script = "uid://bdgln3f58l542"
+
+[resource]
+script = ExtResource("1_n7bbs")
+equipmentType = 2
+modifiers = Array[ExtResource("1_8kphd")]([SubResource("Resource_8kphd")])
+possibleModifiers = Array[ExtResource("2_0px6q")]([SubResource("Resource_r6hyn"), SubResource("Resource_h8fld"), SubResource("Resource_i4c40"), SubResource("Resource_11nhe"), SubResource("Resource_6xcee")])
+numModifiers = 1
+rarity = 0
+itemLevel = 0
+max_stack = 1
+name = "Leather Helmet"
+sprite = ExtResource("4_jrnqm")
+description = "A leather helmet"
+unique = true
+id = ""
+metadata/_custom_type_script = "uid://e0oup24bcnhk"

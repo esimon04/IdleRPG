@@ -8,7 +8,7 @@ var playerInventory : PlayerInventory
 
 @export var UniqueItemId : int
 
-const saveName = "ethan47"
+const saveName = "ethan62"
 const save_path = "user://" + saveName + ".res"
 const inventorySavePath = "user://" + saveName + "Inv.res"
 

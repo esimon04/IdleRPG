@@ -1,22 +1,17 @@
-[gd_scene load_steps=30 format=3 uid="uid://buaxa1e4r3acr"]
+[gd_scene load_steps=21 format=3 uid="uid://buaxa1e4r3acr"]
 
 [ext_resource type="Script" uid="uid://nm3isiecl653" path="res://GameManager.gd" id="1_fdnlq"]
 [ext_resource type="Script" uid="uid://b6f1a7f2hl2ph" path="res://BattleScripts/Enemy.gd" id="1_ynf5e"]
-[ext_resource type="Resource" uid="uid://b0eo5o5prbknw" path="res://EnemyResources/Slime.tres" id="2_hptm8"]
+[ext_resource type="Resource" uid="uid://b0eo5o5prbknw" path="res://EnemyResources/Area1/Slime.tres" id="2_hptm8"]
 [ext_resource type="Script" uid="uid://dc7i46jgap15l" path="res://BattleScripts/BattleScreen.gd" id="2_jkdf5"]
 [ext_resource type="Texture2D" uid="uid://se58d3jod74n" path="res://Art/Platform.png" id="3_d1ilt"]
 [ext_resource type="Script" uid="uid://cw7mpoyqw3ffv" path="res://BattleScripts/Party.gd" id="4_6iyac"]
 [ext_resource type="Script" uid="uid://csh41j288kh7x" path="res://BattleScripts/Character.gd" id="5_fdnlq"]
 [ext_resource type="Script" uid="uid://ceoe4jcaf0qpx" path="res://TownScripts/Town.gd" id="10_6iyac"]
 [ext_resource type="Script" uid="uid://ddv1quvbqp0fj" path="res://TownScripts/ChooseEnemyButton.gd" id="10_d1ilt"]
-[ext_resource type="Resource" uid="uid://b1n0o8gbb2ykj" path="res://EnemyResources/Goblin.tres" id="11_6iyac"]
-[ext_resource type="Script" uid="uid://bk7gkj5jylckl" path="res://TownScripts/InventoryManager.gd" id="13_fdnlq"]
-[ext_resource type="Script" uid="uid://nvgscd2sbpc1" path="res://TownScripts/CharacterManager.gd" id="14_jkdf5"]
-[ext_resource type="Script" uid="uid://dbmdf1j8l46s8" path="res://InventoryView.gd" id="14_k12tt"]
-[ext_resource type="PackedScene" uid="uid://jv2tjebcqoa2" path="res://Scenes/character_information.tscn" id="15_k12tt"]
-[ext_resource type="Script" uid="uid://d2ja1d3xj212h" path="res://TownScripts/PartyManager.gd" id="15_wsu2k"]
-[ext_resource type="PackedScene" uid="uid://p484ud2wx386" path="res://Scenes/PartySlot.tscn" id="16_k12tt"]
-[ext_resource type="PackedScene" uid="uid://baxcdqdg1sk3r" path="res://Scenes/character_stats.tscn" id="17_h1bgf"]
+[ext_resource type="Resource" uid="uid://b1n0o8gbb2ykj" path="res://EnemyResources/Area1/Goblin.tres" id="11_6iyac"]
+[ext_resource type="Resource" uid="uid://da0q48xgx8ww3" path="res://EnemyResources/Area1/GoblinWarrior.tres" id="11_b3802"]
+[ext_resource type="PackedScene" uid="uid://cc53pjl56ehqh" path="res://Scenes/tavern.tscn" id="19_fevyy"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b3802"]
 bg_color = Color(0.419608, 0.188235, 0, 0)
@@ -41,18 +36,6 @@ bg_color = Color(0.427451, 0.662745, 0.505882, 0)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ynf5e"]
 bg_color = Color(0.827002, 0.819455, 0.823781, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k12tt"]
-bg_color = Color(0.762008, 0.500963, 0.693621, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h1bgf"]
-bg_color = Color(0.273873, 0.273873, 0.273873, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fdnlq"]
-bg_color = Color(0.260862, 0.633156, 0.889924, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gt3je"]
-bg_color = Color(0.260527, 0, 0.0216147, 1)
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -168,7 +151,7 @@ show_percentage = false
 [node name="RespawnTimer" type="Timer" parent="Battle/Enemy"]
 one_shot = true
 
-[node name="Party" type="Panel" parent="Battle" node_paths=PackedStringArray("Character1", "Character2", "Character3", "Character4", "healthLabel", "enemy")]
+[node name="Party" type="Panel" parent="Battle" node_paths=PackedStringArray("Character1", "Character2", "Character3", "Character4", "healthProgBar", "healthLabel", "enemy")]
 layout_mode = 0
 offset_left = 160.0
 offset_top = 139.0
@@ -179,7 +162,8 @@ Character1 = NodePath("Player1")
 Character2 = NodePath("Player2")
 Character3 = NodePath("Player3")
 Character4 = NodePath("Player4")
-healthLabel = NodePath("HealthPanel/ProgressBar")
+healthProgBar = NodePath("HealthPanel/ProgressBar")
+healthLabel = NodePath("HealthPanel/Label")
 enemy = NodePath("../Enemy")
 
 [node name="Player1" type="Panel" parent="Battle/Party" node_paths=PackedStringArray("attackTimer", "party", "nameLabel", "attackProgBar")]
@@ -364,6 +348,25 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_pdsj5")
 value = 100.0
 show_percentage = false
 
+[node name="Label" type="Label" parent="Battle/Party/HealthPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 15
+text = "1/1
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="GotoTownbutton" type="Button" parent="Battle"]
 layout_mode = 0
 offset_left = 9.0
@@ -381,7 +384,7 @@ grow_vertical = 2
 text = "Goto Town
 <------"
 
-[node name="Town" type="Panel" parent="." node_paths=PackedStringArray("battle")]
+[node name="Town" type="Panel" parent="." node_paths=PackedStringArray("battle", "tavern")]
 layout_mode = 0
 offset_left = -2.0
 offset_top = 1.0
@@ -390,6 +393,7 @@ offset_bottom = 650.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_ynf5e")
 script = ExtResource("10_6iyac")
 battle = NodePath("../Battle")
+tavern = NodePath("Tavern")
 
 [node name="MonsterSelectionOpen" type="Button" parent="Town"]
 layout_mode = 0
@@ -431,6 +435,11 @@ layout_mode = 2
 script = ExtResource("10_d1ilt")
 enemy = ExtResource("11_6iyac")
 
+[node name="GoblinWar" type="Button" parent="Town/MonsterSelectionMenu/VBoxContainer" groups=["MonsterSelectButtons"]]
+layout_mode = 2
+script = ExtResource("10_d1ilt")
+enemy = ExtResource("11_b3802")
+
 [node name="MonsterSelectionClose" type="Button" parent="Town/MonsterSelectionMenu"]
 layout_mode = 1
 anchors_preset = 8
@@ -446,14 +455,6 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "Close"
 
-[node name="OpenPartyManager" type="Button" parent="Town"]
-layout_mode = 0
-offset_left = 208.0
-offset_top = 320.0
-offset_right = 289.0
-offset_bottom = 361.0
-text = "Party"
-
 [node name="GotoCombat" type="Button" parent="Town"]
 layout_mode = 0
 offset_left = 978.0
@@ -462,221 +463,21 @@ offset_right = 1054.0
 offset_bottom = 165.0
 text = "Combat"
 
-[node name="OpenInventory" type="Button" parent="Town"]
+[node name="OpenTavern" type="Button" parent="Town"]
 layout_mode = 0
-offset_left = 193.0
-offset_top = 265.0
-offset_right = 300.0
-offset_bottom = 289.0
-text = "Inventory"
-
-[node name="OpenCharacterManager" type="Button" parent="Town"]
-layout_mode = 0
-offset_left = 195.0
-offset_top = 374.0
-offset_right = 300.0
-offset_bottom = 405.0
-text = "Characters"
-
-[node name="PartyManager" type="Control" parent="Town" node_paths=PackedStringArray("partyPanel", "party", "character_list", "partSlot1", "partSlot2", "partSlot3", "partSlot4")]
-anchors_preset = 0
-offset_left = 190.0
-offset_top = 299.0
-offset_right = 230.0
-offset_bottom = 339.0
-script = ExtResource("15_wsu2k")
-partyPanel = NodePath("PartyPanel")
-party = NodePath("../../Battle/Party")
-character_list = NodePath("PartyPanel/HeroList/VBoxContainer")
-partSlot1 = NodePath("PartyPanel/GridContainer/PartySlot1")
-partSlot2 = NodePath("PartyPanel/GridContainer/PartySlot2")
-partSlot3 = NodePath("PartyPanel/GridContainer/PartySlot3")
-partSlot4 = NodePath("PartyPanel/GridContainer/PartySlot4")
-
-[node name="PartyPanel" type="Panel" parent="Town/PartyManager"]
-visible = false
-layout_mode = 0
-offset_left = -169.0
-offset_top = -283.0
-offset_right = 929.0
-offset_bottom = 328.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_k12tt")
-
-[node name="CharInfo" type="Panel" parent="Town/PartyManager/PartyPanel"]
-layout_mode = 0
-offset_left = 759.0
-offset_right = 1100.0
-offset_bottom = 603.0
-
-[node name="HeroList" type="Panel" parent="Town/PartyManager/PartyPanel"]
-layout_mode = 0
-offset_left = 5.0
-offset_top = 44.0
-offset_right = 191.0
-offset_bottom = 607.0
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Town/PartyManager/PartyPanel/HeroList"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="GridContainer" type="GridContainer" parent="Town/PartyManager/PartyPanel"]
-layout_mode = 0
-offset_left = 195.0
-offset_right = 752.0
-offset_bottom = 610.0
-columns = 2
-
-[node name="PartySlot3" parent="Town/PartyManager/PartyPanel/GridContainer" instance=ExtResource("16_k12tt")]
-layout_mode = 2
-
-[node name="PartySlot1" parent="Town/PartyManager/PartyPanel/GridContainer" instance=ExtResource("16_k12tt")]
-layout_mode = 2
-
-[node name="PartySlot4" parent="Town/PartyManager/PartyPanel/GridContainer" instance=ExtResource("16_k12tt")]
-layout_mode = 2
-
-[node name="PartySlot2" parent="Town/PartyManager/PartyPanel/GridContainer" instance=ExtResource("16_k12tt")]
-layout_mode = 2
-
-[node name="CloseMenu" type="Button" parent="Town/PartyManager/PartyPanel"]
-layout_mode = 0
-offset_right = 195.0
-offset_bottom = 45.0
-theme_override_styles/normal = SubResource("StyleBoxFlat_h1bgf")
-text = "Close
+offset_left = 197.0
+offset_top = 424.0
+offset_right = 301.0
+offset_bottom = 455.0
+text = "OpenTavern
 "
 
-[node name="InventoryManager" type="Control" parent="Town" node_paths=PackedStringArray("invPanel", "inventoryView")]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("13_fdnlq")
-invPanel = NodePath("Panel")
-inventoryView = NodePath("Panel")
-
-[node name="Panel" type="Panel" parent="Town/InventoryManager" node_paths=PackedStringArray("inventory_grid_container")]
+[node name="Tavern" parent="Town" instance=ExtResource("19_fevyy")]
 visible = false
-layout_mode = 0
-offset_left = 51.0
-offset_top = 20.0
-offset_right = 1095.0
-offset_bottom = 606.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_fdnlq")
-script = ExtResource("14_k12tt")
-inventory_grid_container = NodePath("GridContainer")
-
-[node name="Button" type="Button" parent="Town/InventoryManager/Panel"]
-layout_mode = 0
-offset_right = 95.0
-offset_bottom = 30.0
-text = "Close
-"
-
-[node name="GridContainer" type="GridContainer" parent="Town/InventoryManager/Panel"]
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -408.0
-grow_horizontal = 2
-grow_vertical = 0
-columns = 8
-
-[node name="CharacterManager" type="Control" parent="Town" node_paths=PackedStringArray("panel", "character_list", "charInfoPanel", "inventoryView", "charStatPanel")]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("14_jkdf5")
-panel = NodePath("CharacterManagerPanel")
-character_list = NodePath("CharacterManagerPanel/HeroList/VBoxContainer")
-charInfoPanel = NodePath("CharacterManagerPanel/CharacterInformation")
-inventoryView = NodePath("CharacterManagerPanel/TabContainer/Inventory/Inventory")
-charStatPanel = NodePath("CharacterManagerPanel/TabContainer/Stats/CharacterStats")
-
-[node name="CharacterManagerPanel" type="Panel" parent="Town/CharacterManager"]
-layout_mode = 0
-offset_left = -3.0
-offset_right = 1149.0
-offset_bottom = 645.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_gt3je")
-
-[node name="CloseButton" type="Button" parent="Town/CharacterManager/CharacterManagerPanel"]
-layout_mode = 0
-offset_left = 16.0
-offset_top = 14.0
-offset_right = 128.0
-offset_bottom = 55.0
-text = "CLose"
-
-[node name="HeroList" type="Panel" parent="Town/CharacterManager/CharacterManagerPanel"]
-layout_mode = 0
-offset_left = 5.0
-offset_top = 66.0
-offset_right = 207.0
-offset_bottom = 639.0
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Town/CharacterManager/CharacterManagerPanel/HeroList"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="CharacterInformation" parent="Town/CharacterManager/CharacterManagerPanel" instance=ExtResource("15_k12tt")]
-layout_mode = 1
-offset_left = 218.0
-offset_top = -3.0
-offset_right = 218.0
-offset_bottom = -3.0
-
-[node name="TabContainer" type="TabContainer" parent="Town/CharacterManager/CharacterManagerPanel"]
-layout_mode = 0
-offset_left = 746.0
-offset_top = -2.0
-offset_right = 1148.0
-offset_bottom = 641.0
-current_tab = 0
-
-[node name="Inventory" type="TabBar" parent="Town/CharacterManager/CharacterManagerPanel/TabContainer"]
-layout_mode = 2
-metadata/_tab_index = 0
-
-[node name="Inventory" type="Panel" parent="Town/CharacterManager/CharacterManagerPanel/TabContainer/Inventory" node_paths=PackedStringArray("inventory_grid_container")]
-layout_mode = 0
-offset_top = -1.0
-offset_right = 390.0
-offset_bottom = 598.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_fdnlq")
-script = ExtResource("14_k12tt")
-inventory_grid_container = NodePath("GridContainer")
-
-[node name="GridContainer" type="GridContainer" parent="Town/CharacterManager/CharacterManagerPanel/TabContainer/Inventory/Inventory"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-columns = 4
-
-[node name="Stats" type="TabBar" parent="Town/CharacterManager/CharacterManagerPanel/TabContainer"]
-visible = false
-layout_mode = 2
-metadata/_tab_index = 1
-
-[node name="CharacterStats" parent="Town/CharacterManager/CharacterManagerPanel/TabContainer/Stats" instance=ExtResource("17_h1bgf")]
 layout_mode = 1
 
 [connection signal="enemy_died" from="Battle/Enemy" to="." method="_on_enemy_enemy_died"]
 [connection signal="enemy_died" from="Battle/Enemy" to="Town" method="_on_enemy_enemy_died"]
-[connection signal="enemy_died" from="Battle/Enemy" to="Town/InventoryManager/Panel" method="_on_enemy_enemy_died"]
-[connection signal="enemy_died" from="Battle/Enemy" to="Town/CharacterManager/CharacterManagerPanel/TabContainer/Inventory/Inventory" method="_on_enemy_enemy_died"]
 [connection signal="timeout" from="Battle/Enemy/AttackTimer" to="Battle/Enemy" method="_on_attackTimer_timeout"]
 [connection signal="timeout" from="Battle/Enemy/RespawnTimer" to="Battle/Enemy" method="enemy_respawn"]
 [connection signal="timeout" from="Battle/Party/Player1/CharacterAttackTimer" to="Battle/Party/Player1" method="_on_character_attack_timer_timeout"]
@@ -687,12 +488,8 @@ layout_mode = 1
 [connection signal="button_down" from="Town/MonsterSelectionOpen" to="Town" method="_on_monster_selection_button_pressed"]
 [connection signal="button_down" from="Town/MonsterSelectionMenu/VBoxContainer/Slime" to="Town/MonsterSelectionMenu/VBoxContainer/Slime" method="_on_button_down"]
 [connection signal="button_down" from="Town/MonsterSelectionMenu/VBoxContainer/GOblin" to="Town/MonsterSelectionMenu/VBoxContainer/GOblin" method="_on_button_down"]
+[connection signal="button_down" from="Town/MonsterSelectionMenu/VBoxContainer/GoblinWar" to="Town/MonsterSelectionMenu/VBoxContainer/GoblinWar" method="_on_button_down"]
 [connection signal="button_down" from="Town/MonsterSelectionMenu/MonsterSelectionClose" to="Town" method="_on_close_menu_button_pressed"]
-[connection signal="button_down" from="Town/OpenPartyManager" to="Town/PartyManager" method="_on_open_party_manager_button_down"]
 [connection signal="button_down" from="Town/GotoCombat" to="Town" method="_on_goto_combat_button_down"]
-[connection signal="button_down" from="Town/OpenInventory" to="Town/InventoryManager" method="_on_open_inventory_button_down"]
-[connection signal="button_down" from="Town/OpenCharacterManager" to="Town/CharacterManager" method="_on_open_character_manager_button_down"]
-[connection signal="button_down" from="Town/PartyManager/PartyPanel/CloseMenu" to="Town/PartyManager" method="_on_close_menu_button_down"]
-[connection signal="button_down" from="Town/InventoryManager/Panel/Button" to="Town/InventoryManager" method="_on_button_button_down"]
-[connection signal="button_down" from="Town/CharacterManager/CharacterManagerPanel/CloseButton" to="Town/CharacterManager" method="_on_close_button_button_down"]
-[connection signal="itemSelected" from="Town/CharacterManager/CharacterManagerPanel/TabContainer/Inventory/Inventory" to="Town/CharacterManager/CharacterManagerPanel/CharacterInformation" method="_on_inventory_item_selected"]
+[connection signal="button_down" from="Town/OpenTavern" to="Town" method="_on_open_tavern_button_down"]
+[connection signal="PartyChanged" from="Town/Tavern" to="Battle/Party" method="_on_tavern_party_changed"]

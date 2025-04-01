@@ -2,7 +2,7 @@ extends Control
 class_name EquipmentSlot
 
 var equipment : Equipment
-var equipmentType : Equipment.EquipmentType
+@export var equipmentType : Equipment.EquipmentType
 @export var icon : TextureRect
 @export var button : Button
 var tooltip: ItemTooltip = null  # Reference to tooltip instance
@@ -23,7 +23,6 @@ func set_item(new_item: Equipment):
 	update_slot()
 	
 func _on_mouse_entered():
-	print("Mouse entered")
 	if equipment:
 		tooltip = preload("res://Scenes/item_tooltip.tscn").instantiate()
 		get_tree().root.add_child(tooltip)  # Add to the scene
@@ -32,7 +31,6 @@ func _on_mouse_entered():
 
 # Hide tooltip when the mouse leaves
 func _on_mouse_exited():
-	print("Mouse exited")
 	if tooltip:
 		tooltip.queue_free()
 		tooltip = null

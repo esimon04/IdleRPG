@@ -51,9 +51,9 @@ func loadCharacter():
 	pass
 	
 func updateCharacterValues():
-	health = characterType.health
+	health = characterType.getHealth()
 	attackRate = characterType.calculateAttackRate()
-	healing = characterType.healing
+	healing = characterType.getHealingPerSecond()
 	attackProgBar.max_value = attackRate
 	attackTimer.wait_time = attackRate
 	attackTimer.start()
@@ -68,4 +68,5 @@ func removeCharacter():
 	
 func _on_character_changed():
 	updateCharacterValues()
+	party.updatePartyValues()
 	

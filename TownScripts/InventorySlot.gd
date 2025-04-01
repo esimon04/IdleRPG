@@ -37,7 +37,6 @@ func _on_button_button_down() -> void:
 		
 # Show tooltip when hovering over an item
 func _on_mouse_entered():
-	print("Mouse entered")
 	if item:
 		tooltip = preload("res://Scenes/item_tooltip.tscn").instantiate()
 		get_tree().root.add_child(tooltip)  # Add to the scene
@@ -46,7 +45,6 @@ func _on_mouse_entered():
 
 # Hide tooltip when the mouse leaves
 func _on_mouse_exited():
-	print("Mouse exited")
 	if tooltip:
 		tooltip.queue_free()
 		tooltip = null

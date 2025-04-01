@@ -8,6 +8,8 @@ class_name EnemyResource
 @export var attackRate : float
 @export var enemyId : String
 @export var expGiven : float
+@export var level : int
+@export var damageType : DamageTypes.DamageType
 
 func RollLoot():
 	var dropped_items = []
@@ -22,7 +24,7 @@ func RollLoot():
 				var maxDrop = drop["max"]
 				if item:
 					var quant = randi_range(minDrop, maxDrop)
-					dropped_items.append({"item" : item, "quantity": quant})
+					dropped_items.append({"item" : item, "quantity": quant, "level" : level})
 					
 	if dropped_items:
 		#print("Dropped Items %s" %dropped_items)
@@ -45,8 +47,9 @@ func RollIdleLoot(numKilled : int):
 			
 			var item = drop["item"]
 			if finalAmount > 0:
-				dropped_items.append({"item" : item, "quantity": finalAmount})
+					
+				dropped_items.append({"item" : item, "quantity": finalAmount, "level" : level})
 					
 	if dropped_items:
 		#print("Dropped Items %s" %dropped_items)
-		GameManager.PlayerLootedItems(dropped_items)
+		GameManager.PlayerLootedItemsIdle(dropped_items)

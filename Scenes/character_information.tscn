@@ -4,7 +4,8 @@
 [ext_resource type="Resource" uid="uid://i2tpk0cyfil2" path="res://CharacterResources/Wizard.tres" id="2_6ok2n"]
 [ext_resource type="PackedScene" uid="uid://dgh3unj0seieh" path="res://Scenes/equipment_slot.tscn" id="3_yu4tn"]
 
-[node name="CharacterInformation" type="Control" node_paths=PackedStringArray("characterSprite", "characterName", "characterLevel", "characterXpBar", "weaponSlot")]
+[node name="CharacterInformation" type="Control" node_paths=PackedStringArray("characterSprite", "characterName", "characterLevel", "characterXpBar", "weaponSlot", "armorSlot", "helmSlot", "ringSlot")]
+custom_minimum_size = Vector2(540, 400)
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -18,18 +19,31 @@ characterName = NodePath("Panel/VBoxContainer/Name")
 characterLevel = NodePath("Panel/VBoxContainer/Level")
 characterXpBar = NodePath("Panel/VBoxContainer/experience")
 weaponSlot = NodePath("Panel/WeaponSlot")
+armorSlot = NodePath("Panel/ArmorSlot")
+helmSlot = NodePath("Panel/HelmetSlot")
+ringSlot = NodePath("Panel/RingSlot")
 
 [node name="Panel" type="Panel" parent="."]
-layout_mode = 0
-offset_right = 517.0
-offset_bottom = 644.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="CharBackground" type="Panel" parent="Panel"]
-layout_mode = 0
-offset_left = 138.0
-offset_top = 107.0
-offset_right = 376.0
-offset_bottom = 502.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -119.0
+offset_top = -165.1
+offset_right = 119.0
+offset_bottom = 105.9
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 1
 
 [node name="TextureRect" type="TextureRect" parent="Panel/CharBackground"]
@@ -68,7 +82,31 @@ layout_mode = 2
 
 [node name="WeaponSlot" parent="Panel" instance=ExtResource("3_yu4tn")]
 layout_mode = 1
-offset_left = 403.0
-offset_top = 471.0
-offset_right = -32.0
-offset_bottom = -89.0
+offset_left = 33.0
+offset_top = 202.0
+offset_right = -402.0
+offset_bottom = -198.0
+
+[node name="ArmorSlot" parent="Panel" instance=ExtResource("3_yu4tn")]
+layout_mode = 1
+offset_left = 34.0
+offset_top = 73.0
+offset_right = -401.0
+offset_bottom = -327.0
+equipmentType = 1
+
+[node name="HelmetSlot" parent="Panel" instance=ExtResource("3_yu4tn")]
+layout_mode = 1
+offset_left = 414.0
+offset_top = 68.0
+offset_right = -21.0
+offset_bottom = -332.0
+equipmentType = 2
+
+[node name="RingSlot" parent="Panel" instance=ExtResource("3_yu4tn")]
+layout_mode = 1
+offset_left = 415.0
+offset_top = 232.0
+offset_right = -20.0
+offset_bottom = -168.0
+equipmentType = 3

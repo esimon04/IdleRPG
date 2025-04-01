@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Chest" load_steps=3 format=3 uid="uid://dcbmeu34d3x3i"]
+
+[ext_resource type="Script" uid="uid://dhmte4gsmksa" path="res://Chest.gd" id="2_dgys5"]
+[ext_resource type="Texture2D" uid="uid://cpj055f4mt30d" path="res://Art/Items/Chest.png" id="6_7lrqu"]
+
+[resource]
+script = ExtResource("2_dgys5")
+itemsToDrop = Array[String](["Staff1", "LeatherChest", "LeatherHelm"])
+chestLevel = 1
+max_stack = 999
+name = "Goblin Chest"
+sprite = ExtResource("6_7lrqu")
+description = "Open For Loot"
+unique = false
+id = ""
+metadata/_custom_type_script = "uid://dhmte4gsmksa"

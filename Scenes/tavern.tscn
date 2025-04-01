@@ -1,0 +1,96 @@
+[gd_scene load_steps=5 format=3 uid="uid://cc53pjl56ehqh"]
+
+[ext_resource type="Script" uid="uid://73jfu1w0m6pn" path="res://tavern.gd" id="1_4xy5q"]
+[ext_resource type="PackedScene" uid="uid://ds82bht0x636w" path="res://party_view.tscn" id="2_k053i"]
+[ext_resource type="PackedScene" uid="uid://5xen0edqk0dg" path="res://Scenes/character_manager.tscn" id="3_3n42s"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k053i"]
+bg_color = Color(0.370364, 0.370365, 0.370364, 1)
+
+[node name="Tavern" type="Control" node_paths=PackedStringArray("character_list", "party_list", "partyView", "characterManager")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+script = ExtResource("1_4xy5q")
+character_list = NodePath("Panel/MainSplit/CloseButtonAndChars/CharacterLists/Characters")
+party_list = NodePath("Panel/MainSplit/CloseButtonAndChars/CharacterLists/Party")
+partyView = NodePath("Panel/MainSplit/TabContainer/Party/PartyView")
+characterManager = NodePath("Panel/MainSplit/TabContainer/Character/CharacterManager")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_k053i")
+
+[node name="MainSplit" type="HBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CloseButtonAndChars" type="VBoxContainer" parent="Panel/MainSplit"]
+layout_mode = 2
+
+[node name="closeMenu" type="Button" parent="Panel/MainSplit/CloseButtonAndChars"]
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+text = "Close"
+
+[node name="CharacterLists" type="VBoxContainer" parent="Panel/MainSplit/CloseButtonAndChars"]
+layout_mode = 2
+
+[node name="PartyLabel" type="Label" parent="Panel/MainSplit/CloseButtonAndChars/CharacterLists"]
+layout_mode = 2
+text = "Party"
+
+[node name="Party" type="VBoxContainer" parent="Panel/MainSplit/CloseButtonAndChars/CharacterLists"]
+layout_mode = 2
+
+[node name="BenchLabel" type="Label" parent="Panel/MainSplit/CloseButtonAndChars/CharacterLists"]
+layout_mode = 2
+text = "Bench"
+
+[node name="Characters" type="VBoxContainer" parent="Panel/MainSplit/CloseButtonAndChars/CharacterLists"]
+layout_mode = 2
+
+[node name="TabContainer" type="TabContainer" parent="Panel/MainSplit"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 16
+current_tab = 1
+
+[node name="Party" type="TabBar" parent="Panel/MainSplit/TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="PartyView" parent="Panel/MainSplit/TabContainer/Party" instance=ExtResource("2_k053i")]
+layout_mode = 1
+scale = Vector2(0.999201, 1.00741)
+
+[node name="Character" type="TabBar" parent="Panel/MainSplit/TabContainer"]
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="CharacterManager" parent="Panel/MainSplit/TabContainer/Character" instance=ExtResource("3_3n42s")]
+layout_mode = 1
+offset_right = -188.0
+offset_bottom = -17.0
+
+[node name="Skills" type="TabBar" parent="Panel/MainSplit/TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 2
+
+[connection signal="button_down" from="Panel/MainSplit/CloseButtonAndChars/closeMenu" to="." method="_on_close_menu_button_down"]
+[connection signal="partyChanged" from="Panel/MainSplit/TabContainer/Party/PartyView" to="." method="_on_party_view_party_changed"]

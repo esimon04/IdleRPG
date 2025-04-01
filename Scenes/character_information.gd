@@ -8,14 +8,21 @@ class_name CharacterInformation
 @export var characterXpBar : ProgressBar
 
 @export var weaponSlot : EquipmentSlot
+@export var armorSlot : EquipmentSlot
+@export var helmSlot : EquipmentSlot
+@export var ringSlot : EquipmentSlot
 
 var selectedItem : Item
 var selectedEquipSlot : EquipmentSlot
 
+signal equipmentSelected(item : Equipment)
+
 func _ready() -> void:
 	#weaponSlot.button.pressed.connect(_on_equipment_slot_clicked.bind(weaponSlot))
 	weaponSlot.button.gui_input.connect(_on_equipment_slot_clicked.bind(weaponSlot))
-	weaponSlot.equipmentType = Equipment.EquipmentType.WEAPON
+	armorSlot.button.gui_input.connect(_on_equipment_slot_clicked.bind(armorSlot))
+	helmSlot.button.gui_input.connect(_on_equipment_slot_clicked.bind(helmSlot))
+	ringSlot.button.gui_input.connect(_on_equipment_slot_clicked.bind(ringSlot))
 	pass # Replace with function body.
 
 func update_character(new_character: CharacterResource):
@@ -28,6 +35,9 @@ func update_character(new_character: CharacterResource):
 	update_character_visuals()
 	
 	weaponSlot.set_item(character.equippedWeapon)
+	armorSlot.set_item(character.equippedArmor)
+	helmSlot.set_item(character.equippedHelm)
+	ringSlot.set_item(character.equippedRing)
 	
 func update_character_visuals():
 	characterSprite.texture = character.sprite if character.sprite else null
@@ -46,7 +56,8 @@ func AttemptEquipItem(slot : EquipmentSlot, item : Item):
 				
 			slot.set_item(item)
 			GameManager.player_data.playerInventory.remove_item(item,1)
-
+		else:
+			print("Item is not the correct slot")
 	else:
 		print("Item %s Not Equipment - Cannot Equip" %item.name)
 		
@@ -63,6 +74,9 @@ func AttemptUnequipItem(slot: EquipmentSlot):
 	
 func UpdateCharacterEquipment():
 	character.equippedWeapon = weaponSlot.equipment
+	character.equippedArmor = armorSlot.equipment
+	character.equippedHelm = helmSlot.equipment
+	character.equippedRing = ringSlot.equipment
 	character.updateCharacterEquipment()
 	character.character_changed.emit()
 		
@@ -70,6 +84,7 @@ func UpdateCharacterEquipment():
 func _on_equipment_slot_clicked(event: InputEvent,slot : EquipmentSlot):
 	if event is InputEventMouseButton and event.pressed:
 		if event.button_index == MOUSE_BUTTON_LEFT:
+			equipmentSelected.emit(slot.equipment)
 			selectedEquipSlot = slot
 			if selectedItem:
 					AttemptEquipItem(slot, selectedItem)

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Weapon" load_steps=7 format=3 uid="uid://dwnm20ivj42ym"]
+[gd_resource type="Resource" script_class="Weapon" load_steps=10 format=3 uid="uid://dwnm20ivj42ym"]
 
 [ext_resource type="Script" uid="uid://k5waoa2pmnj" path="res://Weapon.gd" id="1_88f82"]
 [ext_resource type="Script" uid="uid://dm5twkk3db3nc" path="res://ModifierResource.gd" id="1_kxq3d"]
@@ -19,16 +19,41 @@ min = 1.0
 max = 3.0
 metadata/_custom_type_script = "uid://bdgln3f58l542"
 
+[sub_resource type="Resource" id="Resource_i4c40"]
+script = ExtResource("2_h8fld")
+modifier = 2
+min = 1.0
+max = 3.0
+metadata/_custom_type_script = "uid://bdgln3f58l542"
+
+[sub_resource type="Resource" id="Resource_11nhe"]
+script = ExtResource("2_h8fld")
+modifier = 3
+min = 1.0
+max = 3.0
+metadata/_custom_type_script = "uid://bdgln3f58l542"
+
+[sub_resource type="Resource" id="Resource_6xcee"]
+script = ExtResource("2_h8fld")
+modifier = 4
+min = 1.0
+max = 3.0
+metadata/_custom_type_script = "uid://bdgln3f58l542"
+
 [resource]
 script = ExtResource("1_88f82")
 abilityType = 0
 minDamage = 1
 maxDamage = 5
 attackSpeed = 2.0
+critRate = 0.01
+damageType = 0
 equipmentType = 0
 modifiers = Array[ExtResource("1_kxq3d")]([])
-possibleModifiers = Array[ExtResource("2_h8fld")]([SubResource("Resource_r6hyn"), SubResource("Resource_h8fld")])
+possibleModifiers = Array[ExtResource("2_h8fld")]([SubResource("Resource_r6hyn"), SubResource("Resource_h8fld"), SubResource("Resource_i4c40"), SubResource("Resource_11nhe"), SubResource("Resource_6xcee")])
 numModifiers = 1
+rarity = 0
+itemLevel = 0
 max_stack = 1
 name = "Sword"
 sprite = ExtResource("2_b6di5")

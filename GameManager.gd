@@ -37,8 +37,8 @@ func load_player_data():
 		player_data = PlayerData.CreateSave()
 		var dropped_items = []
 		dropped_items.append({"item" : "Gold", "quantity": 4})
-		dropped_items.append({"item" : "Sword1", "quantity": 1})
-		dropped_items.append({"item" : "Sword1", "quantity": 1})
+		dropped_items.append({"item" : "Sword1", "quantity": 1, "level" : 3})
+		dropped_items.append({"item" : "Staff1", "quantity": 1, "level" : 3})
 		PlayerLootedItems(dropped_items)
 
 func save_player_data():
@@ -53,7 +53,7 @@ func setEnemy(enemy : EnemyResource):
 func pauseCombat():
 	print("Pausing Combat")
 	
-	
+
 	
 func calculateIdleCombat():
 	var currentTime = Time.get_unix_time_from_system();
@@ -64,10 +64,9 @@ func calculateIdleCombat():
 	var partyHp = 0
 	for char in player_data.idleBattleData.characters:
 		if char:
-			if char.damage > 0:
-				dps += char.damage / char.attackRate
-			healing += char.healing
-			partyHp += char.health
+			dps += char.calculateIdleDPS()
+			healing += char.getHealingPerSecond()
+			partyHp += char.getHealth()
 		
 	var enemyDps = player_data.idleBattleData.enemyFighting.damage / player_data.idleBattleData.enemyFighting.attackRate
 	if enemyDps > healing:
@@ -85,10 +84,28 @@ func calculateIdleCombat():
 	print("KILLED %d ENEMEIS WHILE AWAY" %numEnemiesKilled)
 	
 	player_data.idleBattleData.enemyFighting.RollIdleLoot(numEnemiesKilled)
-		
-	
 	pass
 	
+func CalcPartyDps() -> float:
+	var dps = 0
+	for char in player_data.idleBattleData.characters:
+		if char:
+			dps += char.calculateIdleDPS()
+	return dps
+	
+func CalcPartyHps() -> float:
+	var hps = 0
+	for char in player_data.idleBattleData.characters:
+		if char:
+			hps += char.getHealingPerSecond()
+	return hps
+	
+func CalcPartyHealth() -> float:
+	var hp = 0
+	for char in player_data.idleBattleData.characters:
+		if char:
+			hp += char.getHealth()
+	return hp
 	
 func load_loot_tables():
 	var file = FileAccess.open("res://EnemyResources/loot_tables.json", FileAccess.READ)
@@ -104,14 +121,21 @@ func getItemFromDatabase(item_id: String) -> Item:
 		return item.duplicate()
 	else:
 		return item
+		
+func PlayerLootedItemsIdle(itemsLooted : Array): #Making Idle variant so that only top X amt of items are looted
 	
-func PlayerLootedItems(itemsLooted : Array):
 	for idx in itemsLooted:
 		var item = GameManager.getItemFromDatabase(idx["item"])
 		if item.unique:
-			for i in idx["quantity"]:
+			
+			#Roll all the rarities
+			var rarities = Equipment.GetTopDrops(idx["level"],idx["quantity"])
+			
+			for rarity in rarities:
 				if item is Equipment:
-					var newModifiers = (Equipment.rollStats(item.possibleModifiers,item.numModifiers))
+					item.rarity = rarity
+					item.numModifiers = Equipment.getNumModifiers(item.rarity)
+					var newModifiers = (Equipment.rollStats(item.possibleModifiers.duplicate(),item.numModifiers, idx["level"]))
 					item.modifiers.append_array(newModifiers)
 					var unique_id = player_data.get_unique_id()
 					item.id = item.name + "_" + str(unique_id)
@@ -119,6 +143,39 @@ func PlayerLootedItems(itemsLooted : Array):
 		else:
 			item.id = item.name
 			player_data.playerInventory.add_item(item, idx["quantity"])
+	
+func PlayerLootedItems(itemsLooted : Array): #items looted has "item" "quantity" "level"
+	for idx in itemsLooted:
+		var item = GameManager.getItemFromDatabase(idx["item"])
+		if item.unique:
+			for i in idx["quantity"]:
+				if item is Equipment:
+					item.rarity = Equipment.RollRarity(idx["level"])
+					item.numModifiers = Equipment.getNumModifiers(item.rarity)
+					var newModifiers = (Equipment.rollStats(item.possibleModifiers.duplicate(),item.numModifiers, idx["level"]))
+					item.modifiers.append_array(newModifiers)
+					var unique_id = player_data.get_unique_id()
+					item.id = item.name + "_" + str(unique_id)
+					player_data.playerInventory.add_item(item, 1)
+		else:
+			item.id = item.name
+			player_data.playerInventory.add_item(item, idx["quantity"])
+
+func PlayerReceivedItems(items : Array[String], ilvl):
+	for itemName in items:
+		var item = GameManager.getItemFromDatabase(itemName)
+		if item.unique:
+			if item is Equipment:
+				item.rarity = Equipment.RollRarity(ilvl)
+				item.numModifiers = Equipment.getNumModifiers(item.rarity)
+				var newModifiers = (Equipment.rollStats(item.possibleModifiers,item.numModifiers, item.itemLevel))
+				item.modifiers.append_array(newModifiers)
+				var unique_id = player_data.get_unique_id()
+				item.id = item.name + "_" + str(unique_id)
+				player_data.playerInventory.add_item(item, 1)
+		else:
+			item.id = item.name
+			player_data.playerInventory.add_item(item, 1)
 		
 func updateParty(_party):
 	player_data.idleBattleData.characters = _party

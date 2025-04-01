@@ -4,11 +4,11 @@ class_name CharacterResource
 @export var name: String
 @export var sprite: Texture
 @export var health: int
-@export var damage: int
 @export var attackRate : float
 @export var healing : float
 @export var level : int
 
+var critMultiplier : int = 2
 var experience : float
 var inParty: bool
 
@@ -37,18 +37,20 @@ enum Attribute {STR, DEX, CON, INT, WIS}
 
 #Equipment
 @export var equippedWeapon : Weapon
+@export var equippedArmor : Equipment
+@export var equippedHelm : Equipment
+@export var equippedRing : Equipment
 
 @export var attributePointsAvailable : int
 
 signal character_changed #Signal to tell other nodes to update visuals about a character
 
-func _init(_name: String = "Unknown", _level: int = 1, _sprite: Texture2D = null, _damage: int = 1, _health:int = 10, _healing : float = 1, _attackrate = 1):
+func _init(_name: String = "Unknown", _level: int = 1, _sprite: Texture2D = null,  _health:int = 10, _healing : float = 1, _attackrate = 1):
 	print("Character resource init called")
 	name = _name
 	level = _level
 	attackRate = _attackrate
 	sprite = _sprite
-	damage = _damage
 	health = _health
 	healing = _healing
 	
@@ -78,13 +80,12 @@ func equipWeapon(weaponIn : Weapon):
 func calculateDamage() -> int:
 	if equippedWeapon:
 		var rng = RandomNumberGenerator.new()
-		var baseDamage = rng.randi_range(equippedWeapon.minDamage, equippedWeapon.maxDamage)
+		var baseDamage = rng.randi_range(equippedWeapon.minDamage, equippedWeapon.maxDamage) * (1 +rollCritChance())
 		var modifier = 0
 		modifier = getAttribute(equippedWeapon.abilityType)
 		return baseDamage + modifier
-			
 	else:
-		return charAttributeDictionary[CharacterResource.Attribute.STR]
+		return getAttribute(Attribute.STR) 
 		
 func calculateAttackRate() -> float:
 	#TODO can modify this based on stats
@@ -92,6 +93,15 @@ func calculateAttackRate() -> float:
 		return equippedWeapon.attackSpeed
 	else:
 		return 1;
+		
+func calculateIdleDPS() -> float:
+	var avgDmg = floor((getMinDamage() + getMaxDamage()) / 2)
+	if equippedWeapon:
+		avgDmg + getAttribute(equippedWeapon.abilityType)
+	avgDmg =  avgDmg * (1 + calculateCritRate() * (critMultiplier - 1))
+	avgDmg = avgDmg / calculateAttackRate()
+	
+	return avgDmg
 		
 func updateCharacterEquipment():
 	#Clear
@@ -104,6 +114,12 @@ func updateCharacterEquipment():
 	#For each slot - update
 	if equippedWeapon:
 		updateAffectsFromGear(equippedWeapon)
+	if equippedArmor:
+		updateAffectsFromGear(equippedArmor)
+	if equippedHelm:
+		updateAffectsFromGear(equippedHelm)
+	if equippedRing:
+		updateAffectsFromGear(equippedRing)
 		
 func updateAffectsFromGear(gear : Equipment):
 	var modifiers = gear.modifiers
@@ -122,6 +138,39 @@ func updateAffectsFromGear(gear : Equipment):
 				
 func getAttribute(attr : Attribute) -> int:
 	return charAttributeEquipmentDictionary[attr] + charAttributeDictionary[attr]
+	
+func getHealth() -> int:
+	return 10 + 5 * getAttribute(Attribute.CON)
+	
+func getMinDamage() -> int:
+	if equippedWeapon:
+		return equippedWeapon.minDamage + getAttribute(equippedWeapon.abilityType)
+	else:
+		return 1
+		
+func getMaxDamage() -> int:
+	if equippedWeapon:
+		return equippedWeapon.maxDamage + getAttribute(equippedWeapon.abilityType)
+	else:
+		return getAttribute(Attribute.STR)
+		
+func getHealingPerSecond() -> float:
+	return getAttribute(Attribute.WIS)
+	
+func calculateCritRate() -> float:
+	if equippedWeapon:
+		return equippedWeapon.critRate + (2 * log(getAttribute(Attribute.DEX))/100)
+	else:
+		return (2 * log(getAttribute(Attribute.DEX))/100)
+		
+func rollCritChance() -> int:
+	var rng = RandomNumberGenerator.new()
+	var roll = rng.randf()
+	if roll <= calculateCritRate():
+		print("CRIT CRIT CRIT")
+		return 1
+	return 0
+	
 		
 static func calculateXpForNextLevel(level : int):
 	#TODO figure out pattern for this

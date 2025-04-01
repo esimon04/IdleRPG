@@ -1,0 +1,80 @@
+[gd_scene load_steps=3 format=3 uid="uid://ds82bht0x636w"]
+
+[ext_resource type="Script" uid="uid://c1c17a22pxbgd" path="res://PartyView.gd" id="1_4px3w"]
+[ext_resource type="PackedScene" uid="uid://p484ud2wx386" path="res://Scenes/PartySlot.tscn" id="1_wxep5"]
+
+[node name="PartyView" type="Control" node_paths=PackedStringArray("partSlot1", "partSlot2", "partSlot3", "partSlot4", "partyDpsLabel", "partyHealthLabel", "partyHealingLabel")]
+custom_minimum_size = Vector2(800, 600)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.997006, 1)
+script = ExtResource("1_4px3w")
+partSlot1 = NodePath("Panel/VBoxContainer/GridContainer/PartySlot")
+partSlot2 = NodePath("Panel/VBoxContainer/GridContainer/PartySlot2")
+partSlot3 = NodePath("Panel/VBoxContainer/GridContainer/PartySlot3")
+partSlot4 = NodePath("Panel/VBoxContainer/GridContainer/PartySlot4")
+partyDpsLabel = NodePath("Panel/VBoxContainer/PartyStats/VBoxContainer/Dps")
+partyHealthLabel = NodePath("Panel/VBoxContainer/PartyStats/VBoxContainer/Hps")
+partyHealingLabel = NodePath("Panel/VBoxContainer/PartyStats/VBoxContainer/Health")
+
+[node name="Panel" type="Panel" parent="."]
+custom_minimum_size = Vector2(640, 400)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GridContainer" type="GridContainer" parent="Panel/VBoxContainer"]
+layout_mode = 2
+columns = 2
+
+[node name="PartySlot" parent="Panel/VBoxContainer/GridContainer" instance=ExtResource("1_wxep5")]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="PartySlot2" parent="Panel/VBoxContainer/GridContainer" instance=ExtResource("1_wxep5")]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="PartySlot3" parent="Panel/VBoxContainer/GridContainer" instance=ExtResource("1_wxep5")]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="PartySlot4" parent="Panel/VBoxContainer/GridContainer" instance=ExtResource("1_wxep5")]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="PartyStats" type="Panel" parent="Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/VBoxContainer/PartyStats"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Dps" type="Label" parent="Panel/VBoxContainer/PartyStats/VBoxContainer"]
+layout_mode = 2
+text = "DPS"
+
+[node name="Hps" type="Label" parent="Panel/VBoxContainer/PartyStats/VBoxContainer"]
+layout_mode = 2
+text = "HPS"
+
+[node name="Health" type="Label" parent="Panel/VBoxContainer/PartyStats/VBoxContainer"]
+layout_mode = 2
+text = "HEALTH"

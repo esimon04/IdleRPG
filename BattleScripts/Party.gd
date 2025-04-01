@@ -5,7 +5,8 @@ extends Node
 @export var Character2 : Character
 @export var Character3 : Character
 @export var Character4 : Character
-@export var healthLabel : ProgressBar
+@export var healthProgBar : ProgressBar
+@export var healthLabel : Label
 @export var enemy : Enemy
 
 var totalHealth : int
@@ -36,14 +37,15 @@ func updateParty():
 	setParty(GameManager.player_data.idleBattleData.characters)
 
 func updateHealthLabel() -> void:
-	healthLabel.min_value = 0
-	healthLabel.max_value = totalHealth
+	healthProgBar.min_value = 0
+	healthProgBar.max_value = totalHealth
 	updateHealthValue()
 	pass
 	
 func updateHealthValue() -> void:
 	#healthLabel.text = "%3f / %d" % [currentHealth, totalHealth]
-	healthLabel.value = currentHealth
+	healthLabel.text = "%d / %d" % [currentHealth, totalHealth]
+	healthProgBar.value = currentHealth
 	pass
 	
 func TakeDamage(amount: int):
@@ -62,6 +64,7 @@ func UpdateValues():
 	totalHealth += Character2.health
 	totalHealth += Character3.health
 	totalHealth += Character4.health
+	currentHealth = totalHealth;
 	
 	healingPerSecond = 0
 	healingPerSecond += Character1.healing
@@ -70,8 +73,20 @@ func UpdateValues():
 	healingPerSecond += Character4.healing
 	
 	updateHealthLabel()
-	
 	pass
+	
+func updatePartyValues():
+	totalHealth = 0
+	totalHealth += Character1.health
+	totalHealth += Character2.health
+	totalHealth += Character3.health
+	totalHealth += Character4.health
+	
+	healingPerSecond = 0
+	healingPerSecond += Character1.healing
+	healingPerSecond += Character2.healing
+	healingPerSecond += Character3.healing
+	healingPerSecond += Character4.healing
 		
 func setParty(characterResources : Array[CharacterResource]):
 	Character1.setCharacter(characterResources[0])
@@ -82,3 +97,8 @@ func setParty(characterResources : Array[CharacterResource]):
 	UpdateValues()
 	pass
 	
+
+
+func _on_tavern_party_changed() -> void:
+	updateParty()
+	pass # Replace with function body.

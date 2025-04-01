@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://ceoe4jcaf0qpx" path="res://TownScripts/Town.gd" id="1_kswdu"]
 [ext_resource type="Script" uid="uid://ddv1quvbqp0fj" path="res://TownScripts/ChooseEnemyButton.gd" id="2_iau6b"]
-[ext_resource type="Resource" uid="uid://b0eo5o5prbknw" path="res://EnemyResources/Slime.tres" id="3_28ev0"]
-[ext_resource type="Resource" uid="uid://b1n0o8gbb2ykj" path="res://EnemyResources/Goblin.tres" id="4_ckvn4"]
+[ext_resource type="Resource" uid="uid://b0eo5o5prbknw" path="res://EnemyResources/Area1/Slime.tres" id="3_28ev0"]
+[ext_resource type="Resource" uid="uid://b1n0o8gbb2ykj" path="res://EnemyResources/Area1/Goblin.tres" id="4_ckvn4"]
 [ext_resource type="Script" path="res://BattleScripts/IdleBattleManager.gd" id="5_poxg2"]
 [ext_resource type="Resource" uid="uid://5vw0oqm7ermc" path="res://EnemyResources/EmptyEnemy.tres" id="6_gflae"]
 [ext_resource type="Resource" uid="uid://c6okkvfx314gg" path="res://CharacterResources/EmptyChar.tres" id="7_2rtke"]

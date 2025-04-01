@@ -1,0 +1,81 @@
+[gd_scene load_steps=8 format=3 uid="uid://5xen0edqk0dg"]
+
+[ext_resource type="Script" uid="uid://nvgscd2sbpc1" path="res://TownScripts/CharacterManager.gd" id="1_ct280"]
+[ext_resource type="PackedScene" uid="uid://jv2tjebcqoa2" path="res://Scenes/character_information.tscn" id="2_fke4n"]
+[ext_resource type="Script" uid="uid://dbmdf1j8l46s8" path="res://InventoryView.gd" id="3_gj5fh"]
+[ext_resource type="PackedScene" uid="uid://baxcdqdg1sk3r" path="res://Scenes/character_stats.tscn" id="4_0rvuw"]
+[ext_resource type="PackedScene" uid="uid://cau4yfc8p4uk6" path="res://Scenes/item_display.tscn" id="5_fke4n"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gt3je"]
+bg_color = Color(0.260527, 0, 0.0216147, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fdnlq"]
+bg_color = Color(0.260862, 0.633156, 0.889924, 1)
+
+[node name="CharacterManager" type="Control" node_paths=PackedStringArray("charInfoPanel", "inventoryView", "charStatPanel", "itemDisplay")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -352.0
+offset_bottom = -48.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ct280")
+charInfoPanel = NodePath("CharacterManagerPanel/GridContainer/CharacterInformation")
+inventoryView = NodePath("CharacterManagerPanel/GridContainer/Inventory")
+charStatPanel = NodePath("CharacterManagerPanel/GridContainer/CharacterStats")
+itemDisplay = NodePath("CharacterManagerPanel/GridContainer/ItemDisplay")
+
+[node name="CharacterManagerPanel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_gt3je")
+
+[node name="GridContainer" type="GridContainer" parent="CharacterManagerPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+columns = 2
+
+[node name="CharacterInformation" parent="CharacterManagerPanel/GridContainer" instance=ExtResource("2_fke4n")]
+custom_minimum_size = Vector2(500, 356)
+layout_mode = 2
+
+[node name="Inventory" type="Panel" parent="CharacterManagerPanel/GridContainer" node_paths=PackedStringArray("inventory_grid_container")]
+custom_minimum_size = Vector2(300, 356)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_fdnlq")
+script = ExtResource("3_gj5fh")
+inventory_grid_container = NodePath("ScrollContainer/GridContainer")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CharacterManagerPanel/GridContainer/Inventory"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GridContainer" type="GridContainer" parent="CharacterManagerPanel/GridContainer/Inventory/ScrollContainer"]
+layout_mode = 2
+columns = 6
+
+[node name="CharacterStats" parent="CharacterManagerPanel/GridContainer" instance=ExtResource("4_0rvuw")]
+layout_mode = 2
+
+[node name="ItemDisplay" parent="CharacterManagerPanel/GridContainer" instance=ExtResource("5_fke4n")]
+custom_minimum_size = Vector2(0, 244)
+layout_mode = 2
+
+[connection signal="equipmentSelected" from="CharacterManagerPanel/GridContainer/CharacterInformation" to="." method="_on_character_information_equipment_selected"]
+[connection signal="itemSelected" from="CharacterManagerPanel/GridContainer/Inventory" to="." method="_on_inventory_item_selected"]
+[connection signal="itemSelected" from="CharacterManagerPanel/GridContainer/Inventory" to="CharacterManagerPanel/GridContainer/CharacterInformation" method="_on_inventory_item_selected"]

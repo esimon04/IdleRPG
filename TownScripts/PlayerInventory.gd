@@ -12,7 +12,7 @@ func add_item(new_item: Item, amount: int = 1):
 	var itemId = new_item.id
 	
 	
-	if itemId in slots:
+	if itemId in slots && !new_item.unique:
 		# Stack onto existing slot, but cap at max_stack
 		var space_left = new_item.max_stack - slots[itemId].count
 		var to_add = min(amount, space_left)
@@ -27,8 +27,9 @@ func add_item(new_item: Item, amount: int = 1):
 		amount -= slots[itemId].count
 	
 	# If there’s leftover, recursively try again
-	if amount > 0:
-		add_item(new_item, amount)
+	#Just going to put a max stack count.
+	#if amount > 0:
+	#	add_item(new_item, amount)
 		
 	InventoryChanged.emit()
 

@@ -2,8 +2,15 @@ extends Control
 class_name CharacterStats
 
 @export var character : CharacterResource
-@export var characterName : Label
-@export var characterLevel : Label
+
+#BattleStats
+@export var healthLabel : Label
+@export var damageLabel : Label
+@export var attackSpeedLabel : Label
+@export var dpsLabel : Label
+@export var critLabel : Label
+
+#attr
 @export var charStr : Label
 @export var charDex : Label
 @export var charCon : Label
@@ -11,6 +18,7 @@ class_name CharacterStats
 @export var charWis : Label
 @export var attrPoints : Label
 
+#buttons
 @export var strBut : Button
 @export var dexBut : Button
 @export var conBut : Button
@@ -33,8 +41,6 @@ func update_character(new_character: CharacterResource):
 		return
 
 	character = new_character
-	characterName.text = character.name
-	characterLevel.text = "Level: %d" % character.level
 	
 	character.character_changed.connect(_on_character_change)
 	
@@ -43,6 +49,15 @@ func update_character(new_character: CharacterResource):
 		allocatedPoints[attr] = 0
 		
 	_update_attr_displays()
+	_update_battle_stats()
+	
+func _update_battle_stats():
+	healthLabel.text =      "HEALTH:   %d" %character.getHealth()
+	damageLabel.text =      "DAMAGE:   %d - %d" %[character.getMinDamage(), character.getMaxDamage()]
+	attackSpeedLabel.text = "SPEED :   %.2f" %character.calculateAttackRate()
+	dpsLabel.text =         "DPS   :   %.2f" % character.calculateIdleDPS()
+	critLabel.text =        "CRIT  :   %.2f" %character.calculateCritRate()
+	
 		
 func _update_attr_displays():
 	charStr.text = str(character.getAttribute(CharacterResource.Attribute.STR) + allocatedPoints[CharacterResource.Attribute.STR])
@@ -127,9 +142,10 @@ func _on_undo_button_down() -> void:
 		refundedPoints += allocatedPoints[attr]
 		allocatedPoints[attr] = 0
 		
-	attrPointsLeft = refundedPoints
+	attrPointsLeft += refundedPoints
 	_update_attr_displays()
 	pass # Replace with function body.
 	
 func _on_character_change():
 	_update_attr_displays()
+	_update_battle_stats()

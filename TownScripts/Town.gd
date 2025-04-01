@@ -3,9 +3,11 @@ class_name Town
 
 @onready var monster_menu = $MonsterSelectionMenu  # Reference to the monster selection menu
 @export var battle : BattleScreen
+@export var tavern : Tavern
 
 func _ready():
 	monster_menu.hide()  # Ensure the menu is hidden at start
+	tavern.hide()
 	for button in get_tree().get_nodes_in_group("MonsterSelectButtons"):
 		button.GotoCombat.connect(_on_enemy_selected)
 	
@@ -42,4 +44,10 @@ func _on_enemy_enemy_died(enemy: Enemy) -> void:
 	#Need this for things like updating whatever the player is looking at
 	
 	
+	pass # Replace with function body.
+
+
+func _on_open_tavern_button_down() -> void:
+	tavern.show()
+	tavern.OpenTavern()
 	pass # Replace with function body.
