@@ -1,0 +1,48 @@
+[gd_scene load_steps=2 format=3 uid="uid://cp5p68prhse77"]
+
+[ext_resource type="Script" uid="uid://clu0k14jnt62y" path="res://modifier_slot_container.gd" id="1_8lxhe"]
+
+[node name="ModifierSlotContainer" type="HBoxContainer" node_paths=PackedStringArray("modifierNameLabel", "modifierLevelLabel", "upgradeButton")]
+size_flags_vertical = 4
+script = ExtResource("1_8lxhe")
+modifierNameLabel = NodePath("ModiferSlot/HBoxContainer/Modifiername")
+modifierLevelLabel = NodePath("ModiferSlot/HBoxContainer/Level")
+upgradeButton = NodePath("ModiferSlot/HBoxContainer/UpgradeButton")
+
+[node name="Spacer" type="Control" parent="."]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+
+[node name="ModiferSlot" type="Panel" parent="."]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ModiferSlot"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Modifiername" type="Label" parent="ModiferSlot/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "TemporaryName"
+
+[node name="Level" type="Label" parent="ModiferSlot/HBoxContainer"]
+layout_mode = 2
+text = "1"
+
+[node name="UpgradeButton" type="Button" parent="ModiferSlot/HBoxContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+size_flags_horizontal = 10
+text = "+"
+
+[node name="Spacer2" type="Control" parent="."]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+
+[connection signal="button_down" from="ModiferSlot/HBoxContainer/UpgradeButton" to="." method="_on_upgrade_button_button_down"]

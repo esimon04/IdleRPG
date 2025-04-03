@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://buaxa1e4r3acr"]
+[gd_scene load_steps=19 format=3 uid="uid://buaxa1e4r3acr"]
 
 [ext_resource type="Script" uid="uid://nm3isiecl653" path="res://GameManager.gd" id="1_fdnlq"]
 [ext_resource type="Script" uid="uid://b6f1a7f2hl2ph" path="res://BattleScripts/Enemy.gd" id="1_ynf5e"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://se58d3jod74n" path="res://Art/Platform.png" id="3_d1ilt"]
 [ext_resource type="Script" uid="uid://cw7mpoyqw3ffv" path="res://BattleScripts/Party.gd" id="4_6iyac"]
 [ext_resource type="Script" uid="uid://csh41j288kh7x" path="res://BattleScripts/Character.gd" id="5_fdnlq"]
+[ext_resource type="PackedScene" uid="uid://newaainqw8gd" path="res://health_panel.tscn" id="5_jkdf5"]
 [ext_resource type="Script" uid="uid://ceoe4jcaf0qpx" path="res://TownScripts/Town.gd" id="10_6iyac"]
 [ext_resource type="Script" uid="uid://ddv1quvbqp0fj" path="res://TownScripts/ChooseEnemyButton.gd" id="10_d1ilt"]
 [ext_resource type="Resource" uid="uid://b1n0o8gbb2ykj" path="res://EnemyResources/Area1/Goblin.tres" id="11_6iyac"]
@@ -15,15 +16,6 @@
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b3802"]
 bg_color = Color(0.419608, 0.188235, 0, 0)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fevyy"]
-bg_color = Color(0, 0, 0, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hibaj"]
-bg_color = Color(1, 0, 0.12549, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pdsj5"]
-bg_color = Color(0.290205, 0.709756, 0.0304233, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jkdf5"]
 bg_color = Color(0, 0, 0, 1)
@@ -53,7 +45,7 @@ offset_bottom = 40.0
 script = ExtResource("2_jkdf5")
 town = NodePath("../Town")
 
-[node name="Enemy" type="Panel" parent="Battle" node_paths=PackedStringArray("healthLabel", "healthBar", "nameLabel", "playerParty", "attackTimer", "respawnProgress", "enemyTexture", "respawnTimer")]
+[node name="Enemy" type="Panel" parent="Battle" node_paths=PackedStringArray("nameLabel", "playerParty", "attackTimer", "respawnProgress", "enemyTexture", "respawnTimer", "health")]
 layout_mode = 0
 offset_left = 797.0
 offset_top = 195.0
@@ -61,8 +53,6 @@ offset_right = 988.0
 offset_bottom = 410.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_b3802")
 script = ExtResource("1_ynf5e")
-healthLabel = NodePath("HealthPanel/Label")
-healthBar = NodePath("HealthPanel/ProgressBar")
 nameLabel = NodePath("nameLabel")
 playerParty = NodePath("../Party")
 enemyType = ExtResource("2_hptm8")
@@ -70,45 +60,14 @@ attackTimer = NodePath("AttackTimer")
 respawnProgress = NodePath("RespawnBar")
 enemyTexture = NodePath("Character")
 respawnTimer = NodePath("RespawnTimer")
+health = NodePath("HealthPanel")
 
-[node name="HealthPanel" type="Panel" parent="Battle/Enemy"]
+[node name="HealthPanel" parent="Battle/Enemy" instance=ExtResource("5_jkdf5")]
 layout_mode = 0
-offset_left = -29.0
-offset_top = 218.0
-offset_right = 229.0
-offset_bottom = 240.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_fevyy")
-
-[node name="ProgressBar" type="ProgressBar" parent="Battle/Enemy/HealthPanel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/background = SubResource("StyleBoxFlat_hibaj")
-theme_override_styles/fill = SubResource("StyleBoxFlat_pdsj5")
-value = 100.0
-show_percentage = false
-
-[node name="Label" type="Label" parent="Battle/Enemy/HealthPanel"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -11.5
-offset_right = 20.0
-offset_bottom = 11.5
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 15
-text = "1/1
-"
-horizontal_alignment = 1
-vertical_alignment = 1
+offset_left = -34.0
+offset_top = 261.0
+offset_right = 224.0
+offset_bottom = 283.0
 
 [node name="nameLabel" type="Label" parent="Battle/Enemy"]
 layout_mode = 1
@@ -151,7 +110,7 @@ show_percentage = false
 [node name="RespawnTimer" type="Timer" parent="Battle/Enemy"]
 one_shot = true
 
-[node name="Party" type="Panel" parent="Battle" node_paths=PackedStringArray("Character1", "Character2", "Character3", "Character4", "healthProgBar", "healthLabel", "enemy")]
+[node name="Party" type="Panel" parent="Battle" node_paths=PackedStringArray("Character1", "Character2", "Character3", "Character4", "enemy", "health")]
 layout_mode = 0
 offset_left = 160.0
 offset_top = 139.0
@@ -162,9 +121,8 @@ Character1 = NodePath("Player1")
 Character2 = NodePath("Player2")
 Character3 = NodePath("Player3")
 Character4 = NodePath("Player4")
-healthProgBar = NodePath("HealthPanel/ProgressBar")
-healthLabel = NodePath("HealthPanel/Label")
 enemy = NodePath("../Enemy")
+health = NodePath("HealthPanel")
 
 [node name="Player1" type="Panel" parent="Battle/Party" node_paths=PackedStringArray("attackTimer", "party", "nameLabel", "attackProgBar")]
 layout_mode = 0
@@ -322,50 +280,12 @@ offset_right = 148.0
 offset_bottom = 135.0
 show_percentage = false
 
-[node name="HealthPanel" type="Panel" parent="Battle/Party"]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -201.5
-offset_top = -28.0
-offset_right = 201.5
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_styles/panel = SubResource("StyleBoxFlat_fevyy")
-
-[node name="ProgressBar" type="ProgressBar" parent="Battle/Party/HealthPanel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/background = SubResource("StyleBoxFlat_hibaj")
-theme_override_styles/fill = SubResource("StyleBoxFlat_pdsj5")
-value = 100.0
-show_percentage = false
-
-[node name="Label" type="Label" parent="Battle/Party/HealthPanel"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -11.5
-offset_right = 20.0
-offset_bottom = 11.5
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 15
-text = "1/1
-"
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="HealthPanel" parent="Battle/Party" instance=ExtResource("5_jkdf5")]
+layout_mode = 0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 258.0
+offset_bottom = 22.0
 
 [node name="GotoTownbutton" type="Button" parent="Battle"]
 layout_mode = 0
@@ -385,6 +305,7 @@ text = "Goto Town
 <------"
 
 [node name="Town" type="Panel" parent="." node_paths=PackedStringArray("battle", "tavern")]
+visible = false
 layout_mode = 0
 offset_left = -2.0
 offset_top = 1.0
@@ -478,12 +399,14 @@ layout_mode = 1
 
 [connection signal="enemy_died" from="Battle/Enemy" to="." method="_on_enemy_enemy_died"]
 [connection signal="enemy_died" from="Battle/Enemy" to="Town" method="_on_enemy_enemy_died"]
+[connection signal="died" from="Battle/Enemy/HealthPanel" to="Battle/Enemy" method="_on_health_panel_died"]
 [connection signal="timeout" from="Battle/Enemy/AttackTimer" to="Battle/Enemy" method="_on_attackTimer_timeout"]
 [connection signal="timeout" from="Battle/Enemy/RespawnTimer" to="Battle/Enemy" method="enemy_respawn"]
 [connection signal="timeout" from="Battle/Party/Player1/CharacterAttackTimer" to="Battle/Party/Player1" method="_on_character_attack_timer_timeout"]
 [connection signal="timeout" from="Battle/Party/Player2/CharacterAttackTimer" to="Battle/Party/Player2" method="_on_character_attack_timer_timeout"]
 [connection signal="timeout" from="Battle/Party/Player3/CharacterAttackTimer" to="Battle/Party/Player3" method="_on_character_attack_timer_timeout"]
 [connection signal="timeout" from="Battle/Party/Player4/CharacterAttackTimer" to="Battle/Party/Player4" method="_on_character_attack_timer_timeout"]
+[connection signal="died" from="Battle/Party/HealthPanel" to="Battle/Party" method="_on_health_panel_died"]
 [connection signal="button_down" from="Battle/GotoTownbutton" to="Battle" method="_on_goto_townbutton_button_down"]
 [connection signal="button_down" from="Town/MonsterSelectionOpen" to="Town" method="_on_monster_selection_button_pressed"]
 [connection signal="button_down" from="Town/MonsterSelectionMenu/VBoxContainer/Slime" to="Town/MonsterSelectionMenu/VBoxContainer/Slime" method="_on_button_down"]

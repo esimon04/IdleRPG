@@ -8,6 +8,15 @@ class_name CharacterResource
 @export var healing : float
 @export var level : int
 
+@export var damage_resistances: Dictionary = {
+	DamageTypes.DamageType.PHYSICAL: 0.0, 
+	DamageTypes.DamageType.FIRE: 0.0, 
+	DamageTypes.DamageType.POISON: 0.0,
+	DamageTypes.DamageType.LIGHTNING: 0.0, 
+	DamageTypes.DamageType.HOLY: 0.0, 
+	DamageTypes.DamageType.DARK: 0.0,
+}
+
 var critMultiplier : int = 2
 var experience : float
 var inParty: bool
@@ -77,7 +86,7 @@ func equipWeapon(weaponIn : Weapon):
 		GameManager.player_data.playerInventory.add_item(equippedWeapon, 1)
 	equippedWeapon = weaponIn
 	
-func calculateDamage() -> int:
+func calculateDamageFlat() -> int:
 	if equippedWeapon:
 		var rng = RandomNumberGenerator.new()
 		var baseDamage = rng.randi_range(equippedWeapon.minDamage, equippedWeapon.maxDamage) * (1 +rollCritChance())
@@ -86,6 +95,28 @@ func calculateDamage() -> int:
 		return baseDamage + modifier
 	else:
 		return getAttribute(Attribute.STR) 
+		
+func calculateDamage() -> Array:
+	var damage_list = []
+	var rng = RandomNumberGenerator.new()
+	if equippedWeapon:
+		var baseDamage = rng.randi_range(equippedWeapon.minDamage, equippedWeapon.maxDamage) * (1 + rollCritChance())
+		var modifier = getAttribute(equippedWeapon.abilityType)
+		var total_damage = baseDamage + modifier
+
+		# Add base weapon damage type
+		damage_list.append({ "type": equippedWeapon.damageType, "amount": total_damage })
+
+		# If the weapon has additional elemental modifiers, add those
+		#for mod in equippedWeapon.elementalModifiers:
+		#	var extra_damage = rng.randi_range(mod.min, mod.max)
+		#	damage_list.append({ "type": mod.damageType, "amount": extra_damage })
+
+	else:
+		# Default to Physical damage if no weapon is equipped
+		damage_list.append({ "type": DamageTypes.DamageType.PHYSICAL, "amount": getAttribute(Attribute.STR) })
+
+	return damage_list
 		
 func calculateAttackRate() -> float:
 	#TODO can modify this based on stats

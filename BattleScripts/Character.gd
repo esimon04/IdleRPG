@@ -31,8 +31,9 @@ func _on_character_attack_timer_timeout() -> void:
 	pass # Replace with function body.
 	
 func Attack():
-	var damage = characterType.calculateDamage()
-	party.DoDamage(damage)
+	var damageVals = characterType.calculateDamage()
+	for damage in damageVals:
+		party.DoDamage(damage["amount"], damage["type"])
 	pass
 	
 func setCharacter(characterIn : CharacterResource):

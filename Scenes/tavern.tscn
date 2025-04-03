@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://cc53pjl56ehqh"]
+[gd_scene load_steps=6 format=3 uid="uid://cc53pjl56ehqh"]
 
 [ext_resource type="Script" uid="uid://73jfu1w0m6pn" path="res://tavern.gd" id="1_4xy5q"]
 [ext_resource type="PackedScene" uid="uid://ds82bht0x636w" path="res://party_view.tscn" id="2_k053i"]
 [ext_resource type="PackedScene" uid="uid://5xen0edqk0dg" path="res://Scenes/character_manager.tscn" id="3_3n42s"]
+[ext_resource type="PackedScene" uid="uid://cyfuukmwhcqrf" path="res://upgrade_room.tscn" id="4_4hstr"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k053i"]
 bg_color = Color(0.370364, 0.370365, 0.370364, 1)
@@ -91,6 +92,14 @@ offset_bottom = -17.0
 visible = false
 layout_mode = 2
 metadata/_tab_index = 2
+
+[node name="Soul Forge" type="TabBar" parent="Panel/MainSplit/TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 3
+
+[node name="UpgradeRoom" parent="Panel/MainSplit/TabContainer/Soul Forge" instance=ExtResource("4_4hstr")]
+layout_mode = 1
 
 [connection signal="button_down" from="Panel/MainSplit/CloseButtonAndChars/closeMenu" to="." method="_on_close_menu_button_down"]
 [connection signal="partyChanged" from="Panel/MainSplit/TabContainer/Party/PartyView" to="." method="_on_party_view_party_changed"]

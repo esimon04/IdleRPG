@@ -19,10 +19,14 @@ static var rarityTypeToColor = {
 @export var numModifiers : int
 @export var rarity : RarityType
 @export var itemLevel : int
+@export var potential : int
+
+static func RollPotential() -> int:
+	var rng = RandomNumberGenerator.new()
+	return rng.randi_range(15, 25)
 
 static func rollStats(arrayIn : Array[PotentialEquipmentModifiers], numModifiers, ilvl) -> Array:
 	var modifiers = []
-	print("Rolling Stats : sizeOfPotential: %d numModifiers: %d" %[arrayIn.size(), numModifiers])
 	for i in range(numModifiers):
 		var rng = RandomNumberGenerator.new()
 		var idx = rng.randi_range(0,arrayIn.size() - 1)

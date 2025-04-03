@@ -2,10 +2,8 @@ class_name Enemy
 extends Node
 
 #Enemy Stats
-var health : int
 var damage : int
 var attackRate : float #In seconds
-var currentHealth : int
 var enemyName : String
 
 var enemyIsHere : bool
@@ -21,6 +19,8 @@ var enemyIsHere : bool
 @export var respawnTimer : Timer
 
 @onready var spriteNode = $Character
+
+@export var health : Health
 
 var respawnTime = 1
 var loot_table = {}
@@ -39,11 +39,6 @@ func _process(delta: float) -> void:
 
 
 	
-func updateHealthLabel() -> void:
-	healthLabel.text = "%d / %d" % [currentHealth, health]
-	healthBar.value = currentHealth
-	pass
-	
 func updateNameLabel() -> void:
 	nameLabel.text = "%s" %enemyName
 	pass
@@ -53,10 +48,8 @@ func setEnemy(enemy : EnemyResource):
 	if enemyType == null:
 		#Combat needs to pause here
 		enemyIsHere = false
-		health = 999
+		health.SetHealth(999)
 		name = "Nothing"
-		healthBar.max_value = health
-		updateHealthLabel()
 		updateNameLabel()
 	else:
 		enemyIsHere = true
@@ -67,25 +60,20 @@ func setEnemy(enemy : EnemyResource):
 func loadEnemy():
 	if enemyIsHere:
 		spriteNode.texture = enemyType.sprite
-		health = enemyType.health
+		health.SetHealth(enemyType.health)
+		health.SetResistances(enemyType.damage_resistances)
 		attackRate = enemyType.attackRate
 		damage=enemyType.damage
-		currentHealth = health
 		enemyName = enemyType.name
-		healthBar.max_value = health
-		updateHealthLabel()
 		updateNameLabel()
 		attackTimer.wait_time = attackRate
 		attackTimer.start()
 		loot_table = GameManager.get_enemy_loot(enemyType.enemyId)
 	pass
 	
-func TakeDamage(amount: int):
-	currentHealth -= amount
-	if currentHealth <= 0:
-		currentHealth = health
-		Die()
-	updateHealthLabel()
+func TakeDamage(amount: int, type: DamageTypes.DamageType):
+	print("Enemy taking %d %s damage " %[amount,DamageTypes.type_to_string(type)])
+	health.TakeDamage(amount, type)
 	pass
 	
 func Die():
@@ -99,7 +87,7 @@ func Die():
 	
 func Attack():
 	if enemyIsHere:
-		playerParty.TakeDamage(damage)
+		playerParty.TakeDamage(damage, enemyType.damageType)
 	pass
 
 
@@ -117,3 +105,8 @@ func RollLoot():
 	enemyType.RollLoot()
 			
 	
+
+
+func _on_health_panel_died() -> void:
+	Die()
+	pass # Replace with function body.

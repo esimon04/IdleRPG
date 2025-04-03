@@ -11,7 +11,9 @@ class_name Item
 
 static func LoadItemDatabase() -> Dictionary:
 	var item_database = {
+		#Currency
 		"Gold" : "res://ItemResources/Currency/gold.tres",
+		"weaksoul" : "res://ItemResources/Currency/weakSoul.tres",
 		
 		#Equipment
 		#Weapons

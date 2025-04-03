@@ -1,6 +1,7 @@
 extends Resource
 class_name PlayerInventory
 
+#Main Inventory
 @export var slots: Dictionary  # Key: ItemID, Value: InventoryItem
 @export var equipmentModifiers: Dictionary #Key ItemID, Value: EquipmentModifiers
 

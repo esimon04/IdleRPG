@@ -11,6 +11,15 @@ class_name EnemyResource
 @export var level : int
 @export var damageType : DamageTypes.DamageType
 
+@export var damage_resistances: Dictionary = {
+	DamageTypes.DamageType.PHYSICAL: 0.0, 
+	DamageTypes.DamageType.FIRE: 0.0, 
+	DamageTypes.DamageType.POISON: 0.0,
+	DamageTypes.DamageType.LIGHTNING: 0.0, 
+	DamageTypes.DamageType.HOLY: 0.0, 
+	DamageTypes.DamageType.DARK: 0.0,
+}
+
 func RollLoot():
 	var dropped_items = []
 	var loot_table = GameManager.get_enemy_loot(enemyId)

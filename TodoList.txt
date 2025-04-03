@@ -11,6 +11,7 @@ Show combat stats in characteer stats page
 DONE
 =====
 *Limit item drops while idle  -- Solved by only taking top 25 highest qualities
+*Resistances/AttackDmgTypes 
 
 TODO-GENERAL
 ====
@@ -18,9 +19,10 @@ TODO-GENERAL
 *show currently equipped item (item comparison)
 *SkillTrees
 *Shops
+*Upgrading/enchanting
+*Inventory management
 *Combat UI
 *Idle combat stats
-*Resistances/AttackDmgTypes
 *Highlight selected characters/ items
 *Abilities
 *More weapons, more enemies
@@ -55,7 +57,7 @@ Exaple:
 			Legendary (yellow) - 4
 	*Modifiers
 		ModifierLevels [1-10] - determines strength of the modifiers
-			ex.) level 1 str upgrade = +1 strength. Up to some amount for +10, maybe linear idk
+			ex.) Attribute Lvl1 = [1-3] Lvl2 = [4-6] Lvl3 =[7-9]...
 			
 	*Given above how does rolling for loot work
 	-Enemies drop a chest, based on the enemy level

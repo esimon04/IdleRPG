@@ -5,12 +5,10 @@ extends Node
 @export var Character2 : Character
 @export var Character3 : Character
 @export var Character4 : Character
-@export var healthProgBar : ProgressBar
-@export var healthLabel : Label
 @export var enemy : Enemy
+@export var health : Health
+@export var totalHealth : int
 
-var totalHealth : int
-var currentHealth : float
 var healingPerSecond : float
 
 
@@ -18,45 +16,26 @@ var healingPerSecond : float
 func _ready() -> void:
 	updateParty()
 	UpdateValues()
-	currentHealth = totalHealth
-	updateHealthLabel()
+	health.SetHealth(totalHealth)
 	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	var healingAmt = delta * healingPerSecond
-	currentHealth += healingAmt
-	if currentHealth > totalHealth:
-		currentHealth = totalHealth
-		
-	updateHealthValue()
+	health.Heal(healingAmt)
 	pass
 	
 func updateParty():
 	setParty(GameManager.player_data.idleBattleData.characters)
-
-func updateHealthLabel() -> void:
-	healthProgBar.min_value = 0
-	healthProgBar.max_value = totalHealth
-	updateHealthValue()
-	pass
 	
-func updateHealthValue() -> void:
-	#healthLabel.text = "%3f / %d" % [currentHealth, totalHealth]
-	healthLabel.text = "%d / %d" % [currentHealth, totalHealth]
-	healthProgBar.value = currentHealth
-	pass
-	
-func TakeDamage(amount: int):
-	currentHealth -= amount
-	updateHealthValue()
-	pass
-	
-func DoDamage(amount: int):
+func DoDamage(amount: int, type : DamageTypes.DamageType):
 	if enemy.enemyIsHere:
-		enemy.TakeDamage(amount)
+		enemy.TakeDamage(amount, type)
 	pass
+
+func TakeDamage(amount:int, type : DamageTypes.DamageType):
+	health.TakeDamage(amount, type)
 	
 func UpdateValues():
 	totalHealth = 0
@@ -64,7 +43,7 @@ func UpdateValues():
 	totalHealth += Character2.health
 	totalHealth += Character3.health
 	totalHealth += Character4.health
-	currentHealth = totalHealth;
+	health.SetHealth(totalHealth)
 	
 	healingPerSecond = 0
 	healingPerSecond += Character1.healing
@@ -72,7 +51,6 @@ func UpdateValues():
 	healingPerSecond += Character3.healing
 	healingPerSecond += Character4.healing
 	
-	updateHealthLabel()
 	pass
 	
 func updatePartyValues():
@@ -101,4 +79,10 @@ func setParty(characterResources : Array[CharacterResource]):
 
 func _on_tavern_party_changed() -> void:
 	updateParty()
+	pass # Replace with function body.
+
+
+func _on_health_panel_died() -> void:
+	#TODO
+	print("party fucking died")
 	pass # Replace with function body.

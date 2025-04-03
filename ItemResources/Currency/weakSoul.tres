@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://qemk5bomlevo"]
+
+[ext_resource type="Script" uid="uid://ccqc1ujebrpyr" path="res://Item.gd" id="1_u4uvs"]
+[ext_resource type="Texture2D" uid="uid://cn2qthxjqv5aa" path="res://Art/Items/Souls/weakSoul.png" id="2_pwgcf"]
+
+[resource]
+script = ExtResource("1_u4uvs")
+max_stack = 9999
+name = "Weak Soul"
+sprite = ExtResource("2_pwgcf")
+description = "A soul used for upgrading equipment"
+unique = false
+id = "weaksoul"
+metadata/_custom_type_script = "uid://ccqc1ujebrpyr"
