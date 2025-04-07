@@ -51,4 +51,7 @@ func remove_item(item: Item, amount: int = 1) -> bool:
 
 # Function to get quantity of an item
 func get_quantity(item: Item) -> int:
-	return slots[item.id].count
+	if slots.has(item.id):
+		return slots[item.id].count
+	else:
+		return 0

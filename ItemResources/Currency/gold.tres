@@ -9,4 +9,6 @@ max_stack = 9999999
 name = "Gold"
 sprite = ExtResource("2_1r8k1")
 description = "Currency of the world"
+unique = false
+id = ""
 metadata/_custom_type_script = "uid://ccqc1ujebrpyr"

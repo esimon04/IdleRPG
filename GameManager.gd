@@ -37,8 +37,8 @@ func load_player_data():
 		player_data = PlayerData.CreateSave()
 		var dropped_items = []
 		dropped_items.append({"item" : "Gold", "quantity": 4})
-		dropped_items.append({"item" : "Sword1", "quantity": 1, "level" : 3})
-		dropped_items.append({"item" : "Staff1", "quantity": 1, "level" : 3})
+		dropped_items.append({"item" : "Sword", "quantity": 1, "level" : 3})
+		dropped_items.append({"item" : "Staff", "quantity": 1, "level" : 3})
 		PlayerLootedItems(dropped_items)
 
 func save_player_data():
@@ -130,19 +130,14 @@ func PlayerLootedItemsIdle(itemsLooted : Array): #Making Idle variant so that on
 			
 			#Roll all the rarities
 			var rarities = Equipment.GetTopDrops(idx["level"],idx["quantity"])
-			
 			for rarity in rarities:
 				if item is Equipment:
 					var newItem = item.duplicate()
-					newItem.rarity = rarity
-					newItem.numModifiers = Equipment.getNumModifiers(newItem.rarity)
-					var newModifiers = (Equipment.rollStats(newItem.possibleModifiers,newItem.numModifiers, idx["level"]))
-					newItem.modifiers.append_array(newModifiers)
-					var unique_id = player_data.get_unique_id()
-					newItem.id = newItem.name + "_" + str(unique_id)
+					newItem.RollItem_RarityIn(rarity)
 					player_data.playerInventory.add_item(newItem, 1)
 		else:
-			item.id = item.name
+			if !item.id:
+				item.id = item.name
 			player_data.playerInventory.add_item(item, idx["quantity"])
 	
 func PlayerLootedItems(itemsLooted : Array): #items looted has "item" "quantity" "level"
@@ -151,16 +146,12 @@ func PlayerLootedItems(itemsLooted : Array): #items looted has "item" "quantity"
 		if item.unique:
 			for i in idx["quantity"]:
 				if item is Equipment:
-					item.rarity = Equipment.RollRarity(idx["level"])
-					item.potential = Equipment.RollPotential()
-					item.numModifiers = Equipment.getNumModifiers(item.rarity)
-					var newModifiers = (Equipment.rollStats(item.possibleModifiers.duplicate(),item.numModifiers, idx["level"]))
-					item.modifiers.append_array(newModifiers)
-					var unique_id = player_data.get_unique_id()
-					item.id = item.name + "_" + str(unique_id)
-					player_data.playerInventory.add_item(item, 1)
+					var newItem = item.duplicate()
+					newItem.RollItem()
+					player_data.playerInventory.add_item(newItem, 1)
 		else:
-			item.id = item.name
+			if !item.id:
+				item.id = item.name
 			player_data.playerInventory.add_item(item, idx["quantity"])
 
 func PlayerReceivedItems(items : Array[String], ilvl):
@@ -168,15 +159,12 @@ func PlayerReceivedItems(items : Array[String], ilvl):
 		var item = GameManager.getItemFromDatabase(itemName)
 		if item.unique:
 			if item is Equipment:
-				item.rarity = Equipment.RollRarity(ilvl)
-				item.numModifiers = Equipment.getNumModifiers(item.rarity)
-				var newModifiers = (Equipment.rollStats(item.possibleModifiers,item.numModifiers, item.itemLevel))
-				item.modifiers.append_array(newModifiers)
-				var unique_id = player_data.get_unique_id()
-				item.id = item.name + "_" + str(unique_id)
-				player_data.playerInventory.add_item(item, 1)
+				var newItem = item.duplicate()
+				newItem.RollItem()
+				player_data.playerInventory.add_item(newItem, 1)
 		else:
-			item.id = item.name
+			if !item.id:
+				item.id = item.name
 			player_data.playerInventory.add_item(item, 1)
 		
 func updateParty(_party):

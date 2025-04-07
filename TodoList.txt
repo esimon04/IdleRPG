@@ -35,12 +35,6 @@ TODO-GENERAL
 
 NOTES
 ======
-*MonsterChestDropsAdjustments
-Exaple:
-	Level 1 slime doesnt drop anything except gold
-	level 3 goblin drops level 1-3goblinChest
-	level 5 goblin drops 3-5 chest
-	level 7 goblin drops 5-7 chest
 	
 	=====================Equipment NOTES=======================
 	*Big 3 equipment values
@@ -66,3 +60,9 @@ Exaple:
 		*ItemLevel
 		*Modifiers (# based on rarity)
 		
+		
+	=====================Item Drop NOTES=======================
+	*Area specific Items drop from monsters in an area
+	*Monsters will have a higher chance of dropping SPECIFIC items, but still roll the same table.
+	
+	

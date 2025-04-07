@@ -47,19 +47,20 @@ func update_character_visuals():
 	characterXpBar.value = character.experience
 	
 func AttemptEquipItem(slot : EquipmentSlot, item : Item):
-	print("Attempting to equip something")
-	if item is Equipment:
-		if slot.equipmentType == item.equipmentType:
-			if slot.equipment:
-				var removedItem = slot.equipment
-				GameManager.player_data.playerInventory.add_item(removedItem,1)
-				
-			slot.set_item(item)
-			GameManager.player_data.playerInventory.remove_item(item,1)
+	if character:
+		print("Attempting to equip something")
+		if item is Equipment:
+			if slot.equipmentType == item.equipmentType:
+				if slot.equipment:
+					var removedItem = slot.equipment
+					GameManager.player_data.playerInventory.add_item(removedItem,1)
+					
+				slot.set_item(item)
+				GameManager.player_data.playerInventory.remove_item(item,1)
+			else:
+				print("Item is not the correct slot")
 		else:
-			print("Item is not the correct slot")
-	else:
-		print("Item %s Not Equipment - Cannot Equip" %item.name)
+			print("Item %s Not Equipment - Cannot Equip" %item.name)
 		
 	selectedItem = null
 	selectedEquipSlot = null
@@ -82,15 +83,16 @@ func UpdateCharacterEquipment():
 		
 
 func _on_equipment_slot_clicked(event: InputEvent,slot : EquipmentSlot):
-	if event is InputEventMouseButton and event.pressed:
-		if event.button_index == MOUSE_BUTTON_LEFT:
-			equipmentSelected.emit(slot.equipment)
-			selectedEquipSlot = slot
-			if selectedItem:
-					AttemptEquipItem(slot, selectedItem)
-			pass
-		elif event.button_index == MOUSE_BUTTON_RIGHT:
-			AttemptUnequipItem(slot)
+	if character:
+		if event is InputEventMouseButton and event.pressed:
+			if event.button_index == MOUSE_BUTTON_LEFT:
+				equipmentSelected.emit(slot.equipment)
+				selectedEquipSlot = slot
+				if selectedItem:
+						AttemptEquipItem(slot, selectedItem)
+				pass
+			elif event.button_index == MOUSE_BUTTON_RIGHT:
+				AttemptUnequipItem(slot)
 			
 	
 func _on_inventory_item_selected(slot: InventorySlot) -> void:

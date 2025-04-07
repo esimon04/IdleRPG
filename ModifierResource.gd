@@ -19,9 +19,25 @@ static var modifier_to_string = {
 @export var value : float
 @export var modifierLevel : int #Numbers 1-10 changes based on itemlevel
 
+var weakSoul : Item = load("res://ItemResources/Currency/weakSoul.tres")
+var soul : Item = load("res://ItemResources/Currency/soul.tres")
+
 func UpgradeModifier():
 	modifierLevel += 1
 	value = CalculateModifierValue(modifierLevel, type)
+	
+func SoulTypeRequired() -> Item:
+	match modifierLevel:
+		1, 2, 3:
+			return weakSoul
+		4,5,6:
+			return soul
+	
+	return weakSoul
+	
+func SoulCountRequired() -> int:
+	
+	return pow(3,((modifierLevel-1) % 3))
 
 #Static functions
 #Main basis for modifierLevel to Value ratios
@@ -38,7 +54,10 @@ static func CalculateModifierValue(modifierLevel : int, modifier : ModifierType)
 	
 
 static func CalculateModifierLevel(itemLevel : int) -> int:
-	var minVal = ceil((itemLevel + 20)/10) - 1
-	var maxVal = ceil((itemLevel + 20)/10) + 1
+	var minVal = itemLevel - 2
+	if minVal < 1:
+		minVal = 1
+	var maxVal = itemLevel + 1
 	var rng = RandomNumberGenerator.new()
 	return rng.randi_range(minVal, maxVal)
+	

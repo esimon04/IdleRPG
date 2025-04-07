@@ -2,11 +2,12 @@
 
 [ext_resource type="Script" uid="uid://clu0k14jnt62y" path="res://modifier_slot_container.gd" id="1_8lxhe"]
 
-[node name="ModifierSlotContainer" type="HBoxContainer" node_paths=PackedStringArray("modifierNameLabel", "modifierLevelLabel", "upgradeButton")]
+[node name="ModifierSlotContainer" type="HBoxContainer" node_paths=PackedStringArray("modifierNameLabel", "modifierLevelLabel", "soulsReq", "upgradeButton")]
 size_flags_vertical = 4
 script = ExtResource("1_8lxhe")
 modifierNameLabel = NodePath("ModiferSlot/HBoxContainer/Modifiername")
 modifierLevelLabel = NodePath("ModiferSlot/HBoxContainer/Level")
+soulsReq = NodePath("ModiferSlot/HBoxContainer/reeq")
 upgradeButton = NodePath("ModiferSlot/HBoxContainer/UpgradeButton")
 
 [node name="Spacer" type="Control" parent="."]
@@ -40,6 +41,10 @@ custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 size_flags_horizontal = 10
 text = "+"
+
+[node name="reeq" type="Label" parent="ModiferSlot/HBoxContainer"]
+layout_mode = 2
+text = "Requires 3 Weak Souls"
 
 [node name="Spacer2" type="Control" parent="."]
 custom_minimum_size = Vector2(200, 0)

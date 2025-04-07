@@ -3,6 +3,7 @@ class_name ModifierUpgradeContainer
 
 @export var modifierNameLabel : Label
 @export var modifierLevelLabel : Label
+@export var soulsReq : Label
 @export var upgradeButton : Button
 @export var modifier : ModifierResource
 
@@ -20,3 +21,4 @@ func UpdateDisplay():
 	if modifier:
 		modifierNameLabel.text = ModifierResource.modifier_to_string[modifier.type]
 		modifierLevelLabel.text = str(modifier.modifierLevel)
+		soulsReq.text = "Requires %d %s" %[modifier.SoulCountRequired(), modifier.SoulTypeRequired().name]

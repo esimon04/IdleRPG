@@ -10,5 +10,5 @@ name = "Weak Soul"
 sprite = ExtResource("2_pwgcf")
 description = "A soul used for upgrading equipment"
 unique = false
-id = "weaksoul"
+id = ""
 metadata/_custom_type_script = "uid://ccqc1ujebrpyr"

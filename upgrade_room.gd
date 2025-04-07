@@ -8,6 +8,8 @@ class_name UpgradeRoom
 @export var potentialLabel : Label
 @export var modifierList : VBoxContainer
 
+@export var weakSoul : Item
+
 
 func _ready() -> void:
 	UpdateDisplay()
@@ -40,13 +42,22 @@ func _on_inventory_item_selected(slot: Variant) -> void:
 		SetItem(slot.item)
 	pass # Replace with function body.
 
+#Called from + button. Should upgrade the modifier of that slot
 func _on_upgrade_modifier(mod : ModifierResource, slot) -> void:
-	var rng = RandomNumberGenerator.new()
+	
+	var soulToUse = mod.SoulTypeRequired()
+	var soulquantity = mod.SoulCountRequired()
+	
+	#check player number of that soul, if enough, remove it
 	if item.potential > 0:
-		item.potential -= rng.randi_range(1,5)
-		if item.potential < 0:
-			item.potential = 0
-		UpdatePotential()
-		mod.UpgradeModifier()
-		slot.UpdateDisplay()
+		if GameManager.player_data.playerInventory.get_quantity(soulToUse) >= soulquantity:
+			GameManager.player_data.playerInventory.remove_item(soulToUse, soulquantity)
+			
+			var rng = RandomNumberGenerator.new()
+			item.potential -= rng.randi_range(1,5)
+			if item.potential < 0:
+				item.potential = 0
+			UpdatePotential()
+			mod.UpgradeModifier()
+			slot.UpdateDisplay()
 	print("Upgrade button pressed")

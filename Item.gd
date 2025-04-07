@@ -13,19 +13,19 @@ static func LoadItemDatabase() -> Dictionary:
 	var item_database = {
 		#Currency
 		"Gold" : "res://ItemResources/Currency/gold.tres",
-		"weaksoul" : "res://ItemResources/Currency/weakSoul.tres",
+		"Weak Soul" : "res://ItemResources/Currency/weakSoul.tres",
 		
 		#Equipment
 		#Weapons
-		"Sword1" : "res://ItemResources/Items/Weapons/Sword.tres",
-		"Staff1" : "res://ItemResources/Items/Weapons/Staff.tres",
+		"Sword" : "res://ItemResources/Items/Weapons/Sword.tres",
+		"Staff" : "res://ItemResources/Items/Weapons/Staff.tres",
 		#Armor
-		"LeatherChest" : "res://ItemResources/Items/Gear/leather_chest1.tres",
-		"LeatherHelm" : "res://ItemResources/Items/Gear/leather_helm1.tres",
-		"GoldRing" : "res://ItemResources/Items/Gear/ring1.tres",
+		"Leather Armor" : "res://ItemResources/Items/Gear/leather_chest1.tres",
+		"Leather Helmet" : "res://ItemResources/Items/Gear/leather_helm1.tres",
+		"Gold Ring" : "res://ItemResources/Items/Gear/ring1.tres",
 		
 		#Chests
-		"GoblinChest" : "res://ItemResources/Items/Chests/GoblinChest.tres"
+		"Goblin Chest" : "res://ItemResources/Items/Chests/GoblinChest.tres"
 	}
 	return item_database
 	

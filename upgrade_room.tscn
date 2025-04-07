@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://cyfuukmwhcqrf"]
+[gd_scene load_steps=6 format=3 uid="uid://cyfuukmwhcqrf"]
 
 [ext_resource type="Script" uid="uid://bplgkp2umdncx" path="res://upgrade_room.gd" id="1_m58xw"]
+[ext_resource type="Resource" uid="uid://qemk5bomlevo" path="res://ItemResources/Currency/weakSoul.tres" id="2_73tmj"]
 [ext_resource type="Texture2D" uid="uid://ddbync7vce0iq" path="res://Art/Items/Sword1.png" id="2_vm6qq"]
 [ext_resource type="Script" uid="uid://dbmdf1j8l46s8" path="res://InventoryView.gd" id="3_6du8m"]
 
@@ -19,6 +20,7 @@ texture = NodePath("Panel/HBoxContainer/UpgradeArea/ItemInfo/TextureRect")
 nameLabel = NodePath("Panel/HBoxContainer/UpgradeArea/ItemInfo/ItemName")
 potentialLabel = NodePath("Panel/HBoxContainer/UpgradeArea/ItemInfo/ItemPotential")
 modifierList = NodePath("Panel/HBoxContainer/UpgradeArea/ItemInfo/VBoxContainer")
+weakSoul = ExtResource("2_73tmj")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1

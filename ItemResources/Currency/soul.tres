@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://cutxpobmob3hd"]
+
+[ext_resource type="Script" uid="uid://ccqc1ujebrpyr" path="res://Item.gd" id="1_hcd1u"]
+[ext_resource type="Texture2D" uid="uid://cqx8vhnitelg0" path="res://Art/Items/Souls/normalSoul.png" id="2_f6rgj"]
+
+[resource]
+script = ExtResource("1_hcd1u")
+max_stack = 9999
+name = "Soul"
+sprite = ExtResource("2_f6rgj")
+description = "Soul"
+unique = false
+id = ""
+metadata/_custom_type_script = "uid://ccqc1ujebrpyr"

@@ -21,6 +21,24 @@ static var rarityTypeToColor = {
 @export var itemLevel : int
 @export var potential : int
 
+func RollItem():
+	rarity = Equipment.RollRarity(itemLevel)
+	potential = Equipment.RollPotential()
+	numModifiers = Equipment.getNumModifiers(rarity)
+	var newModifiers = (Equipment.rollStats(possibleModifiers,numModifiers, itemLevel))
+	modifiers.append_array(newModifiers)
+	var unique_id = GameManager.player_data.get_unique_id()
+	id = name + "_" + str(unique_id)
+	
+func RollItem_RarityIn(rarityIn : RarityType):
+	rarity = rarityIn
+	potential = Equipment.RollPotential()
+	numModifiers = Equipment.getNumModifiers(rarity)
+	var newModifiers = (Equipment.rollStats(possibleModifiers,numModifiers, itemLevel))
+	modifiers.append_array(newModifiers)
+	var unique_id = GameManager.player_data.get_unique_id()
+	id = name + "_" + str(unique_id)
+
 static func RollPotential() -> int:
 	var rng = RandomNumberGenerator.new()
 	return rng.randi_range(15, 25)
