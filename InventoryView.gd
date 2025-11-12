@@ -2,6 +2,7 @@ extends Node
 class_name InventoryView
 
 @export var inventory_grid_container : GridContainer
+@export var slotCountLabel : Label
 
 signal itemSelected(slot)
 
@@ -20,6 +21,9 @@ func update_inventory_display():
 		slot_ui.set_item(invItem.item, invItem.count)
 		slot_ui.item_button.pressed.connect(_on_item_selected.bind(slot_ui))
 		inventory_grid_container.add_child(slot_ui)
+		
+	if slotCountLabel:
+		slotCountLabel.text = "%d / %d" %[GameManager.player_data.playerInventory.slots.size(), GameManager.player_data.playerInventory.maxSlots]
 
 
 func _on_enemy_enemy_died(enemy: Enemy) -> void:

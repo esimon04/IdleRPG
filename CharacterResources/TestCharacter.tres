@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="CharacterResource" load_steps=3 format=3 uid="uid://m4dgwea8che0"]
 
 [ext_resource type="Script" uid="uid://brigwaxtixte0" path="res://BattleScripts/CharacterResource.gd" id="1_wmbs4"]
-[ext_resource type="Texture2D" uid="uid://dehq32fdknjwt" path="res://Art/Characters/Guy.png" id="2_tasj5"]
+[ext_resource type="Texture2D" uid="uid://dehq32fdknjwt" path="res://Art/Characters/PlayerCharacters/Guy.png" id="2_tasj5"]
 
 [resource]
 script = ExtResource("1_wmbs4")

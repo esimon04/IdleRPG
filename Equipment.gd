@@ -1,7 +1,7 @@
 extends Item
 class_name Equipment
 
-enum EquipmentType {WEAPON, ARMOR, HELMET, RING}
+enum EquipmentType {WEAPON, ARMOR, HELMET, RING, BOOTS}
 enum RarityType {COMMON, UNCOMMON, RARE, EPIC, LEGENDARY, UNIQUE}
 
 static var rarityTypeToColor = {
@@ -15,11 +15,13 @@ static var rarityTypeToColor = {
 
 @export var equipmentType : EquipmentType
 @export var modifiers: Array[ModifierResource] #These are guaranteed - think legendary items etc
-@export var possibleModifiers : Array[PotentialEquipmentModifiers]
-@export var numModifiers : int
-@export var rarity : RarityType
+@export var possibleModifiers : Array[ModifierResource]
 @export var itemLevel : int
-@export var potential : int
+
+
+var potential : int
+var numModifiers : int
+var rarity : RarityType
 
 func RollItem():
 	rarity = Equipment.RollRarity(itemLevel)
@@ -43,18 +45,17 @@ static func RollPotential() -> int:
 	var rng = RandomNumberGenerator.new()
 	return rng.randi_range(15, 25)
 
-static func rollStats(arrayIn : Array[PotentialEquipmentModifiers], numModifiers, ilvl) -> Array:
+static func rollStats(arrayIn : Array[ModifierResource], numModifiers, ilvl) -> Array:
 	var modifiers = []
 	for i in range(numModifiers):
 		var rng = RandomNumberGenerator.new()
 		var idx = rng.randi_range(0,arrayIn.size() - 1)
-		var PotModifierToUse = arrayIn[idx]
+		var modifier = arrayIn[idx]
 		arrayIn.remove_at(idx)   #to ensure not same one twice
-		var modifier = PotModifierToUse.modifier
 		var modifierLevel = ModifierResource.CalculateModifierLevel(ilvl)
-		var modifierVal = ModifierResource.CalculateModifierValue(modifierLevel, modifier) #rng.randi_range(PotModifierToUse.min,PotModifierToUse.max)
+		var modifierVal = ModifierResource.CalculateModifierValue(modifierLevel, modifier.type) #rng.randi_range(PotModifierToUse.min,PotModifierToUse.max)
 		var modifierResource = ModifierResource.new()
-		modifierResource.type = modifier
+		modifierResource.type = modifier.type
 		modifierResource.value = modifierVal
 		modifierResource.modifierLevel = modifierLevel
 		modifiers.append(modifierResource)

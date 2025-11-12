@@ -25,6 +25,7 @@ func update_display():
 			weaponSpeedLabel.text = "Speed %.2f" %item.attackSpeed
 			container.add_child(weaponDamageLabel)
 			container.add_child(weaponSpeedLabel)
+		
 		var additionalModifiers = item.modifiers
 		for modifier in additionalModifiers:
 			var tempLabel = Label.new()

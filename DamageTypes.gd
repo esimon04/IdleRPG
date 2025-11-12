@@ -1,12 +1,12 @@
 extends Object
 class_name DamageTypes
-enum DamageType {PHYSICAL, FIRE, POISON, LIGHTNING, HOLY, DARK}
+enum DamageType {PHYSICAL, FIRE, NATURE, LIGHTNING, HOLY, DARK}
 
 static func type_to_string(damage_type: DamageType) -> String:
 	var type_names = {
 		DamageType.PHYSICAL: "Physical",
 		DamageType.FIRE: "Fire",
-		DamageType.POISON: "Poison",
+		DamageType.NATURE: "Nature",
 		DamageType.LIGHTNING: "Lightning",
 		DamageType.HOLY: "Holy",
 		DamageType.DARK: "Dark"

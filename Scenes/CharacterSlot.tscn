@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://c0wbguhb0t4y1"]
 
 [ext_resource type="Script" uid="uid://bvm75x6heohcj" path="res://TownScripts/CharacterSlot.gd" id="1_j8jx2"]
-[ext_resource type="Texture2D" uid="uid://dehq32fdknjwt" path="res://Art/Characters/Guy.png" id="2_4du6c"]
+[ext_resource type="Texture2D" uid="uid://dehq32fdknjwt" path="res://Art/Characters/PlayerCharacters/Guy.png" id="2_4du6c"]
 
 [node name="CharacterSlot" type="Control" node_paths=PackedStringArray("character_sprite", "character_name", "character_level", "character_button")]
 custom_minimum_size = Vector2(160, 80)

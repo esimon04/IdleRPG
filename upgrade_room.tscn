@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bplgkp2umdncx" path="res://upgrade_room.gd" id="1_m58xw"]
 [ext_resource type="Resource" uid="uid://qemk5bomlevo" path="res://ItemResources/Currency/weakSoul.tres" id="2_73tmj"]
-[ext_resource type="Texture2D" uid="uid://ddbync7vce0iq" path="res://Art/Items/Sword1.png" id="2_vm6qq"]
+[ext_resource type="Texture2D" uid="uid://ddbync7vce0iq" path="res://Art/Items/Area1Equipment/Sword1.png" id="2_vm6qq"]
 [ext_resource type="Script" uid="uid://dbmdf1j8l46s8" path="res://InventoryView.gd" id="3_6du8m"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_73tmj"]
@@ -72,15 +72,16 @@ texture = ExtResource("2_vm6qq")
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Inventory" type="Panel" parent="Panel/HBoxContainer" node_paths=PackedStringArray("inventory_grid_container")]
+[node name="Inventory" type="Panel" parent="Panel/HBoxContainer" node_paths=PackedStringArray("inventory_grid_container", "slotCountLabel")]
 custom_minimum_size = Vector2(300, 356)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_styles/panel = SubResource("StyleBoxFlat_73tmj")
 script = ExtResource("3_6du8m")
-inventory_grid_container = NodePath("ScrollContainer/GridContainer")
+inventory_grid_container = NodePath("VBoxContainer/ScrollContainer/GridContainer")
+slotCountLabel = NodePath("VBoxContainer/Panel/count")
 
-[node name="ScrollContainer" type="ScrollContainer" parent="Panel/HBoxContainer/Inventory"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/HBoxContainer/Inventory"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -88,7 +89,25 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="GridContainer" type="GridContainer" parent="Panel/HBoxContainer/Inventory/ScrollContainer"]
+[node name="Panel" type="Panel" parent="Panel/HBoxContainer/Inventory/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="count" type="Label" parent="Panel/HBoxContainer/Inventory/VBoxContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel/HBoxContainer/Inventory/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="GridContainer" type="GridContainer" parent="Panel/HBoxContainer/Inventory/VBoxContainer/ScrollContainer"]
 layout_mode = 2
 columns = 6
 

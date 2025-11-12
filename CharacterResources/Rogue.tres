@@ -1,0 +1,37 @@
+[gd_resource type="Resource" script_class="CharacterResource" load_steps=3 format=3 uid="uid://ddmuhnnerwitu"]
+
+[ext_resource type="Script" uid="uid://brigwaxtixte0" path="res://BattleScripts/CharacterResource.gd" id="1_i8aqp"]
+[ext_resource type="Texture2D" uid="uid://cqjakvr1bx6ao" path="res://Art/Characters/PlayerCharacters/Rogue.png" id="2_5sw2x"]
+
+[resource]
+script = ExtResource("1_i8aqp")
+name = "Rogue"
+sprite = ExtResource("2_5sw2x")
+health = 15
+attackRate = 2.0
+healing = 1.0
+level = 1
+damage_resistances = {
+0: 0.0,
+1: 0.0,
+2: 0.0,
+3: 0.0,
+4: 0.0,
+5: 0.0
+}
+charAttributeDictionary = {
+0: 1,
+1: 1,
+2: 1,
+3: 1,
+4: 1
+}
+charAttributeEquipmentDictionary = {
+0: 0,
+1: 0,
+2: 0,
+3: 0,
+4: 0
+}
+attributePointsAvailable = 0
+metadata/_custom_type_script = "uid://brigwaxtixte0"

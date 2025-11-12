@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ddpwln7oyoml8"
-path="res://.godot/imported/LeatherHelm1.png-b7643492a3c8a9a2b8cfb434dfa2cc67.ctex"
+path="res://.godot/imported/LeatherHelm1.png-3a287f3764faeb36bc16edc1d8ef7d16.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Items/LeatherHelm1.png"
-dest_files=["res://.godot/imported/LeatherHelm1.png-b7643492a3c8a9a2b8cfb434dfa2cc67.ctex"]
+source_file="res://Art/Items/Area1Equipment/LeatherHelm1.png"
+dest_files=["res://.godot/imported/LeatherHelm1.png-3a287f3764faeb36bc16edc1d8ef7d16.ctex"]
 
 [params]
 

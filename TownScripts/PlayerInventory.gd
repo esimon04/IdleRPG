@@ -4,6 +4,7 @@ class_name PlayerInventory
 #Main Inventory
 @export var slots: Dictionary  # Key: ItemID, Value: InventoryItem
 @export var equipmentModifiers: Dictionary #Key ItemID, Value: EquipmentModifiers
+@export var maxSlots : int = 50
 
 signal InventoryChanged
 
@@ -20,12 +21,15 @@ func add_item(new_item: Item, amount: int = 1):
 		slots[itemId].count += to_add
 		amount -= to_add
 	else:
-		# Create a new slot entry
-		var invEntry = InventoryItem.new()
-		invEntry.count = min(amount, new_item.max_stack)
-		invEntry.item = new_item
-		slots[itemId]= invEntry
-		amount -= slots[itemId].count
+		if slots.size() < maxSlots:
+			# Create a new slot entry
+			var invEntry = InventoryItem.new()
+			invEntry.count = min(amount, new_item.max_stack)
+			invEntry.item = new_item
+			slots[itemId]= invEntry
+			amount -= slots[itemId].count
+		else:
+			print("INVENTORY FULL")
 	
 	# If there’s leftover, recursively try again
 	#Just going to put a max stack count.

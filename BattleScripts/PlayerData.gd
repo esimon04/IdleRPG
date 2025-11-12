@@ -8,7 +8,7 @@ var playerInventory : PlayerInventory
 
 @export var UniqueItemId : int
 
-const saveName = "ethan66"
+const saveName = "ethan70"
 const save_path = "user://" + saveName + ".res"
 const inventorySavePath = "user://" + saveName + "Inv.res"
 
@@ -50,8 +50,10 @@ static func CreateSave() -> PlayerData:
 	instance.idleBattleData.characters.append(null)
 	var wizard = load("res://CharacterResources/Wizard.tres").duplicate()
 	var warrior = load("res://CharacterResources/Warrior.tres").duplicate()
+	var rogue = load("res://CharacterResources/Rogue.tres").duplicate()
 	
 	instance.playerCharacters.append(warrior)
 	instance.playerCharacters.append(wizard)
+	instance.playerCharacters.append(rogue)
 	return instance
 	print("Creating New Save - PlayerData")

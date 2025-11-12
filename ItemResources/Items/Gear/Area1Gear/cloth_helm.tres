@@ -1,0 +1,61 @@
+[gd_resource type="Resource" script_class="Equipment" load_steps=10 format=3 uid="uid://ca22g6ko0ag4j"]
+
+[ext_resource type="Script" uid="uid://dm5twkk3db3nc" path="res://ModifierResource.gd" id="1_8a5s0"]
+[ext_resource type="Script" uid="uid://e0oup24bcnhk" path="res://Equipment.gd" id="3_dhxw3"]
+[ext_resource type="Texture2D" uid="uid://dl2p46o47xr16" path="res://Art/Items/Area1Equipment/ClothHelm.png" id="4_8b4t2"]
+
+[sub_resource type="Resource" id="Resource_8a5s0"]
+script = ExtResource("1_8a5s0")
+type = 5
+value = 1.0
+modifierLevel = 0
+metadata/_custom_type_script = "uid://dm5twkk3db3nc"
+
+[sub_resource type="Resource" id="Resource_um6wr"]
+script = ExtResource("1_8a5s0")
+type = 0
+value = 0.0
+modifierLevel = 0
+metadata/_custom_type_script = "uid://dm5twkk3db3nc"
+
+[sub_resource type="Resource" id="Resource_tlam5"]
+script = ExtResource("1_8a5s0")
+type = 1
+value = 0.0
+modifierLevel = 0
+metadata/_custom_type_script = "uid://dm5twkk3db3nc"
+
+[sub_resource type="Resource" id="Resource_7v2ta"]
+script = ExtResource("1_8a5s0")
+type = 2
+value = 0.0
+modifierLevel = 0
+metadata/_custom_type_script = "uid://dm5twkk3db3nc"
+
+[sub_resource type="Resource" id="Resource_tn40o"]
+script = ExtResource("1_8a5s0")
+type = 3
+value = 0.0
+modifierLevel = 0
+metadata/_custom_type_script = "uid://dm5twkk3db3nc"
+
+[sub_resource type="Resource" id="Resource_0135v"]
+script = ExtResource("1_8a5s0")
+type = 0
+value = 0.0
+modifierLevel = 0
+metadata/_custom_type_script = "uid://dm5twkk3db3nc"
+
+[resource]
+script = ExtResource("3_dhxw3")
+equipmentType = 2
+modifiers = Array[ExtResource("1_8a5s0")]([SubResource("Resource_8a5s0")])
+possibleModifiers = Array[ExtResource("1_8a5s0")]([SubResource("Resource_um6wr"), SubResource("Resource_tlam5"), SubResource("Resource_7v2ta"), SubResource("Resource_tn40o"), SubResource("Resource_0135v")])
+itemLevel = 0
+max_stack = 1
+name = "Cloth Hat"
+sprite = ExtResource("4_8b4t2")
+description = "A cloth hat"
+unique = true
+id = ""
+metadata/_custom_type_script = "uid://e0oup24bcnhk"

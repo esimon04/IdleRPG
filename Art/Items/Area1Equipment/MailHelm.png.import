@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dehq32fdknjwt"
-path="res://.godot/imported/Guy.png-8a25d1c6d066ccc9de19ccd6c1b40f11.ctex"
+uid="uid://coygh1iyr4nvx"
+path="res://.godot/imported/MailHelm.png-68adbfc50cb3786fb4cb04f82c518e74.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Characters/Guy.png"
-dest_files=["res://.godot/imported/Guy.png-8a25d1c6d066ccc9de19ccd6c1b40f11.ctex"]
+source_file="res://Art/Items/Area1Equipment/MailHelm.png"
+dest_files=["res://.godot/imported/MailHelm.png-68adbfc50cb3786fb4cb04f82c518e74.ctex"]
 
 [params]
 

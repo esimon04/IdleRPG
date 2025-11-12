@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bbmay0v053t4r"
-path="res://.godot/imported/GoblinWar.png-50821d871e1051a16ddeb18f01b6d222.ctex"
+uid="uid://dnh88ndis0mfk"
+path="res://.godot/imported/LeatherBoots.png-c8c57905f9ea86a77244442476fc75c7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Characters/GoblinWar.png"
-dest_files=["res://.godot/imported/GoblinWar.png-50821d871e1051a16ddeb18f01b6d222.ctex"]
+source_file="res://Art/Items/Area1Equipment/LeatherBoots.png"
+dest_files=["res://.godot/imported/LeatherBoots.png-c8c57905f9ea86a77244442476fc75c7.ctex"]
 
 [params]
 

@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="EnemyResource" load_steps=3 format=3 uid="uid://b0eo5o5prbknw"]
 
 [ext_resource type="Script" uid="uid://dti4dlyig2b7o" path="res://BattleScripts/EnemyResource.gd" id="1_2wq8i"]
-[ext_resource type="Texture2D" uid="uid://bu70n03518av1" path="res://Art/Characters/GreenSlime.png" id="2_pyj72"]
+[ext_resource type="Texture2D" uid="uid://bu70n03518av1" path="res://Art/Characters/Area1Enemies/GreenSlime.png" id="2_pyj72"]
 
 [resource]
 script = ExtResource("1_2wq8i")
@@ -14,6 +14,7 @@ enemyId = "slime"
 expGiven = 4.0
 level = 1
 damageType = 0
+areaId = "Hills"
 damage_resistances = {
 0: 100.0,
 1: 0.0,

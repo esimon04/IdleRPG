@@ -1,0 +1,61 @@
+[gd_resource type="Resource" script_class="Equipment" load_steps=10 format=3 uid="uid://c0wjg4y6t2jti"]
+
+[ext_resource type="Script" uid="uid://dm5twkk3db3nc" path="res://ModifierResource.gd" id="1_71eh6"]
+[ext_resource type="Script" uid="uid://e0oup24bcnhk" path="res://Equipment.gd" id="3_jw5cw"]
+[ext_resource type="Texture2D" uid="uid://5prt417l3q4m" path="res://Art/Items/Area1Equipment/ClothChest.png" id="4_kdv4s"]
+
+[sub_resource type="Resource" id="Resource_jw5cw"]
+script = ExtResource("1_71eh6")
+type = 5
+value = 2.0
+modifierLevel = 0
+metadata/_custom_type_script = "uid://dm5twkk3db3nc"
+
+[sub_resource type="Resource" id="Resource_um6wr"]
+script = ExtResource("1_71eh6")
+type = 0
+value = 0.0
+modifierLevel = 0
+metadata/_custom_type_script = "uid://dm5twkk3db3nc"
+
+[sub_resource type="Resource" id="Resource_tlam5"]
+script = ExtResource("1_71eh6")
+type = 1
+value = 0.0
+modifierLevel = 0
+metadata/_custom_type_script = "uid://dm5twkk3db3nc"
+
+[sub_resource type="Resource" id="Resource_7v2ta"]
+script = ExtResource("1_71eh6")
+type = 2
+value = 0.0
+modifierLevel = 0
+metadata/_custom_type_script = "uid://dm5twkk3db3nc"
+
+[sub_resource type="Resource" id="Resource_tn40o"]
+script = ExtResource("1_71eh6")
+type = 3
+value = 0.0
+modifierLevel = 0
+metadata/_custom_type_script = "uid://dm5twkk3db3nc"
+
+[sub_resource type="Resource" id="Resource_0135v"]
+script = ExtResource("1_71eh6")
+type = 0
+value = 0.0
+modifierLevel = 0
+metadata/_custom_type_script = "uid://dm5twkk3db3nc"
+
+[resource]
+script = ExtResource("3_jw5cw")
+equipmentType = 1
+modifiers = Array[ExtResource("1_71eh6")]([SubResource("Resource_jw5cw")])
+possibleModifiers = Array[ExtResource("1_71eh6")]([SubResource("Resource_um6wr"), SubResource("Resource_tlam5"), SubResource("Resource_7v2ta"), SubResource("Resource_tn40o"), SubResource("Resource_0135v")])
+itemLevel = 1
+max_stack = 1
+name = "Cloth Armor"
+sprite = ExtResource("4_kdv4s")
+description = "A cloth robe"
+unique = true
+id = ""
+metadata/_custom_type_script = "uid://e0oup24bcnhk"

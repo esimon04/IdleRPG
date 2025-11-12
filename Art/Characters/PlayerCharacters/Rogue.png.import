@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://mxu3t0ep8nhw"
-path="res://.godot/imported/Archer1.png-400d7a076f2016eb36d9538fe7fbfc55.ctex"
+uid="uid://cqjakvr1bx6ao"
+path="res://.godot/imported/Rogue.png-cf0f81f8c3b1e9227c53116b58510194.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Characters/Archer1.png"
-dest_files=["res://.godot/imported/Archer1.png-400d7a076f2016eb36d9538fe7fbfc55.ctex"]
+source_file="res://Art/Characters/PlayerCharacters/Rogue.png"
+dest_files=["res://.godot/imported/Rogue.png-cf0f81f8c3b1e9227c53116b58510194.ctex"]
 
 [params]
 

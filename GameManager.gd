@@ -2,6 +2,7 @@ extends Node
 
 var player_data: PlayerData = null  # Stores the loaded player data
 var loot_tables = {}
+var area_loot_tables = {}
 var itemDatabase = {}
 
 func _ready():
@@ -49,6 +50,7 @@ func save_player_data():
 func setEnemy(enemy : EnemyResource):
 	if player_data:
 		player_data.idleBattleData.enemyFighting = enemy
+		
 		
 func pauseCombat():
 	print("Pausing Combat")
@@ -109,11 +111,15 @@ func CalcPartyHealth() -> float:
 	
 func load_loot_tables():
 	var file = FileAccess.open("res://EnemyResources/loot_tables.json", FileAccess.READ)
+	var areaFile = FileAccess.open("res://AreaResources/area_loot_tables.json", FileAccess.READ)
 	if file:
 		loot_tables = JSON.parse_string(file.get_as_text())
+	if areaFile:
+		area_loot_tables = JSON.parse_string(file.get_as_text())
 		
 func get_enemy_loot(enemy_id: String) -> Array:
 	return loot_tables.get(enemy_id, [])
+	
 
 func getItemFromDatabase(item_id: String) -> Item:
 	var item = load(itemDatabase[item_id])
@@ -166,6 +172,7 @@ func PlayerReceivedItems(items : Array[String], ilvl):
 			if !item.id:
 				item.id = item.name
 			player_data.playerInventory.add_item(item, 1)
+			
 		
 func updateParty(_party):
 	player_data.idleBattleData.characters = _party

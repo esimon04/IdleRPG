@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Equipment" load_steps=4 format=3 uid="uid://ch4gnvj6xxekn"]
+
+[ext_resource type="Script" uid="uid://dm5twkk3db3nc" path="res://ModifierResource.gd" id="1_ytwm5"]
+[ext_resource type="Script" uid="uid://e0oup24bcnhk" path="res://Equipment.gd" id="3_1s0bm"]
+[ext_resource type="Texture2D" uid="uid://steg56jrdbvq" path="res://Art/Items/Area1Equipment/Ring1.png" id="4_0tmmd"]
+
+[resource]
+script = ExtResource("3_1s0bm")
+equipmentType = 3
+modifiers = null
+possibleModifiers = Array[ExtResource("1_ytwm5")]([])
+itemLevel = 1
+max_stack = 1
+name = "Gold Ring"
+sprite = ExtResource("4_0tmmd")
+description = "My precious"
+unique = true
+id = null
+metadata/_custom_type_script = "uid://e0oup24bcnhk"

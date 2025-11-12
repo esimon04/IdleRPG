@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c1b02147n0s7n"
-path="res://.godot/imported/Warrior.png-dbe3680f699e5b00a49ad5e89fd131b1.ctex"
+uid="uid://bid5oy7wj2kh"
+path="res://.godot/imported/MailChest.png-b95aac53eb9ffa5c6f6e7ccdf67ab239.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Characters/Warrior.png"
-dest_files=["res://.godot/imported/Warrior.png-dbe3680f699e5b00a49ad5e89fd131b1.ctex"]
+source_file="res://Art/Items/Area1Equipment/MailChest.png"
+dest_files=["res://.godot/imported/MailChest.png-b95aac53eb9ffa5c6f6e7ccdf67ab239.ctex"]
 
 [params]
 

@@ -1,0 +1,79 @@
+[gd_resource type="Resource" script_class="Weapon" load_steps=11 format=3 uid="uid://mhsymh7aud8s"]
+
+[ext_resource type="Script" uid="uid://dm5twkk3db3nc" path="res://ModifierResource.gd" id="1_dab3o"]
+[ext_resource type="Script" uid="uid://k5waoa2pmnj" path="res://Weapon.gd" id="3_4q3l5"]
+
+[sub_resource type="Resource" id="Resource_um6wr"]
+script = ExtResource("1_dab3o")
+type = 0
+value = 0.0
+modifierLevel = 0
+metadata/_custom_type_script = "uid://dm5twkk3db3nc"
+
+[sub_resource type="Resource" id="Resource_tlam5"]
+script = ExtResource("1_dab3o")
+type = 1
+value = 0.0
+modifierLevel = 0
+metadata/_custom_type_script = "uid://dm5twkk3db3nc"
+
+[sub_resource type="Resource" id="Resource_7v2ta"]
+script = ExtResource("1_dab3o")
+type = 2
+value = 0.0
+modifierLevel = 0
+metadata/_custom_type_script = "uid://dm5twkk3db3nc"
+
+[sub_resource type="Resource" id="Resource_tn40o"]
+script = ExtResource("1_dab3o")
+type = 3
+value = 0.0
+modifierLevel = 0
+metadata/_custom_type_script = "uid://dm5twkk3db3nc"
+
+[sub_resource type="Resource" id="Resource_0135v"]
+script = ExtResource("1_dab3o")
+type = 0
+value = 0.0
+modifierLevel = 0
+metadata/_custom_type_script = "uid://dm5twkk3db3nc"
+
+[sub_resource type="Resource" id="Resource_rmrfw"]
+script = ExtResource("1_dab3o")
+type = 12
+value = 0.0
+modifierLevel = 0
+metadata/_custom_type_script = "uid://dm5twkk3db3nc"
+
+[sub_resource type="Resource" id="Resource_w17kh"]
+script = ExtResource("1_dab3o")
+type = 13
+value = 0.0
+modifierLevel = 0
+metadata/_custom_type_script = "uid://dm5twkk3db3nc"
+
+[sub_resource type="Resource" id="Resource_0fywy"]
+script = ExtResource("1_dab3o")
+type = 11
+value = 0.0
+modifierLevel = 0
+metadata/_custom_type_script = "uid://dm5twkk3db3nc"
+
+[resource]
+script = ExtResource("3_4q3l5")
+abilityType = 1
+minDamage = 1
+maxDamage = 3
+attackSpeed = 0.5
+critRate = 0.0
+damageType = 0
+equipmentType = 0
+modifiers = Array[ExtResource("1_dab3o")]([])
+possibleModifiers = Array[ExtResource("1_dab3o")]([SubResource("Resource_um6wr"), SubResource("Resource_tlam5"), SubResource("Resource_7v2ta"), SubResource("Resource_tn40o"), SubResource("Resource_0135v"), SubResource("Resource_rmrfw"), SubResource("Resource_w17kh"), SubResource("Resource_0fywy")])
+itemLevel = 1
+max_stack = 1
+name = "Dagger"
+description = "Dagger"
+unique = true
+id = ""
+metadata/_custom_type_script = "uid://k5waoa2pmnj"

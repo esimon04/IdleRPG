@@ -8,18 +8,25 @@ Skill trees
 Cleanup visuals
 Show combat stats in characteer stats page
 
+Currently working on
+====================
+area item drops
+
 DONE
 =====
 *Limit item drops while idle  -- Solved by only taking top 25 highest qualities
 *Resistances/AttackDmgTypes 
+*Upgrading
 
 TODO-GENERAL
 ====
+*Item requirements
+*Inventory updates (display count, tabs, search, filter, etc)
 *make item tooltip appear ON screen only, dynamic
 *show currently equipped item (item comparison)
 *SkillTrees
 *Shops
-*Upgrading/enchanting
+*runeShards
 *Inventory management
 *Combat UI
 *Idle combat stats
@@ -29,6 +36,7 @@ TODO-GENERAL
 *Clicking
 *Beastiary
 *Finish first "Area" and first "Dungeon"
+*Balance
 **AREA: Slime, Goblin, Goblin War, Goblin Sham, maybe something else for first area
 **DUNGEON: Goblin -> GoblinWar -> GoblinShaman -> GoblinElite -> GoblinKingGuy
 
@@ -37,6 +45,8 @@ NOTES
 ======
 	
 	=====================Equipment NOTES=======================
+	*Overhaul gear type
+		Gear type coincides with list of possible modifiers
 	*Big 3 equipment values
 		EquipmentLevel [1-100] - Determines level requirement, determines starting strength of the modifiers
 			level10 = level (1-3) modifiers
@@ -62,7 +72,23 @@ NOTES
 		
 		
 	=====================Item Drop NOTES=======================
+	*Area will contain list of items, these items CAN drop.
 	*Area specific Items drop from monsters in an area
 	*Monsters will have a higher chance of dropping SPECIFIC items, but still roll the same table.
+	Ex.)
+	Area1 (Goblins and shit)
+	Drops: 
+		Cloth Armor
+		Plate Armor
+		Leather Armor
+		Staff
+		Dagger
+		Sword
+	Goblin: nothin
+	GoblinWar : higher sword chance, higher plate armor chance
+	GoblinSham : higher staff chance, cloth armor chance
+	GoblinAssassin : higher Dagger chance, leather armor chance..
+	
+	
 	
 	

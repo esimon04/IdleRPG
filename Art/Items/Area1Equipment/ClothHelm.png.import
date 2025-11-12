@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bu70n03518av1"
-path="res://.godot/imported/GreenSlime.png-f1a3d3fe4b8b3c36c9266b3ad83adb9e.ctex"
+uid="uid://dl2p46o47xr16"
+path="res://.godot/imported/ClothHelm.png-a6d2905329a5a1ad1524811d03c036fe.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Characters/GreenSlime.png"
-dest_files=["res://.godot/imported/GreenSlime.png-f1a3d3fe4b8b3c36c9266b3ad83adb9e.ctex"]
+source_file="res://Art/Items/Area1Equipment/ClothHelm.png"
+dest_files=["res://.godot/imported/ClothHelm.png-a6d2905329a5a1ad1524811d03c036fe.ctex"]
 
 [params]
 

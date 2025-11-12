@@ -11,10 +11,12 @@ class_name EnemyResource
 @export var level : int
 @export var damageType : DamageTypes.DamageType
 
+@export var areaId : String
+
 @export var damage_resistances: Dictionary = {
 	DamageTypes.DamageType.PHYSICAL: 0.0, 
 	DamageTypes.DamageType.FIRE: 0.0, 
-	DamageTypes.DamageType.POISON: 0.0,
+	DamageTypes.DamageType.NATURE: 0.0,
 	DamageTypes.DamageType.LIGHTNING: 0.0, 
 	DamageTypes.DamageType.HOLY: 0.0, 
 	DamageTypes.DamageType.DARK: 0.0,

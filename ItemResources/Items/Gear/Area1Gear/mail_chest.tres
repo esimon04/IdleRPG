@@ -1,0 +1,61 @@
+[gd_resource type="Resource" script_class="Equipment" load_steps=10 format=3 uid="uid://nblutjplt6gm"]
+
+[ext_resource type="Script" uid="uid://dm5twkk3db3nc" path="res://ModifierResource.gd" id="1_ac5yd"]
+[ext_resource type="Script" uid="uid://e0oup24bcnhk" path="res://Equipment.gd" id="3_35ij8"]
+[ext_resource type="Texture2D" uid="uid://bid5oy7wj2kh" path="res://Art/Items/Area1Equipment/MailChest.png" id="4_hdkcu"]
+
+[sub_resource type="Resource" id="Resource_ac5yd"]
+script = ExtResource("1_ac5yd")
+type = 5
+value = 6.0
+modifierLevel = 1
+metadata/_custom_type_script = "uid://dm5twkk3db3nc"
+
+[sub_resource type="Resource" id="Resource_um6wr"]
+script = ExtResource("1_ac5yd")
+type = 0
+value = 0.0
+modifierLevel = 0
+metadata/_custom_type_script = "uid://dm5twkk3db3nc"
+
+[sub_resource type="Resource" id="Resource_tlam5"]
+script = ExtResource("1_ac5yd")
+type = 1
+value = 0.0
+modifierLevel = 0
+metadata/_custom_type_script = "uid://dm5twkk3db3nc"
+
+[sub_resource type="Resource" id="Resource_7v2ta"]
+script = ExtResource("1_ac5yd")
+type = 2
+value = 0.0
+modifierLevel = 0
+metadata/_custom_type_script = "uid://dm5twkk3db3nc"
+
+[sub_resource type="Resource" id="Resource_tn40o"]
+script = ExtResource("1_ac5yd")
+type = 3
+value = 0.0
+modifierLevel = 0
+metadata/_custom_type_script = "uid://dm5twkk3db3nc"
+
+[sub_resource type="Resource" id="Resource_0135v"]
+script = ExtResource("1_ac5yd")
+type = 0
+value = 0.0
+modifierLevel = 0
+metadata/_custom_type_script = "uid://dm5twkk3db3nc"
+
+[resource]
+script = ExtResource("3_35ij8")
+equipmentType = 1
+modifiers = Array[ExtResource("1_ac5yd")]([SubResource("Resource_ac5yd")])
+possibleModifiers = Array[ExtResource("1_ac5yd")]([SubResource("Resource_um6wr"), SubResource("Resource_tlam5"), SubResource("Resource_7v2ta"), SubResource("Resource_tn40o"), SubResource("Resource_0135v")])
+itemLevel = 1
+max_stack = 1
+name = "Mail Armor"
+sprite = ExtResource("4_hdkcu")
+description = "A chain mail shirt"
+unique = true
+id = ""
+metadata/_custom_type_script = "uid://e0oup24bcnhk"

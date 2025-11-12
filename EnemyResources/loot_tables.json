@@ -1,8 +1,8 @@
 {
   "slime": [
 	{ "item": "Gold", "drop_chance": 100, "min": 1, "max": 2 },
-	{ "item": "Sword", "drop_chance": 100, "min": 1, "max": 1 },
-	{"item": "Weak Soul", "drop_chance": 100, "min": 1, "max": 1 }
+	{"item": "Weak Soul", "drop_chance": 100, "min": 1, "max": 1 },
+	{"item": "Goblin Chest", "drop_chance": 60, "min": 1, "max": 1 }
   ],
   "goblin": [
 	{ "item": "Gold", "drop_chance": 60, "min": 2, "max": 4 },
@@ -10,8 +10,6 @@
   ],
 "goblinwar": [
 	{ "item": "Gold", "drop_chance": 60, "min": 5, "max": 8 },
-	{ "item": "Leather Armor", "drop_chance": 60, "min": 1, "max": 1 },
-	{ "item": "Leather Helmet", "drop_chance": 60, "min": 1, "max": 1 },
-	{ "item": "Gold Ring", "drop_chance": 60, "min": 1, "max": 1 },
+	{"item": "Goblin Chest", "drop_chance": 60, "min": 1, "max": 1 }
   ]
 }

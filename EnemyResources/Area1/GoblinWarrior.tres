@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="EnemyResource" load_steps=3 format=3 uid="uid://da0q48xgx8ww3"]
 
 [ext_resource type="Script" uid="uid://dti4dlyig2b7o" path="res://BattleScripts/EnemyResource.gd" id="1_ku36v"]
-[ext_resource type="Texture2D" uid="uid://bbmay0v053t4r" path="res://Art/Characters/GoblinWar.png" id="2_exlwq"]
+[ext_resource type="Texture2D" uid="uid://bbmay0v053t4r" path="res://Art/Characters/Area1Enemies/GoblinWar.png" id="2_exlwq"]
 
 [resource]
 script = ExtResource("1_ku36v")
@@ -13,4 +13,14 @@ attackRate = 3.0
 enemyId = "goblinwar"
 expGiven = 20.0
 level = 5
+damageType = 0
+areaId = "Hills"
+damage_resistances = {
+0: 0.0,
+1: 0.0,
+2: 0.0,
+3: 0.0,
+4: 0.0,
+5: 0.0
+}
 metadata/_custom_type_script = "uid://dti4dlyig2b7o"

@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("2_dgys5")
-itemsToDrop = Array[String](["Staff1", "LeatherChest", "LeatherHelm"])
+itemsToDrop = Array[String](["Staff", "Leather Armor", "Leather Helmet", "Leather Boots", "Mail Armor", "Mail Boots", "Mail Helmet", "Cloth Hat", "Cloth Armor", "Cloth Boots", "Sword", "Dagger"])
 chestLevel = 1
 max_stack = 999
 name = "Goblin Chest"

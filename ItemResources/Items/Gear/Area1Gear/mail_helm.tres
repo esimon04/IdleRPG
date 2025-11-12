@@ -1,0 +1,61 @@
+[gd_resource type="Resource" script_class="Equipment" load_steps=10 format=3 uid="uid://bi5ji2tfalm17"]
+
+[ext_resource type="Script" uid="uid://dm5twkk3db3nc" path="res://ModifierResource.gd" id="1_w6e8v"]
+[ext_resource type="Script" uid="uid://e0oup24bcnhk" path="res://Equipment.gd" id="3_bp8uf"]
+[ext_resource type="Texture2D" uid="uid://coygh1iyr4nvx" path="res://Art/Items/Area1Equipment/MailHelm.png" id="4_pyqjx"]
+
+[sub_resource type="Resource" id="Resource_bp8uf"]
+script = ExtResource("1_w6e8v")
+type = 5
+value = 2.0
+modifierLevel = 1
+metadata/_custom_type_script = "uid://dm5twkk3db3nc"
+
+[sub_resource type="Resource" id="Resource_um6wr"]
+script = ExtResource("1_w6e8v")
+type = 0
+value = 0.0
+modifierLevel = 0
+metadata/_custom_type_script = "uid://dm5twkk3db3nc"
+
+[sub_resource type="Resource" id="Resource_tlam5"]
+script = ExtResource("1_w6e8v")
+type = 1
+value = 0.0
+modifierLevel = 0
+metadata/_custom_type_script = "uid://dm5twkk3db3nc"
+
+[sub_resource type="Resource" id="Resource_7v2ta"]
+script = ExtResource("1_w6e8v")
+type = 2
+value = 0.0
+modifierLevel = 0
+metadata/_custom_type_script = "uid://dm5twkk3db3nc"
+
+[sub_resource type="Resource" id="Resource_tn40o"]
+script = ExtResource("1_w6e8v")
+type = 3
+value = 0.0
+modifierLevel = 0
+metadata/_custom_type_script = "uid://dm5twkk3db3nc"
+
+[sub_resource type="Resource" id="Resource_0135v"]
+script = ExtResource("1_w6e8v")
+type = 0
+value = 0.0
+modifierLevel = 0
+metadata/_custom_type_script = "uid://dm5twkk3db3nc"
+
+[resource]
+script = ExtResource("3_bp8uf")
+equipmentType = 2
+modifiers = Array[ExtResource("1_w6e8v")]([SubResource("Resource_bp8uf")])
+possibleModifiers = Array[ExtResource("1_w6e8v")]([SubResource("Resource_um6wr"), SubResource("Resource_tlam5"), SubResource("Resource_7v2ta"), SubResource("Resource_tn40o"), SubResource("Resource_0135v")])
+itemLevel = 1
+max_stack = 1
+name = "Mail Helmet"
+sprite = ExtResource("4_pyqjx")
+description = "A mail helmet"
+unique = true
+id = ""
+metadata/_custom_type_script = "uid://e0oup24bcnhk"
